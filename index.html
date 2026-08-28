@@ -6,6 +6,7 @@
 <title>PHOTO LAB</title>
 
 <style>
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -158,7 +159,10 @@ input {
   color: #aaa;
 }
 
-/* WORKSPACE */
+
+/* ==========================================
+   WORKSPACE
+========================================== */
 
 #workspace {
   display: none;
@@ -194,7 +198,10 @@ input {
   line-height: 1.5;
 }
 
-/* UPLOAD */
+
+/* ==========================================
+   UPLOAD
+========================================== */
 
 .upload {
   position: relative;
@@ -254,7 +261,10 @@ input {
   z-index: 5;
 }
 
-/* PRESETS */
+
+/* ==========================================
+   PRESETS
+========================================== */
 
 #presetSection {
   display: none;
@@ -351,7 +361,10 @@ input {
   letter-spacing: .4px;
 }
 
-/* CONTROLS */
+
+/* ==========================================
+   CONTROLS
+========================================== */
 
 #controls {
   display: none;
@@ -359,14 +372,6 @@ input {
   padding: 20px;
   background: #191919;
   border-radius: 17px;
-}
-
-.control-block {
-  margin-bottom: 24px;
-}
-
-.control-block:last-child {
-  margin-bottom: 0;
 }
 
 .control-top {
@@ -401,92 +406,99 @@ input {
   letter-spacing: 1px;
 }
 
-/* LIGHT EFFECT */
+
+/* ==========================================
+   COLD LIGHT
+========================================== */
 
 .light-section {
+  margin-top: 25px;
+  padding-top: 20px;
   border-top: 1px solid #292929;
-  padding-top: 22px;
-}
-
-.light-title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
 }
 
 .light-title {
-  font-family: Georgia, serif;
-  font-size: 19px;
-}
-
-.light-icon {
-  font-size: 15px;
-  color: #777;
+  color: #666;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
 .light-options {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .light-option {
-  min-height: 58px;
-  border: 1px solid #303030;
-  border-radius: 11px;
-  background: #151515;
-  color: #777;
-  cursor: pointer;
-  transition: .2s;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: 13px;
+  border: 1px solid #292929;
+  background: #151515;
+  color: #f4f1eb;
+  text-align: left;
+  cursor: pointer;
+  transition: .2s ease;
 }
 
 .light-option:hover {
-  border-color: #666;
-  color: #ccc;
+  border-color: #555;
 }
 
 .light-option.active {
-  background: #f4f1eb;
+  border-color: #d9e8f5;
+  background: #20252a;
+}
+
+.light-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #252525;
+  color: #dcecff;
+  font-size: 15px;
+}
+
+.light-option.active .light-icon {
+  background: #dcecff;
   color: #111;
-  border-color: #f4f1eb;
 }
 
-.light-symbol {
-  font-size: 14px;
+.light-option strong {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
 }
 
-.light-name {
+.light-option small {
+  display: block;
+  color: #666;
   font-size: 8px;
   letter-spacing: .8px;
-  font-weight: bold;
 }
 
-.light-description {
-  color: #555;
-  font-size: 9px;
-  line-height: 1.4;
-  margin-top: 10px;
-  min-height: 25px;
+.light-option.active small {
+  color: #91a4b7;
 }
 
-.light-intensity {
-  margin-top: 15px;
-}
 
-.light-intensity .range-labels {
-  margin-top: 7px;
-}
+/* ==========================================
+   BUTTONS
+========================================== */
 
 .buttons {
   display: flex;
   gap: 10px;
-  margin-top: 22px;
+  margin-top: 20px;
 }
 
 .button {
@@ -520,7 +532,10 @@ input {
   border: 1px solid #444;
 }
 
-/* COMPARISON */
+
+/* ==========================================
+   COMPARISON
+========================================== */
 
 #comparison {
   display: none;
@@ -621,7 +636,10 @@ input {
   right: 14px;
 }
 
-/* AI */
+
+/* ==========================================
+   AI
+========================================== */
 
 .ai-screen {
   display: none;
@@ -681,43 +699,62 @@ input {
   margin-top: 55px;
 }
 
-@media (max-width: 380px) {
-  .light-options {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
+
 <header class="header">
-  <div class="logo">PHOTO LAB</div>
-  <div class="pro">PRO</div>
+
+  <div class="logo">
+    PHOTO LAB
+  </div>
+
+  <div class="pro">
+    PRO
+  </div>
+
 </header>
 
-<!-- HOME -->
+
+<!-- ==========================================
+     HOME
+========================================== -->
 
 <div id="homeScreen">
 
 <section class="hero">
-  <h1>Твои фотографии.<br>Твой визуальный стиль.</h1>
+
+  <h1>
+    Твои фотографии.<br>
+    Твой визуальный стиль.
+  </h1>
 
   <p>
     Авторские пресеты и AI-инструменты
     для создания красивых фотографий.
   </p>
+
 </section>
 
-<div class="section-title">ЧТО БУДЕМ ДЕЛАТЬ?</div>
+
+<div class="section-title">
+  ЧТО БУДЕМ ДЕЛАТЬ?
+</div>
+
 
 <div class="options">
 
+
 <div class="option" id="presetsOption">
 
-  <div class="option-number">01</div>
+  <div class="option-number">
+    01
+  </div>
 
   <div class="option-name">
     ПРЕСЕТЫ
@@ -733,9 +770,12 @@ input {
 
 </div>
 
+
 <div class="option" id="enhanceOption">
 
-  <div class="option-number">02</div>
+  <div class="option-number">
+    02
+  </div>
 
   <div class="option-name">
     УЛУЧШИТЬ КАЧЕСТВО
@@ -750,6 +790,7 @@ input {
   </div>
 
 </div>
+
 
 <div class="option option-premium" id="matchOption">
 
@@ -775,30 +816,41 @@ input {
 
 </div>
 
-</div>
+
 </div>
 
-<!-- WORKSPACE -->
+</div>
+
+
+<!-- ==========================================
+     WORKSPACE
+========================================== -->
 
 <section id="workspace">
+
 
 <button class="back-button" id="backButton">
   ← Назад
 </button>
 
+
 <!-- PRESETS -->
 
 <div id="presetsWorkspace">
+
 
 <div class="workspace-title">
   ПРЕСЕТЫ
 </div>
 
+
 <div class="workspace-description">
   Выбери настроение фотографии
 </div>
 
+
 <label class="upload" for="photoInput">
+
 
 <div id="uploadContent">
 
@@ -816,186 +868,310 @@ input {
 
 </div>
 
-<img id="photoPreview" alt="Предпросмотр фотографии">
+
+<img
+  id="photoPreview"
+  alt="Предпросмотр фотографии"
+>
+
 
 <div class="change-photo" id="changePhoto">
   Изменить фото
 </div>
 
+
 </label>
+
 
 <input
   id="photoInput"
   type="file"
   accept="image/jpeg,image/png,image/webp"
-/>
+>
+
 
 <div id="presetSection">
+
 
 <div class="section-title">
   ВЫБЕРИ СТИЛЬ
 </div>
 
+
 <div class="presets">
 
-<div class="preset"
-     data-name="TENNIS"
-     data-preset="tennis">
+
+<!-- TENNIS -->
+
+<div
+  class="preset"
+  data-name="TENNIS"
+  data-preset="tennis"
+>
 
 <div class="preset-image tennis">
-<div class="preset-number">01</div>
+
+  <div class="preset-number">
+    01
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">TENNIS</div>
-<div class="preset-description">
-КОНТРАСТ · СВЕЖЕСТЬ · СОЧНОСТЬ
-</div>
-</div>
+
+  <div class="preset-name">
+    TENNIS
+  </div>
+
+  <div class="preset-description">
+    КОНТРАСТ · СВЕЖЕСТЬ · СОЧНОСТЬ
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="CAFÉ"
-     data-preset="cafe">
+</div>
+
+
+<!-- CAFE -->
+
+<div
+  class="preset"
+  data-name="CAFÉ"
+  data-preset="cafe"
+>
 
 <div class="preset-image cafe">
-<div class="preset-number">02</div>
+
+  <div class="preset-number">
+    02
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">CAFÉ</div>
-<div class="preset-description">
-ТЁПЛЫЙ · МЯГКИЙ · УЮТНЫЙ
-</div>
-</div>
+
+  <div class="preset-name">
+    CAFÉ
+  </div>
+
+  <div class="preset-description">
+    ТЁПЛЫЙ · МЯГКИЙ · УЮТНЫЙ
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="CANON"
-     data-preset="canon">
+</div>
+
+
+<!-- CANON -->
+
+<div
+  class="preset"
+  data-name="CANON"
+  data-preset="canon"
+>
 
 <div class="preset-image canon">
-<div class="preset-number">03</div>
+
+  <div class="preset-number">
+    03
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">CANON</div>
-<div class="preset-description">
-ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ
-</div>
-</div>
+
+  <div class="preset-name">
+    CANON
+  </div>
+
+  <div class="preset-description">
+    ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="FILM"
-     data-preset="film">
+</div>
+
+
+<!-- FILM -->
+
+<div
+  class="preset"
+  data-name="FILM"
+  data-preset="film"
+>
 
 <div class="preset-image film">
-<div class="preset-number">04</div>
+
+  <div class="preset-number">
+    04
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">FILM</div>
-<div class="preset-description">
-ПЛЁНКА · МЯГКОСТЬ
-</div>
-</div>
+
+  <div class="preset-name">
+    FILM
+  </div>
+
+  <div class="preset-description">
+    ПЛЁНКА · МЯГКОСТЬ
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="MEDITERRANEAN"
-     data-preset="mediterranean">
+</div>
+
+
+<!-- MEDITERRANEAN -->
+
+<div
+  class="preset"
+  data-name="MEDITERRANEAN"
+  data-preset="mediterranean"
+>
 
 <div class="preset-image mediterranean">
-<div class="preset-number">05</div>
+
+  <div class="preset-number">
+    05
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">MEDITERRANEAN</div>
-<div class="preset-description">
-СОЛНЦЕ · МОРЕ · ЛЕТО
-</div>
-</div>
+
+  <div class="preset-name">
+    MEDITERRANEAN
+  </div>
+
+  <div class="preset-description">
+    СОЛНЦЕ · МОРЕ · ЛЕТО
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="EDITORIAL"
-     data-preset="editorial">
+</div>
+
+
+<!-- EDITORIAL -->
+
+<div
+  class="preset"
+  data-name="EDITORIAL"
+  data-preset="editorial"
+>
 
 <div class="preset-image editorial">
-<div class="preset-number">06</div>
+
+  <div class="preset-number">
+    06
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">EDITORIAL</div>
-<div class="preset-description">
-МОДА · КОНТРАСТ · ДРАМА
-</div>
-</div>
+
+  <div class="preset-name">
+    EDITORIAL
+  </div>
+
+  <div class="preset-description">
+    МОДА · КОНТРАСТ · ДРАМА
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="PARIS NOIR"
-     data-preset="parisNoir">
+</div>
+
+
+<!-- PARIS NOIR -->
+
+<div
+  class="preset"
+  data-name="PARIS NOIR"
+  data-preset="parisNoir"
+>
 
 <div class="preset-image paris-noir">
-<div class="preset-number">07</div>
+
+  <div class="preset-number">
+    07
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">PARIS NOIR</div>
-<div class="preset-description">
-Ч/Б · EDITORIAL · ПЛЁНКА
-</div>
-</div>
+
+  <div class="preset-name">
+    PARIS NOIR
+  </div>
+
+  <div class="preset-description">
+    Ч/Б · EDITORIAL · ПЛЁНКА
+  </div>
 
 </div>
 
-<div class="preset"
-     data-name="PARIS"
-     data-preset="paris">
+</div>
+
+
+<!-- PARIS -->
+
+<div
+  class="preset"
+  data-name="PARIS"
+  data-preset="paris"
+>
 
 <div class="preset-image paris">
-<div class="preset-number">08</div>
+
+  <div class="preset-number">
+    08
+  </div>
+
 </div>
 
 <div class="preset-info">
-<div class="preset-name">PARIS</div>
-<div class="preset-description">
-КРЕМОВЫЙ · ТЁПЛЫЙ · LUXURY
-</div>
-</div>
+
+  <div class="preset-name">
+    PARIS
+  </div>
+
+  <div class="preset-description">
+    КРЕМОВЫЙ · ТЁПЛЫЙ · LUXURY
+  </div>
 
 </div>
 
 </div>
+
+
+</div>
 </div>
 
-<!-- CONTROLS -->
+
+<!-- ==========================================
+     CONTROLS
+========================================== -->
 
 <section id="controls">
 
-<!-- PRESET INTENSITY -->
-
-<div class="control-block">
 
 <div class="control-top">
 
-<div class="control-name" id="controlName">
-CAFÉ
+  <div class="control-name" id="controlName">
+    CAFÉ
+  </div>
+
+  <div class="control-number" id="controlNumber">
+    70%
+  </div>
+
 </div>
 
-<div class="control-number" id="controlNumber">
-70%
-</div>
-
-</div>
 
 <input
   class="range"
@@ -1006,182 +1182,179 @@ CAFÉ
   value="70"
 />
 
-<div class="range-labels">
-
-<span>МЯГКО</span>
-<span>ИНТЕНСИВНО</span>
-
-</div>
-
-</div>
-
-<!-- LIGHT -->
-
-<div class="control-block light-section">
-
-<div class="light-title-row">
-
-<div class="light-title">
-  LIGHT
-</div>
-
-<div class="light-icon">
-  ✦
-</div>
-
-</div>
-
-<div class="light-options">
-
-<button
-  class="light-option active"
-  data-light="off">
-
-  <div class="light-symbol">
-    ○
-  </div>
-
-  <div class="light-name">
-    OFF
-  </div>
-
-</button>
-
-<button
-  class="light-option"
-  data-light="flash">
-
-  <div class="light-symbol">
-    ⚡
-  </div>
-
-  <div class="light-name">
-    FLASH
-  </div>
-
-</button>
-
-<button
-  class="light-option"
-  data-light="studio">
-
-  <div class="light-symbol">
-    ◉
-  </div>
-
-  <div class="light-name">
-    STUDIO
-  </div>
-
-</button>
-
-<button
-  class="light-option"
-  data-light="cinema">
-
-  <div class="light-symbol">
-    ◐
-  </div>
-
-  <div class="light-name">
-    CINEMA
-  </div>
-
-</button>
-
-</div>
-
-<div class="light-description"
-     id="lightDescription">
-
-  Без дополнительного света
-
-</div>
-
-<div class="light-intensity">
-
-<div class="control-top">
-
-<div class="control-number">
-  INTENSITY
-</div>
-
-<div class="control-number"
-     id="lightNumber">
-  50%
-</div>
-
-</div>
-
-<input
-  class="range"
-  id="lightIntensity"
-  type="range"
-  min="0"
-  max="100"
-  value="50"
-/>
 
 <div class="range-labels">
 
-<span>МЯГКО</span>
-<span>СИЛЬНО</span>
+  <span>
+    МЯГКО
+  </span>
+
+  <span>
+    ИНТЕНСИВНО
+  </span>
 
 </div>
 
-</div>
+
+<!-- ==========================================
+     COLD LIGHT
+========================================== -->
+
+<div class="light-section">
+
+  <div class="light-title">
+    ДОПОЛНИТЕЛЬНЫЙ СВЕТ
+  </div>
+
+
+  <div class="light-options">
+
+
+    <button
+      class="light-option"
+      data-light="soft"
+      type="button"
+    >
+
+      <span class="light-icon">
+        ◌
+      </span>
+
+      <span>
+
+        <strong>
+          SOFT COLD
+        </strong>
+
+        <small>
+          МЯГКИЙ ХОЛОДНЫЙ СВЕТ
+        </small>
+
+      </span>
+
+    </button>
+
+
+    <button
+      class="light-option"
+      data-light="flash"
+      type="button"
+    >
+
+      <span class="light-icon">
+        ✦
+      </span>
+
+      <span>
+
+        <strong>
+          FLASH COLD
+        </strong>
+
+        <small>
+          ЭФФЕКТ ХОЛОДНОЙ ВСПЫШКИ
+        </small>
+
+      </span>
+
+    </button>
+
+
+    <button
+      class="light-option"
+      data-light="rim"
+      type="button"
+    >
+
+      <span class="light-icon">
+        ◐
+      </span>
+
+      <span>
+
+        <strong>
+          COLD RIM
+        </strong>
+
+        <small>
+          ХОЛОДНЫЙ КОНТРОВОЙ СВЕТ
+        </small>
+
+      </span>
+
+    </button>
+
+
+  </div>
 
 </div>
+
 
 <div class="buttons">
 
 <button
   class="button"
-  id="applyButton">
+  id="applyButton"
+>
 
-ПРИМЕНИТЬ
+  ПРИМЕНИТЬ
 
 </button>
 
+
 <button
   class="button"
-  id="originalButton">
+  id="originalButton"
+>
 
-ОРИГИНАЛ
+  ОРИГИНАЛ
 
 </button>
 
 </div>
 
+
 <button
   class="button"
-  id="downloadButton">
+  id="downloadButton"
+>
 
-СОХРАНИТЬ ФОТО
+  СОХРАНИТЬ ФОТО
 
 </button>
+
 
 </section>
 
-<!-- COMPARISON -->
+
+<!-- ==========================================
+     COMPARISON
+========================================== -->
 
 <section id="comparison">
 
+
 <div class="comparison-title">
-ДО / ПОСЛЕ
+  ДО / ПОСЛЕ
 </div>
 
-<div class="comparison"
-     id="comparisonBox">
+
+<div
+  class="comparison"
+  id="comparisonBox"
+>
+
 
 <img
   id="beforeImage"
   alt="Оригинал"
 />
 
+
 <div
   class="after-image"
-  id="afterImageContainer">
+  id="afterImageContainer"
+>
 
 <img
   id="afterImage"
@@ -1190,180 +1363,254 @@ CAFÉ
 
 </div>
 
+
 <div
   class="comparison-line"
-  id="comparisonLine">
+  id="comparisonLine"
+>
 </div>
+
 
 <div
   class="comparison-handle"
-  id="comparisonHandle">
-
-↔
-
+  id="comparisonHandle"
+>
+  ↔
 </div>
+
 
 <div class="comparison-label label-before">
-ДО
+  ДО
 </div>
+
 
 <div class="comparison-label label-after">
-ПОСЛЕ
+  ПОСЛЕ
 </div>
 
-</div>
-
-</section>
-
-</div>
-
-<!-- AI ENHANCE -->
-
-<div
-  class="ai-screen"
-  id="enhanceWorkspace">
-
-<div class="workspace-title">
-УЛУЧШИТЬ КАЧЕСТВО
-</div>
-
-<div class="workspace-description">
-Умное улучшение фотографии с помощью AI
-</div>
-
-<div class="ai-box">
-
-<div class="ai-icon">
-✦
-</div>
-
-<h3>
-Скоро здесь будет магия
-</h3>
-
-<p>
-AI автоматически определит качество фотографии
-и улучшит детали, резкость и шум.
-</p>
-
-<div class="ai-coming">
-AI · СКОРО
-</div>
-
-</div>
-
-</div>
-
-<!-- AI MATCH -->
-
-<div
-  class="ai-screen"
-  id="matchWorkspace">
-
-<div class="workspace-title">
-ПОВТОРИТЬ СТИЛЬ
-</div>
-
-<div class="workspace-description">
-Перенеси цвет и атмосферу понравившейся фотографии
-на свою
-</div>
-
-<div class="ai-box">
-
-<div class="ai-icon">
-◇
-</div>
-
-<h3>
-Твой стиль. Новый кадр.
-</h3>
-
-<p>
-Загрузи свою фотографию и референс.
-AI проанализирует цвет и атмосферу
-и создаст новую стилистику.
-</p>
-
-<div class="ai-coming">
-AI · СКОРО
-</div>
-
-</div>
 
 </div>
 
 </section>
+
+
+</div>
+
+
+<!-- ==========================================
+     AI ENHANCE
+========================================== -->
+
+<div
+  class="ai-screen"
+  id="enhanceWorkspace"
+>
+
+
+<div class="workspace-title">
+  УЛУЧШИТЬ КАЧЕСТВО
+</div>
+
+
+<div class="workspace-description">
+  Умное улучшение фотографии с помощью AI
+</div>
+
+
+<div class="ai-box">
+
+  <div class="ai-icon">
+    ✦
+  </div>
+
+  <h3>
+    Скоро здесь будет магия
+  </h3>
+
+  <p>
+    AI автоматически определит качество фотографии
+    и улучшит детали, резкость и шум.
+  </p>
+
+  <div class="ai-coming">
+    AI · СКОРО
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- ==========================================
+     AI MATCH
+========================================== -->
+
+<div
+  class="ai-screen"
+  id="matchWorkspace"
+>
+
+
+<div class="workspace-title">
+  ПОВТОРИТЬ СТИЛЬ
+</div>
+
+
+<div class="workspace-description">
+  Перенеси цвет и атмосферу понравившейся фотографии
+  на свою
+</div>
+
+
+<div class="ai-box">
+
+  <div class="ai-icon">
+    ◇
+  </div>
+
+  <h3>
+    Твой стиль. Новый кадр.
+  </h3>
+
+  <p>
+    Загрузи свою фотографию и референс.
+    AI проанализирует цвет и атмосферу
+    и создаст новую стилистику.
+  </p>
+
+  <div class="ai-coming">
+    AI · СКОРО
+  </div>
+
+</div>
+
+</div>
+
+
+</section>
+
 
 <div id="status"></div>
 
+
 <footer class="footer">
-PHOTO LAB · СОЗДАНО КРИСТИНОЙ
+  PHOTO LAB · СОЗДАНО КРИСТИНОЙ
 </footer>
+
 
 </div>
 
+
 <script>
+
 
 /* ==========================================
    PHOTO LAB
-   REAL PHOTO PRESETS + LIGHT FX
 ========================================== */
 
 const $ = id => document.getElementById(id);
 
-const homeScreen = $("homeScreen");
-const workspace = $("workspace");
 
-const presetsWorkspace = $("presetsWorkspace");
-const enhanceWorkspace = $("enhanceWorkspace");
-const matchWorkspace = $("matchWorkspace");
+const homeScreen =
+  $("homeScreen");
 
-const presetsOption = $("presetsOption");
-const enhanceOption = $("enhanceOption");
-const matchOption = $("matchOption");
+const workspace =
+  $("workspace");
 
-const backButton = $("backButton");
+const presetsWorkspace =
+  $("presetsWorkspace");
 
-const photoInput = $("photoInput");
-const photoPreview = $("photoPreview");
-const uploadContent = $("uploadContent");
-const changePhoto = $("changePhoto");
+const enhanceWorkspace =
+  $("enhanceWorkspace");
 
-const presetSection = $("presetSection");
-const controls = $("controls");
+const matchWorkspace =
+  $("matchWorkspace");
 
-const comparison = $("comparison");
-const comparisonBox = $("comparisonBox");
+const presetsOption =
+  $("presetsOption");
 
-const beforeImage = $("beforeImage");
-const afterImage = $("afterImage");
+const enhanceOption =
+  $("enhanceOption");
 
-const afterImageContainer = $("afterImageContainer");
+const matchOption =
+  $("matchOption");
 
-const comparisonLine = $("comparisonLine");
-const comparisonHandle = $("comparisonHandle");
+const backButton =
+  $("backButton");
 
-const intensity = $("intensity");
-const controlNumber = $("controlNumber");
-const controlName = $("controlName");
+const photoInput =
+  $("photoInput");
 
-const lightIntensity = $("lightIntensity");
-const lightNumber = $("lightNumber");
-const lightDescription = $("lightDescription");
+const photoPreview =
+  $("photoPreview");
 
-const applyButton = $("applyButton");
-const originalButton = $("originalButton");
+const uploadContent =
+  $("uploadContent");
 
-const downloadButton = $("downloadButton");
-const status = $("status");
+const changePhoto =
+  $("changePhoto");
+
+const presetSection =
+  $("presetSection");
+
+const controls =
+  $("controls");
+
+const comparison =
+  $("comparison");
+
+const comparisonBox =
+  $("comparisonBox");
+
+const beforeImage =
+  $("beforeImage");
+
+const afterImage =
+  $("afterImage");
+
+const afterImageContainer =
+  $("afterImageContainer");
+
+const comparisonLine =
+  $("comparisonLine");
+
+const comparisonHandle =
+  $("comparisonHandle");
+
+const intensity =
+  $("intensity");
+
+const controlNumber =
+  $("controlNumber");
+
+const controlName =
+  $("controlName");
+
+const applyButton =
+  $("applyButton");
+
+const originalButton =
+  $("originalButton");
+
+const downloadButton =
+  $("downloadButton");
+
+const status =
+  $("status");
+
 
 let originalImage = null;
 let selectedPreset = null;
-let selectedLight = "off";
 let filteredDataURL = null;
 
 let dragging = false;
+
+
+/* ==========================================
+   ACTIVE LIGHTS
+========================================== */
+
+let activeLights = [];
 
 
 /* ==========================================
@@ -1372,12 +1619,15 @@ let dragging = false;
 
 const PRESETS = {
 
+
 cafe: {
 
   exposure: 0.20,
   contrast: 10,
+
   highlights: -25,
   shadows: 25,
+
   whites: 15,
   blacks: -10,
 
@@ -1389,14 +1639,14 @@ cafe: {
 
   hsl: {
 
-    red: [5, -10, -5],
-    orange: [-5, -10, 5],
-    yellow: [-10, -15, 10],
-    green: [-20, -20, 10],
-    aqua: [-10, -10, 10],
-    blue: [-10, -10, 10],
-    purple: [0, -20, 10],
-    magenta: [0, -10, 10]
+    red: [5,-10,-5],
+    orange: [-5,-10,5],
+    yellow: [-10,-15,10],
+    green: [-20,-20,10],
+    aqua: [-10,-10,10],
+    blue: [-10,-10,10],
+    purple: [0,-20,10],
+    magenta: [0,-10,10]
 
   },
 
@@ -1425,12 +1675,15 @@ cafe: {
 
 },
 
+
 tennis: {
 
   exposure: 0,
   contrast: 30,
+
   highlights: 10,
   shadows: -28,
+
   whites: 18,
   blacks: -18,
 
@@ -1442,14 +1695,14 @@ tennis: {
 
   hsl: {
 
-    red: [0, 4, 2],
-    orange: [0, 20, 15],
-    yellow: [-5, 8, 3],
-    green: [-10, 18, 4],
-    aqua: [-8, 6, 0],
-    blue: [-3, 2, -10],
-    purple: [0, 0, 0],
-    magenta: [0, 0, 0]
+    red: [0,4,2],
+    orange: [0,20,15],
+    yellow: [-5,8,3],
+    green: [-10,18,4],
+    aqua: [-8,6,0],
+    blue: [-3,2,-10],
+    purple: [0,0,0],
+    magenta: [0,0,0]
 
   },
 
@@ -1478,12 +1731,15 @@ tennis: {
 
 },
 
+
 canon: {
 
   exposure: .05,
   contrast: 5,
+
   highlights: -8,
   shadows: 8,
+
   whites: 8,
   blacks: -4,
 
@@ -1497,12 +1753,15 @@ canon: {
 
 },
 
+
 film: {
 
   exposure: .05,
   contrast: -5,
+
   highlights: -10,
   shadows: 10,
+
   whites: -5,
   blacks: 5,
 
@@ -1523,12 +1782,15 @@ film: {
 
 },
 
+
 mediterranean: {
 
   exposure: .1,
   contrast: 8,
+
   highlights: -8,
   shadows: 8,
+
   whites: 10,
   blacks: -5,
 
@@ -1548,12 +1810,15 @@ mediterranean: {
 
 },
 
+
 editorial: {
 
   exposure: 0,
   contrast: 22,
+
   highlights: -5,
   shadows: -8,
+
   whites: 12,
   blacks: -14,
 
@@ -1573,12 +1838,16 @@ editorial: {
 
 },
 
+
 parisNoir: {
 
   exposure: 0.05,
+
   contrast: 18,
+
   highlights: -18,
   shadows: 12,
+
   whites: -5,
   blacks: -18,
 
@@ -1601,12 +1870,16 @@ parisNoir: {
 
 },
 
+
 paris: {
 
   exposure: 0.05,
+
   contrast: 10,
+
   highlights: -22,
   shadows: 12,
+
   whites: 8,
   blacks: -10,
 
@@ -1618,14 +1891,14 @@ paris: {
 
   hsl: {
 
-    red: [0, -5, 0],
-    orange: [-4, -8, 4],
-    yellow: [-12, -18, 8],
-    green: [-18, -25, 5],
-    aqua: [-10, -18, 5],
-    blue: [-8, -15, 4],
-    purple: [0, -20, 5],
-    magenta: [0, -10, 3]
+    red: [0,-5,0],
+    orange: [-4,-8,4],
+    yellow: [-12,-18,8],
+    green: [-18,-25,5],
+    aqua: [-10,-18,5],
+    blue: [-8,-15,4],
+    purple: [0,-20,5],
+    magenta: [0,-10,3]
 
   },
 
@@ -1657,57 +1930,6 @@ paris: {
 
 
 /* ==========================================
-   LIGHT FX
-========================================== */
-
-const LIGHTS = {
-
-off: {
-
-  name: "OFF",
-
-  description:
-    "Без дополнительного света"
-
-},
-
-flash: {
-
-  name: "FLASH",
-
-  description:
-    "Яркий импульс света, эффект профессиональной вспышки",
-
-  type: "flash"
-
-},
-
-studio: {
-
-  name: "STUDIO",
-
-  description:
-    "Мягкий направленный фото-свет на объект",
-
-  type: "studio"
-
-},
-
-cinema: {
-
-  name: "CINEMA",
-
-  description:
-    "Атмосферный направленный свет с глубоким фоном",
-
-  type: "cinema"
-
-}
-
-};
-
-
-/* ==========================================
    COLOR FUNCTIONS
 ========================================== */
 
@@ -1715,33 +1937,45 @@ function clamp(value) {
 
   return Math.max(
     0,
-    Math.min(255, value)
+    Math.min(
+      255,
+      value
+    )
   );
 
 }
 
-function mix(a, b, amount) {
 
-  return a + (b - a) * amount;
+function mix(a,b,amount) {
+
+  return a +
+    (b-a) *
+    amount;
 
 }
 
 
-/* RGB → HSL */
+/* ==========================================
+   RGB → HSL
+========================================== */
 
-function rgbToHsl(r, g, b) {
+function rgbToHsl(r,g,b) {
 
   r /= 255;
   g /= 255;
   b /= 255;
 
-  const max = Math.max(r,g,b);
-  const min = Math.min(r,g,b);
+  const max =
+    Math.max(r,g,b);
+
+  const min =
+    Math.min(r,g,b);
 
   let h;
   let s;
 
-  const l = (max + min) / 2;
+  const l =
+    (max+min)/2;
 
   if(max === min) {
 
@@ -1749,105 +1983,127 @@ function rgbToHsl(r, g, b) {
 
   }
 
-  const d = max - min;
+  const d =
+    max-min;
 
-  s = l > .5
-    ? d / (2 - max - min)
-    : d / (max + min);
+  s =
+    l > .5
+      ? d/(2-max-min)
+      : d/(max+min);
 
   switch(max) {
 
     case r:
-      h = (g-b) / d + (g < b ? 6 : 0);
+
+      h =
+        (g-b)/d +
+        (g < b ? 6 : 0);
+
       break;
 
     case g:
-      h = (b-r) / d + 2;
+
+      h =
+        (b-r)/d+2;
+
       break;
 
     default:
-      h = (r-g) / d + 4;
+
+      h =
+        (r-g)/d+4;
 
   }
 
   h *= 60;
 
-  return [h,s,l];
+  return [
+    h,
+    s,
+    l
+  ];
 
 }
 
 
-/* HSL → RGB */
+/* ==========================================
+   HSL → RGB
+========================================== */
 
 function hslToRgb(h,s,l) {
 
-  h = ((h % 360) + 360) % 360;
+  h =
+    ((h%360)+360)%360;
 
-  s = Math.max(
-    0,
-    Math.min(1,s)
-  );
+  s =
+    Math.max(
+      0,
+      Math.min(1,s)
+    );
 
-  l = Math.max(
-    0,
-    Math.min(1,l)
-  );
+  l =
+    Math.max(
+      0,
+      Math.min(1,l)
+    );
 
   const c =
-    (1 - Math.abs(2*l - 1)) * s;
+    (1-Math.abs(2*l-1))*s;
 
   const x =
     c *
-    (1 - Math.abs((h/60)%2 - 1));
+    (1-Math.abs((h/60)%2-1));
 
   const m =
-    l - c/2;
+    l-c/2;
 
-  let r = 0;
-  let g = 0;
-  let b = 0;
+  let r=0;
+  let g=0;
+  let b=0;
 
-  if(h < 60) {
 
-    r = c;
-    g = x;
+  if(h<60) {
 
-  }
-
-  else if(h < 120) {
-
-    r = x;
-    g = c;
+    r=c;
+    g=x;
 
   }
 
-  else if(h < 180) {
+  else if(h<120) {
 
-    g = c;
-    b = x;
-
-  }
-
-  else if(h < 240) {
-
-    g = x;
-    b = c;
+    r=x;
+    g=c;
 
   }
 
-  else if(h < 300) {
+  else if(h<180) {
 
-    r = x;
-    b = c;
+    g=c;
+    b=x;
+
+  }
+
+  else if(h<240) {
+
+    g=x;
+    b=c;
+
+  }
+
+  else if(h<300) {
+
+    r=x;
+    b=c;
 
   }
 
   else {
 
-    r = c;
-    b = x;
+    r=c;
+    b=x;
 
   }
+
 
   return [
 
@@ -1861,12 +2117,13 @@ function hslToRgb(h,s,l) {
 
 
 /* ==========================================
-   HSL ZONES
+   HUE DISTANCE
 ========================================== */
 
 function hueDistance(a,b) {
 
-  const d = Math.abs(a-b);
+  const d =
+    Math.abs(a-b);
 
   return Math.min(
     d,
@@ -1874,6 +2131,11 @@ function hueDistance(a,b) {
   );
 
 }
+
+
+/* ==========================================
+   HSL ZONES
+========================================== */
 
 function applyHSL(
   r,
@@ -1883,8 +2145,13 @@ function applyHSL(
   amount
 ) {
 
-  let [h,s,l] =
+  let [
+    h,
+    s,
+    l
+  ] =
     rgbToHsl(r,g,b);
+
 
   const zones = [
 
@@ -1899,19 +2166,26 @@ function applyHSL(
 
   ];
 
+
   let best = null;
   let weight = 0;
+
 
   for(
     const [name,center]
     of zones
   ) {
 
-    const w = Math.max(
-      0,
-      1 -
-      hueDistance(h,center)/38
-    );
+    const w =
+      Math.max(
+        0,
+        1 -
+        hueDistance(
+          h,
+          center
+        ) / 38
+      );
+
 
     if(w > weight) {
 
@@ -1922,27 +2196,37 @@ function applyHSL(
 
   }
 
+
   if(
     best &&
     hsl[best]
   ) {
 
     const [
+
       hueShift,
       saturationShift,
       lightnessShift
-    ] = hsl[best];
+
+    ] =
+      hsl[best];
+
 
     const w =
-      weight * amount;
+      weight *
+      amount;
+
 
     h +=
-      hueShift * w;
+      hueShift *
+      w;
+
 
     s +=
       s *
       (saturationShift/100)
       * w;
+
 
     l +=
       l *
@@ -1950,6 +2234,7 @@ function applyHSL(
       * w;
 
   }
+
 
   return hslToRgb(
     h,
@@ -1961,7 +2246,7 @@ function applyHSL(
 
 
 /* ==========================================
-   CURVES
+   CURVE
 ========================================== */
 
 function toneCurve(
@@ -1970,18 +2255,19 @@ function toneCurve(
 ) {
 
   let x =
-    value / 255;
+    value/255;
 
-  let y = x;
+  let y=x;
 
-  if(type === "strong") {
 
-    if(x < .5) {
+  if(type==="strong") {
+
+    if(x<.5) {
 
       y =
         x -
         .12 *
-        (1 - 2*x);
+        (1-2*x);
 
     }
 
@@ -1990,29 +2276,34 @@ function toneCurve(
       y =
         x +
         .10 *
-        (2*x - 1);
+        (2*x-1);
 
     }
+
 
     y =
       Math.pow(
         Math.max(
           0,
-          Math.min(1,y)
+          Math.min(
+            1,
+            y
+          )
         ),
         .97
       );
 
   }
 
-  else if(type === "soft") {
 
-    if(x < .5) {
+  else if(type==="soft") {
+
+    if(x<.5) {
 
       y =
         x -
         .055 *
-        (1 - 2*x);
+        (1-2*x);
 
     }
 
@@ -2021,14 +2312,15 @@ function toneCurve(
       y =
         x +
         .045 *
-        (2*x - 1);
+        (2*x-1);
 
     }
 
   }
 
+
   return clamp(
-    y * 255
+    y*255
   );
 
 }
@@ -2048,17 +2340,28 @@ function applyColorGrading(
 
   if(!preset.grading) {
 
-    return [r,g,b];
+    return [
+      r,
+      g,
+      b
+    ];
 
   }
 
-  let [h,s,l] =
+
+  let [
+    h,
+    s,
+    l
+  ] =
     rgbToHsl(r,g,b);
+
 
   let gradingHue;
   let gradingSat;
 
-  if(l < .32) {
+
+  if(l<.32) {
 
     gradingHue =
       preset.grading.shadowH;
@@ -2068,7 +2371,7 @@ function applyColorGrading(
 
   }
 
-  else if(l < .68) {
+  else if(l<.68) {
 
     gradingHue =
       preset.grading.midH;
@@ -2088,42 +2391,51 @@ function applyColorGrading(
 
   }
 
+
   const strength =
-    (1-s)
-    * .55
-    * amount;
+    (1-s) *
+    .55 *
+    amount;
 
-  if(strength <= 0) {
 
-    return [r,g,b];
+  if(strength<=0) {
+
+    return [
+      r,
+      g,
+      b
+    ];
 
   }
+
 
   const grading =
     hslToRgb(
       gradingHue,
-      gradingSat/100 * strength,
+      gradingSat/100 *
+      strength,
       l
     );
+
 
   return [
 
     mix(
       r,
       grading[0],
-      .10 * strength
+      .10*strength
     ),
 
     mix(
       g,
       grading[1],
-      .10 * strength
+      .10*strength
     ),
 
     mix(
       b,
       grading[2],
-      .10 * strength
+      .10*strength
     )
 
   ];
@@ -2132,7 +2444,249 @@ function applyColorGrading(
 
 
 /* ==========================================
-   MAIN PRESET PROCESSING
+   COLD LIGHT
+========================================== */
+
+function applyColdLight(
+  r,
+  g,
+  b,
+  x,
+  y,
+  width,
+  height,
+  lights,
+  amount
+) {
+
+  if(!lights.length) {
+
+    return [
+      r,
+      g,
+      b
+    ];
+
+  }
+
+
+  const nx =
+    x/width;
+
+  const ny =
+    y/height;
+
+
+  /*
+     Основная зона света.
+     Располагаем источник
+     немного выше центра.
+  */
+
+  const centerX =
+    .50;
+
+  const centerY =
+    .38;
+
+
+  const distance =
+    Math.sqrt(
+      Math.pow(
+        nx-centerX,
+        2
+      ) +
+      Math.pow(
+        ny-centerY,
+        2
+      )
+    );
+
+
+  /*
+     SOFT COLD
+     Мягкий рассеянный
+     источник.
+  */
+
+  if(
+    lights.includes("soft")
+  ) {
+
+    const soft =
+      Math.max(
+        0,
+        1-distance/0.72
+      );
+
+
+    const strength =
+      soft *
+      .22 *
+      amount;
+
+
+    r +=
+      7 *
+      strength;
+
+    g +=
+      13 *
+      strength;
+
+    b +=
+      22 *
+      strength;
+
+  }
+
+
+  /*
+     FLASH COLD
+     Более жёсткий источник.
+  */
+
+  if(
+    lights.includes("flash")
+  ) {
+
+    const flash =
+      Math.max(
+        0,
+        1-distance/0.58
+      );
+
+
+    const strength =
+      Math.pow(
+        flash,
+        2
+      ) *
+      .32 *
+      amount;
+
+
+    r +=
+      10 *
+      strength;
+
+    g +=
+      17 *
+      strength;
+
+    b +=
+      30 *
+      strength;
+
+
+    const flashContrast =
+      1 +
+      strength *
+      .12;
+
+
+    r =
+      (r-128) *
+      flashContrast +
+      128;
+
+    g =
+      (g-128) *
+      flashContrast +
+      128;
+
+    b =
+      (b-128) *
+      flashContrast +
+      128;
+
+  }
+
+
+  /*
+     COLD RIM
+     Холодный контровой
+     свет по краям.
+  */
+
+  if(
+    lights.includes("rim")
+  ) {
+
+    const edgeX =
+      Math.min(
+        nx,
+        1-nx
+      );
+
+    const edgeY =
+      Math.min(
+        ny,
+        1-ny
+      );
+
+
+    const edge =
+      1 -
+      Math.min(
+        1,
+        Math.min(
+          edgeX,
+          edgeY
+        ) / .28
+      );
+
+
+    const rim =
+      Math.max(
+        0,
+        edge
+      );
+
+
+    const vertical =
+      Math.max(
+        0,
+        1 -
+        Math.abs(
+          ny-.42
+        )/.7
+      );
+
+
+    const strength =
+      rim *
+      vertical *
+      .25 *
+      amount;
+
+
+    r +=
+      5 *
+      strength;
+
+    g +=
+      15 *
+      strength;
+
+    b +=
+      28 *
+      strength;
+
+  }
+
+
+  return [
+    r,
+    g,
+    b
+  ];
+
+}
+
+
+/* ==========================================
+   MAIN PROCESSING
 ========================================== */
 
 function processImage(
@@ -2144,25 +2698,32 @@ function processImage(
   const data =
     imageData.data;
 
+
   const exposure =
     preset.exposure || 0;
 
   const contrast =
-    (preset.contrast || 0) / 100;
+    (preset.contrast || 0)/100;
 
   const saturation =
-    (preset.saturation || 0) / 100;
+    (preset.saturation || 0)/100;
 
   const vibrance =
-    (preset.vibrance || 0) / 100;
+    (preset.vibrance || 0)/100;
 
   const temperature =
-    (preset.temperature || 0)
-    * 1.15;
+    (preset.temperature || 0)*1.15;
 
   const tint =
-    (preset.tint || 0)
-    * .7;
+    (preset.tint || 0)*.7;
+
+
+  const width =
+    imageData.width;
+
+  const height =
+    imageData.height;
+
 
   for(
     let i=0;
@@ -2170,51 +2731,68 @@ function processImage(
     i+=4
   ) {
 
-    let r = data[i];
-    let g = data[i+1];
-    let b = data[i+2];
+
+    let r =
+      data[i];
+
+    let g =
+      data[i+1];
+
+    let b =
+      data[i+2];
+
 
     /* EXPOSURE */
 
     const exposureMultiplier =
       Math.pow(
         2,
-        exposure * amount
+        exposure*amount
       );
 
-    r *= exposureMultiplier;
-    g *= exposureMultiplier;
-    b *= exposureMultiplier;
+
+    r *=
+      exposureMultiplier;
+
+    g *=
+      exposureMultiplier;
+
+    b *=
+      exposureMultiplier;
+
 
     /* CONTRAST */
 
     const contrastMultiplier =
-      1 +
-      contrast * amount;
+      1+
+      contrast*amount;
+
 
     r =
-      (r-128)
-      * contrastMultiplier
-      +128;
+      (r-128) *
+      contrastMultiplier +
+      128;
 
     g =
-      (g-128)
-      * contrastMultiplier
-      +128;
+      (g-128) *
+      contrastMultiplier +
+      128;
 
     b =
-      (b-128)
-      * contrastMultiplier
-      +128;
+      (b-128) *
+      contrastMultiplier +
+      128;
+
 
     /* LUMINANCE */
 
     const luminance =
       (
-        r*.2126 +
-        g*.7152 +
+        r*.2126+
+        g*.7152+
         b*.0722
-      ) / 255;
+      )/255;
+
 
     const shadow =
       1-luminance;
@@ -2222,53 +2800,68 @@ function processImage(
     const highlight =
       luminance;
 
+
     /* LIGHTROOM STYLE */
 
     const shadows =
-      (preset.shadows || 0)
-      /100
-      * amount;
+      (preset.shadows || 0) /
+      100 *
+      amount;
+
 
     const highlights =
-      (preset.highlights || 0)
-      /100
-      * amount;
+      (preset.highlights || 0) /
+      100 *
+      amount;
+
 
     const whites =
-      (preset.whites || 0)
-      /100
-      * amount;
+      (preset.whites || 0) /
+      100 *
+      amount;
+
 
     const blacks =
-      (preset.blacks || 0)
-      /100
-      * amount;
+      (preset.blacks || 0) /
+      100 *
+      amount;
+
 
     const correction =
-      shadows * 35 * shadow +
-      highlights * 25 * highlight +
-      whites * 18 * Math.pow(highlight,2) +
-      blacks * 18 * Math.pow(1-highlight,2);
+      shadows*35*shadow+
+      highlights*25*highlight+
+      whites*18*Math.pow(
+        highlight,
+        2
+      )+
+      blacks*18*Math.pow(
+        1-highlight,
+        2
+      );
+
 
     r += correction;
     g += correction;
     b += correction;
 
+
     /* TEMPERATURE */
 
     r +=
-      temperature * amount;
+      temperature*amount;
 
     b -=
-      temperature * amount;
+      temperature*amount;
+
 
     /* TINT */
 
     r +=
-      tint * amount;
+      tint*amount;
 
     g -=
-      tint * .35 * amount;
+      tint*.35*amount;
+
 
     /* SATURATION */
 
@@ -2279,42 +2872,57 @@ function processImage(
         clamp(b)
       );
 
+
     hsl[1] =
       Math.max(
         0,
         Math.min(
           1,
           hsl[1] *
-          (1 +
-           saturation * amount)
+          (
+            1+
+            saturation*amount
+          )
         )
       );
+
 
     /* VIBRANCE */
 
     const vibranceBoost =
       vibrance *
       amount *
-      (1-hsl[1])
-      * .8;
+      (1-hsl[1]) *
+      .8;
+
 
     hsl[1] =
       Math.min(
         1,
-        hsl[1] +
+        hsl[1]+
         vibranceBoost
       );
 
-    [r,g,b] =
+
+    [
+      r,
+      g,
+      b
+    ] =
       hslToRgb(
         hsl[0],
         hsl[1],
         hsl[2]
       );
 
+
     /* HSL */
 
-    [r,g,b] =
+    [
+      r,
+      g,
+      b
+    ] =
       applyHSL(
         r,
         g,
@@ -2322,6 +2930,7 @@ function processImage(
         preset.hsl || {},
         amount
       );
+
 
     /* CURVE */
 
@@ -2347,9 +2956,14 @@ function processImage(
 
     }
 
+
     /* COLOR GRADING */
 
-    [r,g,b] =
+    [
+      r,
+      g,
+      b
+    ] =
       applyColorGrading(
         r,
         g,
@@ -2357,6 +2971,7 @@ function processImage(
         preset,
         amount
       );
+
 
     /* GRAIN */
 
@@ -2366,22 +2981,25 @@ function processImage(
     ) {
 
       const grain =
-        preset.effects.grain
-        /100
-        * amount;
+        preset.effects.grain /
+        100 *
+        amount;
+
 
       const noise =
         (
           Math.random()-.5
-        )
-        * grain
-        * 22;
+        ) *
+        grain *
+        22;
+
 
       r += noise;
       g += noise;
       b += noise;
 
     }
+
 
     /* VIGNETTE */
 
@@ -2393,48 +3011,92 @@ function processImage(
       const pixel =
         i/4;
 
-      const width =
-        imageData.width;
-
-      const height =
-        imageData.height;
 
       const x =
-        pixel % width;
+        pixel%width;
+
 
       const y =
         Math.floor(
-          pixel / width
+          pixel/width
         );
+
 
       const nx =
         (x/width-.5)*2;
 
+
       const ny =
         (y/height-.5)*2;
+
 
       const edge =
         Math.min(
           1,
-          (nx*nx + ny*ny)/2
+          (
+            nx*nx+
+            ny*ny
+          )/2
         );
 
+
       const vignette =
-        preset.effects.vignette
-        /100
-        * amount;
+        preset.effects.vignette /
+        100 *
+        amount;
+
 
       const factor =
-        1 +
-        vignette *
-        edge *
+        1+
+        vignette*
+        edge*
         .45;
+
 
       r *= factor;
       g *= factor;
       b *= factor;
 
     }
+
+
+    /* ======================================
+       COLD LIGHT
+    ====================================== */
+
+    const pixel =
+      i/4;
+
+
+    const x =
+      pixel%width;
+
+
+    const y =
+      Math.floor(
+        pixel/width
+      );
+
+
+    [
+      r,
+      g,
+      b
+    ] =
+      applyColdLight(
+        r,
+        g,
+        b,
+        x,
+        y,
+        width,
+        height,
+        activeLights,
+        amount
+      );
+
+
+    /* FINAL */
 
     data[i] =
       clamp(r);
@@ -2447,211 +3109,6 @@ function processImage(
 
   }
 
-  return imageData;
-
-}
-
-
-/* ==========================================
-   LIGHT FX PROCESSING
-========================================== */
-
-function applyLightEffect(
-  imageData,
-  type,
-  intensityAmount
-) {
-
-  if(
-    type === "off" ||
-    intensityAmount <= 0
-  ) {
-
-    return imageData;
-
-  }
-
-  const data =
-    imageData.data;
-
-  const width =
-    imageData.width;
-
-  const height =
-    imageData.height;
-
-  const strength =
-    intensityAmount / 100;
-
-  for(
-    let i = 0;
-    i < data.length;
-    i += 4
-  ) {
-
-    const pixel =
-      i / 4;
-
-    const x =
-      pixel % width;
-
-    const y =
-      Math.floor(
-        pixel / width
-      );
-
-    /*
-      Центральная зона света.
-      Немного смещена вверх,
-      чтобы визуально напоминать
-      свет на лице/верхней части объекта.
-    */
-
-    const centerX =
-      width * .50;
-
-    const centerY =
-      height * .43;
-
-    const dx =
-      (x-centerX) /
-      (width*.50);
-
-    const dy =
-      (y-centerY) /
-      (height*.62);
-
-    const distance =
-      Math.sqrt(
-        dx*dx +
-        dy*dy
-      );
-
-    let falloff =
-      Math.max(
-        0,
-        1-distance
-      );
-
-    /*
-      Более мягкая градация
-    */
-
-    if(type === "studio") {
-
-      falloff =
-        Math.pow(
-          falloff,
-          1.35
-        );
-
-      const light =
-        falloff *
-        strength *
-        38;
-
-      data[i] += light;
-      data[i+1] += light;
-      data[i+2] += light;
-
-    }
-
-    /*
-      FLASH
-    */
-
-    else if(type === "flash") {
-
-      falloff =
-        Math.pow(
-          falloff,
-          1.8
-        );
-
-      const light =
-        falloff *
-        strength *
-        55;
-
-      data[i] += light;
-      data[i+1] += light;
-      data[i+2] += light;
-
-      /*
-        Лёгкое увеличение
-        микроконтраста вокруг света
-      */
-
-      const localContrast =
-        falloff *
-        strength *
-        8;
-
-      data[i] =
-        (data[i]-128)
-        * (1 + localContrast/100)
-        +128;
-
-      data[i+1] =
-        (data[i+1]-128)
-        * (1 + localContrast/100)
-        +128;
-
-      data[i+2] =
-        (data[i+2]-128)
-        * (1 + localContrast/100)
-        +128;
-
-    }
-
-    /*
-      CINEMA
-    */
-
-    else if(type === "cinema") {
-
-      falloff =
-        Math.pow(
-          falloff,
-          1.55
-        );
-
-      const light =
-        falloff *
-        strength *
-        32;
-
-      /*
-        Тёплый киношный свет
-      */
-
-      data[i] +=
-        light * 1.10;
-
-      data[i+1] +=
-        light * .93;
-
-      data[i+2] +=
-        light * .72;
-
-      /*
-        Фон слегка затемняем.
-        Чем дальше от источника,
-        тем сильнее эффект.
-      */
-
-      const background =
-        (1-falloff) *
-        strength *
-        7;
-
-      data[i] -= background;
-      data[i+1] -= background;
-      data[i+2] -= background;
-
-    }
-
-  }
 
   return imageData;
 
@@ -2659,7 +3116,7 @@ function applyLightEffect(
 
 
 /* ==========================================
-   IMAGE LOADER
+   LOAD IMAGE
 ========================================== */
 
 function loadImage(src) {
@@ -2670,11 +3127,15 @@ function loadImage(src) {
       const img =
         new Image();
 
+
       img.onload =
-        () => resolve(img);
+        () =>
+          resolve(img);
+
 
       img.onerror =
         reject;
+
 
       img.src =
         src;
@@ -2686,7 +3147,7 @@ function loadImage(src) {
 
 
 /* ==========================================
-   RENDER
+   RENDER PRESET
 ========================================== */
 
 async function renderPreset() {
@@ -2700,42 +3161,51 @@ async function renderPreset() {
 
   }
 
+
   status.textContent =
     "Обрабатываем фотографию…";
+
 
   const img =
     await loadImage(
       originalImage
     );
 
-  const maxSize = 1800;
+
+  const maxSize =
+    1800;
+
 
   const scale =
     Math.min(
       1,
-      maxSize /
+      maxSize/
       Math.max(
         img.naturalWidth,
         img.naturalHeight
       )
     );
 
+
   const canvas =
     document.createElement(
       "canvas"
     );
 
+
   canvas.width =
     Math.round(
-      img.naturalWidth *
+      img.naturalWidth*
       scale
     );
 
+
   canvas.height =
     Math.round(
-      img.naturalHeight *
+      img.naturalHeight*
       scale
     );
+
 
   const ctx =
     canvas.getContext(
@@ -2745,6 +3215,7 @@ async function renderPreset() {
       }
     );
 
+
   ctx.drawImage(
     img,
     0,
@@ -2752,6 +3223,7 @@ async function renderPreset() {
     canvas.width,
     canvas.height
   );
+
 
   const imageData =
     ctx.getImageData(
@@ -2761,35 +3233,19 @@ async function renderPreset() {
       canvas.height
     );
 
-  const presetAmount =
+
+  const amount =
     Number(
       intensity.value
-    ) / 100;
+    )/100;
 
-  /*
-    1. Основной пресет
-  */
 
   processImage(
     imageData,
     PRESETS[selectedPreset],
-    presetAmount
+    amount
   );
 
-  /*
-    2. Дополнительный LIGHT
-  */
-
-  const selectedLightIntensity =
-    Number(
-      lightIntensity.value
-    );
-
-  applyLightEffect(
-    imageData,
-    selectedLight,
-    selectedLightIntensity
-  );
 
   ctx.putImageData(
     imageData,
@@ -2797,30 +3253,35 @@ async function renderPreset() {
     0
   );
 
+
   filteredDataURL =
     canvas.toDataURL(
       "image/jpeg",
       .92
     );
 
+
   afterImage.src =
     filteredDataURL;
+
 
   beforeImage.src =
     originalImage;
 
+
   comparison.style.display =
     "block";
+
 
   downloadButton.style.display =
     "block";
 
+
   status.textContent =
     "Готово ✦";
 
-  setComparison(
-    50
-  );
+
+  setComparison(50);
 
 }
 
@@ -2849,6 +3310,7 @@ presetsOption.onclick =
 
   };
 
+
 enhanceOption.onclick =
   () => {
 
@@ -2869,6 +3331,7 @@ enhanceOption.onclick =
 
   };
 
+
 matchOption.onclick =
   () => {
 
@@ -2888,6 +3351,7 @@ matchOption.onclick =
       "block";
 
   };
+
 
 backButton.onclick =
   () => {
@@ -2914,15 +3378,17 @@ photoInput.onchange =
     const file =
       event.target.files[0];
 
+
     if(!file) {
 
       return;
 
     }
 
+
     if(
       file.size >
-      20 * 1024 * 1024
+      20*1024*1024
     ) {
 
       status.textContent =
@@ -2932,8 +3398,10 @@ photoInput.onchange =
 
     }
 
+
     const reader =
       new FileReader();
+
 
     reader.onload =
       event => {
@@ -2941,88 +3409,59 @@ photoInput.onchange =
         originalImage =
           event.target.result;
 
+
         filteredDataURL =
           null;
 
-        selectedPreset =
-          null;
-
-        selectedLight =
-          "off";
 
         photoPreview.src =
           originalImage;
 
+
         beforeImage.src =
           originalImage;
+
 
         afterImage.src =
           originalImage;
 
+
         photoPreview.style.display =
           "block";
+
 
         uploadContent.style.display =
           "none";
 
+
         changePhoto.style.display =
           "block";
+
 
         presetSection.style.display =
           "block";
 
+
         controls.style.display =
           "none";
+
 
         comparison.style.display =
           "none";
 
+
         downloadButton.style.display =
           "none";
 
-        document
-        .querySelectorAll(".preset")
-        .forEach(
-          item =>
-            item.classList.remove(
-              "active"
-            )
-        );
-
-        document
-        .querySelectorAll(".light-option")
-        .forEach(
-          item =>
-            item.classList.remove(
-              "active"
-            )
-        );
-
-        document
-        .querySelector(
-          '[data-light="off"]'
-        )
-        .classList.add(
-          "active"
-        );
-
-        lightDescription.textContent =
-          LIGHTS.off.description;
-
-        lightIntensity.value =
-          50;
-
-        lightNumber.textContent =
-          "50%";
 
         status.textContent =
           "Фотография загружена";
 
+
       };
 
-    reader.readAsDataURL(
-      file
-    );
+
+    reader.readAsDataURL(file);
 
   };
 
@@ -3039,6 +3478,7 @@ document
     element.onclick =
       () => {
 
+
         document
         .querySelectorAll(".preset")
         .forEach(
@@ -3048,22 +3488,35 @@ document
             )
         );
 
+
         element.classList.add(
           "active"
         );
 
+
         selectedPreset =
           element.dataset.preset;
+
 
         controlName.textContent =
           element.dataset.name;
 
+
         controls.style.display =
           "block";
 
+
         status.textContent =
-          "Выбран стиль: " +
+          "Выбран стиль: "+
           element.dataset.name;
+
+
+        /*
+           При выборе нового пресета
+           сохраняем выбранный свет.
+           Пользователь может менять
+           комбинацию независимо.
+        */
 
       };
 
@@ -3078,53 +3531,52 @@ document
 document
 .querySelectorAll(".light-option")
 .forEach(
-  element => {
+  button => {
 
-    element.onclick =
+    button.onclick =
       () => {
 
-        document
-        .querySelectorAll(".light-option")
-        .forEach(
-          item =>
-            item.classList.remove(
-              "active"
-            )
-        );
 
-        element.classList.add(
-          "active"
-        );
+        const light =
+          button.dataset.light;
 
-        selectedLight =
-          element.dataset.light;
-
-        lightDescription.textContent =
-          LIGHTS[selectedLight].description;
 
         if(
-          selectedLight === "off"
+          activeLights.includes(light)
         ) {
 
-          lightIntensity.value =
-            0;
+          activeLights =
+            activeLights.filter(
+              item =>
+                item !== light
+            );
 
-          lightNumber.textContent =
-            "0%";
+
+          button.classList.remove(
+            "active"
+          );
 
         }
 
-        else if(
-          Number(lightIntensity.value) === 0
-        ) {
+        else {
 
-          lightIntensity.value =
-            50;
+          activeLights.push(
+            light
+          );
 
-          lightNumber.textContent =
-            "50%";
+
+          button.classList.add(
+            "active"
+          );
 
         }
+
+
+        /*
+           Если фотография уже
+           обработана, автоматически
+           обновляем результат.
+        */
 
         if(
           filteredDataURL
@@ -3141,35 +3593,16 @@ document
 
 
 /* ==========================================
-   PRESET INTENSITY
+   INTENSITY
 ========================================== */
 
 intensity.oninput =
   () => {
 
     controlNumber.textContent =
-      intensity.value + "%";
+      intensity.value+
+      "%";
 
-    if(
-      filteredDataURL
-    ) {
-
-      renderPreset();
-
-    }
-
-  };
-
-
-/* ==========================================
-   LIGHT INTENSITY
-========================================== */
-
-lightIntensity.oninput =
-  () => {
-
-    lightNumber.textContent =
-      lightIntensity.value + "%";
 
     if(
       filteredDataURL
@@ -3203,14 +3636,18 @@ originalButton.onclick =
 
     }
 
+
     afterImage.src =
       originalImage;
+
 
     comparison.style.display =
       "none";
 
+
     downloadButton.style.display =
       "none";
+
 
     status.textContent =
       "Показан оригинал";
@@ -3231,20 +3668,22 @@ downloadButton.onclick =
 
     }
 
+
     const link =
       document.createElement(
         "a"
       );
 
+
     link.href =
       filteredDataURL;
 
+
     link.download =
-      "photo-lab-" +
-      selectedPreset +
-      "-" +
-      selectedLight +
+      "photo-lab-"+
+      selectedPreset+
       ".jpg";
+
 
     link.click();
 
@@ -3266,43 +3705,52 @@ function setComparison(percent) {
       )
     );
 
+
   afterImageContainer.style.width =
-    percent + "%";
+    percent+
+    "%";
+
 
   comparisonLine.style.left =
-    percent + "%";
+    percent+
+    "%";
+
 
   comparisonHandle.style.left =
-    percent + "%";
+    percent+
+    "%";
 
 }
+
 
 function moveSlider(x) {
 
   const rect =
     comparisonBox.getBoundingClientRect();
 
+
   const percent =
     (
-      (x - rect.left)
-      /
+      (x-rect.left)/
       rect.width
-    ) * 100;
+    )*100;
 
-  setComparison(
-    percent
-  );
+
+  setComparison(percent);
 
 }
+
 
 comparisonBox.onpointerdown =
   event => {
 
     dragging = true;
 
+
     comparisonBox.setPointerCapture(
       event.pointerId
     );
+
 
     moveSlider(
       event.clientX
@@ -3310,12 +3758,11 @@ comparisonBox.onpointerdown =
 
   };
 
+
 comparisonBox.onpointermove =
   event => {
 
-    if(
-      dragging
-    ) {
+    if(dragging) {
 
       moveSlider(
         event.clientX
@@ -3325,6 +3772,7 @@ comparisonBox.onpointermove =
 
   };
 
+
 comparisonBox.onpointerup =
   () => {
 
@@ -3332,12 +3780,14 @@ comparisonBox.onpointerup =
 
   };
 
+
 comparisonBox.onpointercancel =
   () => {
 
     dragging = false;
 
   };
+
 
 </script>
 
