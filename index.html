@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -54,7 +55,7 @@ input {
 }
 
 .hero {
-  margin-bottom: 38px;
+  margin-bottom: 28px;
 }
 
 .hero h1 {
@@ -71,6 +72,64 @@ input {
   font-size: 14px;
   line-height: 1.5;
   max-width: 330px;
+}
+
+/* EXAMPLES LINK */
+
+.examples-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 17px;
+  margin-bottom: 38px;
+  border: 1px solid #292929;
+  border-radius: 14px;
+  background: #161616;
+  color: #f4f1eb;
+  text-decoration: none;
+  transition: .25s ease;
+}
+
+.examples-link:hover {
+  border-color: #666;
+  transform: translateY(-2px);
+  background: #191919;
+}
+
+.examples-link-left {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.examples-link-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.examples-link-title {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.examples-link-subtitle {
+  color: #666;
+  font-size: 8px;
+  letter-spacing: .8px;
+  margin-top: 3px;
+}
+
+.examples-link-arrow {
+  color: #777;
+  font-size: 17px;
 }
 
 .section-title {
@@ -606,6 +665,39 @@ input {
     для создания красивых фотографий.
   </p>
 </section>
+
+<!-- EXAMPLES -->
+
+<a
+  class="examples-link"
+  href="https://zt7mfvzgr6-creator.github.io/photo-presets-app/examples.html"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+  <div class="examples-link-left">
+
+    <div class="examples-link-icon">
+      ↗
+    </div>
+
+    <div>
+      <div class="examples-link-title">
+        СМОТРЕТЬ ПРИМЕРЫ
+      </div>
+
+      <div class="examples-link-subtitle">
+        ДО / ПОСЛЕ · PHOTO LAB
+      </div>
+    </div>
+
+  </div>
+
+  <div class="examples-link-arrow">
+    →
+  </div>
+
+</a>
 
 <div class="section-title">ЧТО БУДЕМ ДЕЛАТЬ?</div>
 
@@ -1145,14 +1237,7 @@ PHOTO LAB · СОЗДАНО КРИСТИНОЙ
 
 <script>
 
-/* ==========================================
-   PHOTO LAB
-   REAL PHOTO PRESETS
-========================================== */
-
-
 const $ = id => document.getElementById(id);
-
 
 const homeScreen = $("homeScreen");
 const workspace = $("workspace");
@@ -1198,7 +1283,6 @@ const downloadButton = $("downloadButton");
 
 const status = $("status");
 
-
 let originalImage = null;
 let selectedPreset = null;
 let filteredDataURL = null;
@@ -1206,186 +1290,93 @@ let filteredDataURL = null;
 let dragging = false;
 
 
-/* ==========================================
-   PRESET DATA
-========================================== */
-
-
-/*
-   CAFÉ
-   Based on our reference analysis.
-
-   Warm
-   Soft
-   Cozy
-   Creamy highlights
-   Natural skin
-   Muted colors
-*/
-
+/* PRESET DATA */
 
 const PRESETS = {
 
 cafe: {
-
   exposure: 0.20,
-
   contrast: 10,
-
   highlights: -25,
-
   shadows: 25,
-
   whites: 15,
-
   blacks: -10,
-
   temperature: 6,
-
   tint: 2,
-
   saturation: -5,
-
   vibrance: 8,
 
   hsl: {
-
     red: [5, -10, -5],
-
     orange: [-5, -10, 5],
-
     yellow: [-10, -15, 10],
-
     green: [-20, -20, 10],
-
     aqua: [-10, -10, 10],
-
     blue: [-10, -10, 10],
-
     purple: [0, -20, 10],
-
     magenta: [0, -10, 10]
-
   },
 
   curve: "soft",
 
   grading: {
-
     shadowH: 190,
-
     shadowS: 6,
-
     midH: 40,
-
     midS: 8,
-
     highH: 45,
-
     highS: 12
-
   },
 
   effects: {
-
     clarity: -5,
-
     grain: 10,
-
     vignette: -10
-
   }
-
 },
 
-
-/*
-   TENNIS
-
-   Strong S curve
-   Warm skin
-   Rich green
-   Slightly cooler background
-*/
-
-
 tennis: {
-
   exposure: 0,
-
   contrast: 30,
-
   highlights: 10,
-
   shadows: -28,
-
   whites: 18,
-
   blacks: -18,
-
   temperature: 1,
-
   tint: 0,
-
   saturation: 12,
-
   vibrance: 23,
 
   hsl: {
-
     red: [0, 4, 2],
-
     orange: [0, 20, 15],
-
     yellow: [-5, 8, 3],
-
     green: [-10, 18, 4],
-
     aqua: [-8, 6, 0],
-
     blue: [-3, 2, -10],
-
     purple: [0, 0, 0],
-
     magenta: [0, 0, 0]
-
   },
 
   curve: "strong",
 
   grading: {
-
     shadowH: 190,
-
     shadowS: 4,
-
     midH: 40,
-
     midS: 3,
-
     highH: 45,
-
     highS: 5
-
   },
 
   effects: {
-
     clarity: 2,
-
     grain: 0,
-
     vignette: -5
-
   }
-
 },
 
-
-/* PLACEHOLDERS */
-
 canon: {
-
   exposure: .05,
   contrast: 5,
   highlights: -8,
@@ -1396,14 +1387,10 @@ canon: {
   tint: 0,
   saturation: 3,
   vibrance: 8,
-
   hsl: {}
-
 },
 
-
 film: {
-
   exposure: .05,
   contrast: -5,
   highlights: -10,
@@ -1414,19 +1401,15 @@ film: {
   tint: 1,
   saturation: -8,
   vibrance: -2,
-
   hsl: {},
 
   effects: {
     grain: 18,
     vignette: -8
   }
-
 },
 
-
 mediterranean: {
-
   exposure: .1,
   contrast: 8,
   highlights: -8,
@@ -1437,18 +1420,14 @@ mediterranean: {
   tint: 0,
   saturation: 5,
   vibrance: 12,
-
   hsl: {},
 
   effects: {
     vignette: -4
   }
-
 },
 
-
 editorial: {
-
   exposure: 0,
   contrast: 22,
   highlights: -5,
@@ -1459,41 +1438,25 @@ editorial: {
   tint: 0,
   saturation: -5,
   vibrance: 4,
-
   hsl: {},
 
   effects: {
     vignette: -10
   }
-
 }
 
 };
 
 
-/* ==========================================
-   COLOR FUNCTIONS
-========================================== */
-
+/* COLOR FUNCTIONS */
 
 function clamp(value) {
-
-  return Math.max(
-    0,
-    Math.min(255, value)
-  );
-
+  return Math.max(0, Math.min(255, value));
 }
-
 
 function mix(a, b, amount) {
-
   return a + (b - a) * amount;
-
 }
-
-
-/* RGB → HSL */
 
 function rgbToHsl(r, g, b) {
 
@@ -1510,9 +1473,7 @@ function rgbToHsl(r, g, b) {
   const l = (max + min) / 2;
 
   if(max === min) {
-
     return [0,0,l];
-
   }
 
   const d = max - min;
@@ -1539,25 +1500,15 @@ function rgbToHsl(r, g, b) {
   h *= 60;
 
   return [h,s,l];
-
 }
 
-
-/* HSL → RGB */
 
 function hslToRgb(h,s,l) {
 
   h = ((h % 360) + 360) % 360;
 
-  s = Math.max(
-    0,
-    Math.min(1,s)
-  );
-
-  l = Math.max(
-    0,
-    Math.min(1,l)
-  );
+  s = Math.max(0, Math.min(1,s));
+  l = Math.max(0, Math.min(1,l));
 
   const c =
     (1 - Math.abs(2*l - 1)) * s;
@@ -1573,94 +1524,57 @@ function hslToRgb(h,s,l) {
   let g = 0;
   let b = 0;
 
-
   if(h < 60) {
-
     r = c;
     g = x;
-
   }
 
   else if(h < 120) {
-
     r = x;
     g = c;
-
   }
 
   else if(h < 180) {
-
     g = c;
     b = x;
-
   }
 
   else if(h < 240) {
-
     g = x;
     b = c;
-
   }
 
   else if(h < 300) {
-
     r = x;
     b = c;
-
   }
 
   else {
-
     r = c;
     b = x;
-
   }
 
-
   return [
-
     (r+m)*255,
-
     (g+m)*255,
-
     (b+m)*255
-
   ];
-
 }
-
-
-/* ==========================================
-   HSL ZONES
-========================================== */
 
 
 function hueDistance(a,b) {
 
   const d = Math.abs(a-b);
 
-  return Math.min(
-    d,
-    360-d
-  );
-
+  return Math.min(d, 360-d);
 }
 
 
-function applyHSL(
-  r,
-  g,
-  b,
-  hsl,
-  amount
-) {
+function applyHSL(r,g,b,hsl,amount) {
 
-  let [h,s,l] =
-    rgbToHsl(r,g,b);
-
+  let [h,s,l] = rgbToHsl(r,g,b);
 
   const zones = [
-
     ["red",0],
     ["orange",30],
     ["yellow",60],
@@ -1669,40 +1583,25 @@ function applyHSL(
     ["blue",240],
     ["purple",280],
     ["magenta",330]
-
   ];
-
 
   let best = null;
   let weight = 0;
 
-
-  for(
-    const [name,center]
-    of zones
-  ) {
+  for(const [name,center] of zones) {
 
     const w = Math.max(
       0,
-      1 -
-      hueDistance(h,center)/38
+      1 - hueDistance(h,center)/38
     );
 
-
     if(w > weight) {
-
       weight = w;
       best = name;
-
     }
-
   }
 
-
-  if(
-    best &&
-    hsl[best]
-  ) {
+  if(best && hsl[best]) {
 
     const [
       hueShift,
@@ -1710,54 +1609,29 @@ function applyHSL(
       lightnessShift
     ] = hsl[best];
 
+    const w = weight * amount;
 
-    const w =
-      weight * amount;
-
-
-    h +=
-      hueShift * w;
-
+    h += hueShift * w;
 
     s +=
       s *
       (saturationShift/100)
       * w;
 
-
     l +=
       l *
       (lightnessShift/100)
       * w;
-
   }
 
-
-  return hslToRgb(
-    h,
-    s,
-    l
-  );
-
+  return hslToRgb(h,s,l);
 }
 
 
-/* ==========================================
-   CURVES
-========================================== */
+function toneCurve(value,type) {
 
-
-function toneCurve(
-  value,
-  type
-) {
-
-  let x =
-    value / 255;
-
-
+  let x = value / 255;
   let y = x;
-
 
   if(type === "strong") {
 
@@ -1787,9 +1661,7 @@ function toneCurve(
         ),
         .97
       );
-
   }
-
 
   else if(type === "soft") {
 
@@ -1810,44 +1682,22 @@ function toneCurve(
         (2*x - 1);
 
     }
-
   }
 
-
-  return clamp(
-    y * 255
-  );
-
+  return clamp(y * 255);
 }
 
 
-/* ==========================================
-   COLOR GRADING
-========================================== */
-
-
-function applyColorGrading(
-  r,
-  g,
-  b,
-  preset,
-  amount
-) {
+function applyColorGrading(r,g,b,preset,amount) {
 
   if(!preset.grading) {
-
     return [r,g,b];
-
   }
 
-
-  let [h,s,l] =
-    rgbToHsl(r,g,b);
-
+  let [h,s,l] = rgbToHsl(r,g,b);
 
   let gradingHue;
   let gradingSat;
-
 
   if(l < .32) {
 
@@ -1876,22 +1726,16 @@ function applyColorGrading(
 
     gradingSat =
       preset.grading.highS;
-
   }
-
 
   const strength =
     (1-s)
     * .55
     * amount;
 
-
   if(strength <= 0) {
-
     return [r,g,b];
-
   }
-
 
   const grading =
     hslToRgb(
@@ -1900,125 +1744,68 @@ function applyColorGrading(
       l
     );
 
-
   return [
-
-    mix(
-      r,
-      grading[0],
-      .10 * strength
-    ),
-
-    mix(
-      g,
-      grading[1],
-      .10 * strength
-    ),
-
-    mix(
-      b,
-      grading[2],
-      .10 * strength
-    )
-
+    mix(r,grading[0],.10 * strength),
+    mix(g,grading[1],.10 * strength),
+    mix(b,grading[2],.10 * strength)
   ];
-
 }
 
 
-/* ==========================================
-   MAIN PROCESSING
-========================================== */
+/* MAIN PROCESSING */
 
+function processImage(imageData,preset,amount) {
 
-function processImage(
-  imageData,
-  preset,
-  amount
-) {
-
-  const data =
-    imageData.data;
-
+  const data = imageData.data;
 
   const exposure =
     preset.exposure || 0;
 
-
   const contrast =
     (preset.contrast || 0) / 100;
-
 
   const saturation =
     (preset.saturation || 0) / 100;
 
-
   const vibrance =
     (preset.vibrance || 0) / 100;
 
-
   const temperature =
-    (preset.temperature || 0)
-    * 1.15;
-
+    (preset.temperature || 0) * 1.15;
 
   const tint =
-    (preset.tint || 0)
-    * .7;
+    (preset.tint || 0) * .7;
 
-
-  for(
-    let i=0;
-    i<data.length;
-    i+=4
-  ) {
-
+  for(let i=0;i<data.length;i+=4) {
 
     let r = data[i];
     let g = data[i+1];
     let b = data[i+2];
 
-
-    /* EXPOSURE */
-
     const exposureMultiplier =
-      Math.pow(
-        2,
-        exposure * amount
-      );
-
+      Math.pow(2,exposure * amount);
 
     r *= exposureMultiplier;
     g *= exposureMultiplier;
     b *= exposureMultiplier;
 
-
-    /* CONTRAST */
-
     const contrastMultiplier =
-      1 +
-      contrast * amount;
-
+      1 + contrast * amount;
 
     r =
-      (r-128)
-      * contrastMultiplier
-      +128;
-
+      (r-128) *
+      contrastMultiplier +
+      128;
 
     g =
-      (g-128)
-      * contrastMultiplier
-      +128;
-
+      (g-128) *
+      contrastMultiplier +
+      128;
 
     b =
-      (b-128)
-      * contrastMultiplier
-      +128;
-
-
-    /* LUMINANCE */
+      (b-128) *
+      contrastMultiplier +
+      128;
 
     const luminance =
       (
@@ -2027,40 +1814,31 @@ function processImage(
         b*.0722
       ) / 255;
 
-
     const shadow =
       1-luminance;
 
-
     const highlight =
       luminance;
-
-
-    /* LIGHTROOM STYLE */
 
     const shadows =
       (preset.shadows || 0)
       /100
       * amount;
 
-
     const highlights =
       (preset.highlights || 0)
       /100
       * amount;
-
 
     const whites =
       (preset.whites || 0)
       /100
       * amount;
 
-
     const blacks =
       (preset.blacks || 0)
       /100
       * amount;
-
 
     const correction =
       shadows * 35 * shadow +
@@ -2068,33 +1846,15 @@ function processImage(
       whites * 18 * Math.pow(highlight,2) +
       blacks * 18 * Math.pow(1-highlight,2);
 
-
     r += correction;
     g += correction;
     b += correction;
 
+    r += temperature * amount;
+    b -= temperature * amount;
 
-    /* TEMPERATURE */
-
-    r +=
-      temperature * amount;
-
-
-    b -=
-      temperature * amount;
-
-
-    /* TINT */
-
-    r +=
-      tint * amount;
-
-
-    g -=
-      tint * .35 * amount;
-
-
-    /* SATURATION */
+    r += tint * amount;
+    g -= tint * .35 * amount;
 
     let hsl =
       rgbToHsl(
@@ -2103,27 +1863,21 @@ function processImage(
         clamp(b)
       );
 
-
     hsl[1] =
       Math.max(
         0,
         Math.min(
           1,
           hsl[1] *
-          (1 +
-           saturation * amount)
+          (1+saturation * amount)
         )
       );
-
-
-    /* VIBRANCE */
 
     const vibranceBoost =
       vibrance *
       amount *
       (1-hsl[1])
       * .8;
-
 
     hsl[1] =
       Math.min(
@@ -2132,16 +1886,12 @@ function processImage(
         vibranceBoost
       );
 
-
     [r,g,b] =
       hslToRgb(
         hsl[0],
         hsl[1],
         hsl[2]
       );
-
-
-    /* HSL */
 
     [r,g,b] =
       applyHSL(
@@ -2152,33 +1902,13 @@ function processImage(
         amount
       );
 
-
-    /* CURVE */
-
     if(preset.curve) {
 
-      r =
-        toneCurve(
-          r,
-          preset.curve
-        );
-
-      g =
-        toneCurve(
-          g,
-          preset.curve
-        );
-
-      b =
-        toneCurve(
-          b,
-          preset.curve
-        );
+      r = toneCurve(r,preset.curve);
+      g = toneCurve(g,preset.curve);
+      b = toneCurve(b,preset.curve);
 
     }
-
-
-    /* COLOR GRADING */
 
     [r,g,b] =
       applyColorGrading(
@@ -2188,9 +1918,6 @@ function processImage(
         preset,
         amount
       );
-
-
-    /* GRAIN */
 
     if(
       preset.effects &&
@@ -2202,58 +1929,30 @@ function processImage(
         /100
         * amount;
 
-
       const noise =
-        (
-          Math.random()-.5
-        )
+        (Math.random()-.5)
         * grain
         * 22;
-
 
       r += noise;
       g += noise;
       b += noise;
-
     }
-
-
-    /* VIGNETTE */
 
     if(
       preset.effects &&
       preset.effects.vignette
     ) {
 
-      const pixel =
-        i/4;
+      const pixel = i/4;
+      const width = imageData.width;
+      const height = imageData.height;
 
+      const x = pixel % width;
+      const y = Math.floor(pixel / width);
 
-      const width =
-        imageData.width;
-
-
-      const height =
-        imageData.height;
-
-
-      const x =
-        pixel % width;
-
-
-      const y =
-        Math.floor(
-          pixel / width
-        );
-
-
-      const nx =
-        (x/width-.5)*2;
-
-
-      const ny =
-        (y/height-.5)*2;
-
+      const nx = (x/width-.5)*2;
+      const ny = (y/height-.5)*2;
 
       const edge =
         Math.min(
@@ -2261,12 +1960,10 @@ function processImage(
           (nx*nx + ny*ny)/2
         );
 
-
       const vignette =
         preset.effects.vignette
         /100
         * amount;
-
 
       const factor =
         1 +
@@ -2274,90 +1971,51 @@ function processImage(
         edge *
         .45;
 
-
       r *= factor;
       g *= factor;
       b *= factor;
-
     }
 
-
-    /* FINAL PIXELS */
-
-    data[i] =
-      clamp(r);
-
-
-    data[i+1] =
-      clamp(g);
-
-
-    data[i+2] =
-      clamp(b);
-
+    data[i] = clamp(r);
+    data[i+1] = clamp(g);
+    data[i+2] = clamp(b);
   }
 
-
   return imageData;
-
 }
 
 
-/* ==========================================
-   RENDER
-========================================== */
-
+/* RENDER */
 
 function loadImage(src) {
 
   return new Promise(
     (resolve,reject) => {
 
-      const img =
-        new Image();
+      const img = new Image();
 
-
-      img.onload =
-        () => resolve(img);
-
-
-      img.onerror =
-        reject;
-
-
-      img.src =
-        src;
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
 
     }
   );
-
 }
 
 
 async function renderPreset() {
 
-  if(
-    !originalImage ||
-    !selectedPreset
-  ) {
-
+  if(!originalImage || !selectedPreset) {
     return;
-
   }
-
 
   status.textContent =
     "Обрабатываем фотографию…";
 
-
   const img =
-    await loadImage(
-      originalImage
-    );
-
+    await loadImage(originalImage);
 
   const maxSize = 1800;
-
 
   const scale =
     Math.min(
@@ -2369,26 +2027,18 @@ async function renderPreset() {
       )
     );
 
-
   const canvas =
-    document.createElement(
-      "canvas"
-    );
-
+    document.createElement("canvas");
 
   canvas.width =
     Math.round(
-      img.naturalWidth *
-      scale
+      img.naturalWidth * scale
     );
-
 
   canvas.height =
     Math.round(
-      img.naturalHeight *
-      scale
+      img.naturalHeight * scale
     );
-
 
   const ctx =
     canvas.getContext(
@@ -2398,7 +2048,6 @@ async function renderPreset() {
       }
     );
 
-
   ctx.drawImage(
     img,
     0,
@@ -2406,7 +2055,6 @@ async function renderPreset() {
     canvas.width,
     canvas.height
   );
-
 
   const imageData =
     ctx.getImageData(
@@ -2416,12 +2064,8 @@ async function renderPreset() {
       canvas.height
     );
 
-
   const amount =
-    Number(
-      intensity.value
-    ) / 100;
-
+    Number(intensity.value) / 100;
 
   processImage(
     imageData,
@@ -2429,13 +2073,11 @@ async function renderPreset() {
     amount
   );
 
-
   ctx.putImageData(
     imageData,
     0,
     0
   );
-
 
   filteredDataURL =
     canvas.toDataURL(
@@ -2443,372 +2085,247 @@ async function renderPreset() {
       .92
     );
 
-
   afterImage.src =
     filteredDataURL;
-
 
   beforeImage.src =
     originalImage;
 
-
   comparison.style.display =
     "block";
-
 
   downloadButton.style.display =
     "block";
 
-
   status.textContent =
     "Готово ✦";
 
-
-  setComparison(
-    50
-  );
-
+  setComparison(50);
 }
 
 
-/* ==========================================
-   NAVIGATION
-========================================== */
+/* NAVIGATION */
+
+presetsOption.onclick = () => {
+
+  homeScreen.style.display = "none";
+
+  workspace.style.display = "block";
+
+  presetsWorkspace.style.display = "block";
+
+  enhanceWorkspace.style.display = "none";
+
+  matchWorkspace.style.display = "none";
+};
 
 
-presetsOption.onclick =
-  () => {
+enhanceOption.onclick = () => {
 
-    homeScreen.style.display =
-      "none";
+  homeScreen.style.display = "none";
 
-    workspace.style.display =
-      "block";
+  workspace.style.display = "block";
 
-    presetsWorkspace.style.display =
-      "block";
+  presetsWorkspace.style.display = "none";
 
-    enhanceWorkspace.style.display =
-      "none";
+  enhanceWorkspace.style.display = "block";
 
-    matchWorkspace.style.display =
-      "none";
-
-  };
+  matchWorkspace.style.display = "none";
+};
 
 
-enhanceOption.onclick =
-  () => {
+matchOption.onclick = () => {
 
-    homeScreen.style.display =
-      "none";
+  homeScreen.style.display = "none";
 
-    workspace.style.display =
-      "block";
+  workspace.style.display = "block";
 
-    presetsWorkspace.style.display =
-      "none";
+  presetsWorkspace.style.display = "none";
 
-    enhanceWorkspace.style.display =
-      "block";
+  enhanceWorkspace.style.display = "none";
 
-    matchWorkspace.style.display =
-      "none";
-
-  };
+  matchWorkspace.style.display = "block";
+};
 
 
-matchOption.onclick =
-  () => {
+backButton.onclick = () => {
 
-    homeScreen.style.display =
-      "none";
+  workspace.style.display = "none";
 
-    workspace.style.display =
-      "block";
+  homeScreen.style.display = "block";
 
-    presetsWorkspace.style.display =
-      "none";
-
-    enhanceWorkspace.style.display =
-      "none";
-
-    matchWorkspace.style.display =
-      "block";
-
-  };
+  status.textContent = "";
+};
 
 
-backButton.onclick =
-  () => {
+/* PHOTO UPLOAD */
 
-    workspace.style.display =
-      "none";
+photoInput.onchange = event => {
 
-    homeScreen.style.display =
-      "block";
+  const file =
+    event.target.files[0];
+
+  if(!file) {
+    return;
+  }
+
+  if(
+    file.size >
+    20 * 1024 * 1024
+  ) {
 
     status.textContent =
-      "";
+      "Файл слишком большой";
 
+    return;
+  }
+
+  const reader =
+    new FileReader();
+
+  reader.onload = event => {
+
+    originalImage =
+      event.target.result;
+
+    filteredDataURL = null;
+
+    photoPreview.src =
+      originalImage;
+
+    beforeImage.src =
+      originalImage;
+
+    afterImage.src =
+      originalImage;
+
+    photoPreview.style.display =
+      "block";
+
+    uploadContent.style.display =
+      "none";
+
+    changePhoto.style.display =
+      "block";
+
+    presetSection.style.display =
+      "block";
+
+    controls.style.display =
+      "none";
+
+    comparison.style.display =
+      "none";
+
+    downloadButton.style.display =
+      "none";
+
+    status.textContent =
+      "Фотография загружена";
   };
 
-
-/* ==========================================
-   PHOTO UPLOAD
-========================================== */
+  reader.readAsDataURL(file);
+};
 
 
-photoInput.onchange =
-  event => {
-
-    const file =
-      event.target.files[0];
-
-
-    if(!file) {
-
-      return;
-
-    }
-
-
-    if(
-      file.size >
-      20 * 1024 * 1024
-    ) {
-
-      status.textContent =
-        "Файл слишком большой";
-
-      return;
-
-    }
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-      event => {
-
-        originalImage =
-          event.target.result;
-
-
-        filteredDataURL =
-          null;
-
-
-        photoPreview.src =
-          originalImage;
-
-
-        beforeImage.src =
-          originalImage;
-
-
-        afterImage.src =
-          originalImage;
-
-
-        photoPreview.style.display =
-          "block";
-
-
-        uploadContent.style.display =
-          "none";
-
-
-        changePhoto.style.display =
-          "block";
-
-
-        presetSection.style.display =
-          "block";
-
-
-        controls.style.display =
-          "none";
-
-
-        comparison.style.display =
-          "none";
-
-
-        downloadButton.style.display =
-          "none";
-
-
-        status.textContent =
-          "Фотография загружена";
-
-      };
-
-
-    reader.readAsDataURL(
-      file
-    );
-
-  };
-
-
-/* ==========================================
-   PRESET SELECT
-========================================== */
-
+/* PRESET SELECT */
 
 document
 .querySelectorAll(".preset")
-.forEach(
-  element => {
+.forEach(element => {
 
-    element.onclick =
-      () => {
+  element.onclick = () => {
 
-        document
-        .querySelectorAll(".preset")
-        .forEach(
-          item =>
-            item.classList.remove(
-              "active"
-            )
-        );
+    document
+    .querySelectorAll(".preset")
+    .forEach(item =>
+      item.classList.remove("active")
+    );
 
+    element.classList.add("active");
 
-        element.classList.add(
-          "active"
-        );
+    selectedPreset =
+      element.dataset.preset;
 
+    controlName.textContent =
+      element.dataset.name;
 
-        selectedPreset =
-          element.dataset.preset;
+    controls.style.display =
+      "block";
 
-
-        controlName.textContent =
-          element.dataset.name;
-
-
-        controls.style.display =
-          "block";
-
-
-        status.textContent =
-          "Выбран стиль: " +
-          element.dataset.name;
-
-      };
-
-  }
-);
-
-
-/* ==========================================
-   INTENSITY
-========================================== */
-
-
-intensity.oninput =
-  () => {
-
-    controlNumber.textContent =
-      intensity.value + "%";
-
-
-    if(
-      filteredDataURL
-    ) {
-
-      renderPreset();
-
-    }
-
+    status.textContent =
+      "Выбран стиль: " +
+      element.dataset.name;
   };
 
+});
 
-/* ==========================================
-   APPLY
-========================================== */
 
+/* INTENSITY */
+
+intensity.oninput = () => {
+
+  controlNumber.textContent =
+    intensity.value + "%";
+
+  if(filteredDataURL) {
+    renderPreset();
+  }
+};
+
+
+/* APPLY */
 
 applyButton.onclick =
   renderPreset;
 
 
-/* ==========================================
-   ORIGINAL
-========================================== */
+/* ORIGINAL */
+
+originalButton.onclick = () => {
+
+  if(!originalImage) {
+    return;
+  }
+
+  afterImage.src =
+    originalImage;
+
+  comparison.style.display =
+    "none";
+
+  downloadButton.style.display =
+    "none";
+
+  status.textContent =
+    "Показан оригинал";
+};
 
 
-originalButton.onclick =
-  () => {
+/* DOWNLOAD */
 
-    if(!originalImage) {
+downloadButton.onclick = () => {
 
-      return;
+  if(!filteredDataURL) {
+    return;
+  }
 
-    }
+  const link =
+    document.createElement("a");
 
+  link.href =
+    filteredDataURL;
 
-    afterImage.src =
-      originalImage;
+  link.download =
+    "photo-lab-" +
+    selectedPreset +
+    ".jpg";
 
-
-    comparison.style.display =
-      "none";
-
-
-    downloadButton.style.display =
-      "none";
-
-
-    status.textContent =
-      "Показан оригинал";
-
-  };
+  link.click();
+};
 
 
-/* ==========================================
-   DOWNLOAD
-========================================== */
-
-
-downloadButton.onclick =
-  () => {
-
-    if(!filteredDataURL) {
-
-      return;
-
-    }
-
-
-    const link =
-      document.createElement(
-        "a"
-      );
-
-
-    link.href =
-      filteredDataURL;
-
-
-    link.download =
-      "photo-lab-" +
-      selectedPreset +
-      ".jpg";
-
-
-    link.click();
-
-  };
-
-
-/* ==========================================
-   COMPARISON SLIDER
-========================================== */
-
+/* COMPARISON SLIDER */
 
 function setComparison(percent) {
 
@@ -2821,18 +2338,14 @@ function setComparison(percent) {
       )
     );
 
-
   afterImageContainer.style.width =
     percent + "%";
-
 
   comparisonLine.style.left =
     percent + "%";
 
-
   comparisonHandle.style.left =
     percent + "%";
-
 }
 
 
@@ -2841,19 +2354,13 @@ function moveSlider(x) {
   const rect =
     comparisonBox.getBoundingClientRect();
 
-
   const percent =
     (
-      (x - rect.left)
-      /
+      (x - rect.left) /
       rect.width
     ) * 100;
 
-
-  setComparison(
-    percent
-  );
-
+  setComparison(percent);
 }
 
 
@@ -2869,42 +2376,36 @@ comparisonBox.onpointerdown =
     moveSlider(
       event.clientX
     );
-
-  };
+};
 
 
 comparisonBox.onpointermove =
   event => {
 
-    if(
-      dragging
-    ) {
+    if(dragging) {
 
       moveSlider(
         event.clientX
       );
-
     }
-
-  };
+};
 
 
 comparisonBox.onpointerup =
   () => {
 
     dragging = false;
-
-  };
+};
 
 
 comparisonBox.onpointercancel =
   () => {
 
     dragging = false;
-
-  };
+};
 
 </script>
 
 </body>
 </html>
+```
