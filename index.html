@@ -313,6 +313,14 @@ input {
   background: linear-gradient(135deg,#777,#191919);
 }
 
+.paris-noir {
+  background: linear-gradient(135deg,#777,#111);
+}
+
+.paris {
+  background: linear-gradient(135deg,#a58a70,#332921);
+}
+
 .preset-number {
   position: absolute;
   top: 10px;
@@ -629,7 +637,6 @@ input {
 
 </div>
 
-
 <div class="option" id="enhanceOption">
 
   <div class="option-number">02</div>
@@ -647,7 +654,6 @@ input {
   </div>
 
 </div>
-
 
 <div class="option option-premium" id="matchOption">
 
@@ -676,7 +682,6 @@ input {
 </div>
 </div>
 
-
 <!-- WORKSPACE -->
 
 <section id="workspace">
@@ -684,7 +689,6 @@ input {
 <button class="back-button" id="backButton">
   ← Назад
 </button>
-
 
 <!-- PRESETS -->
 
@@ -697,7 +701,6 @@ input {
 <div class="workspace-description">
   Выбери настроение фотографии
 </div>
-
 
 <label class="upload" for="photoInput">
 
@@ -725,13 +728,11 @@ input {
 
 </label>
 
-
 <input
   id="photoInput"
   type="file"
   accept="image/jpeg,image/png,image/webp"
 />
-
 
 <div id="presetSection">
 
@@ -739,9 +740,7 @@ input {
   ВЫБЕРИ СТИЛЬ
 </div>
 
-
 <div class="presets">
-
 
 <!-- TENNIS -->
 
@@ -771,7 +770,6 @@ TENNIS
 
 </div>
 
-
 <!-- CAFE -->
 
 <div class="preset"
@@ -799,7 +797,6 @@ CAFÉ
 </div>
 
 </div>
-
 
 <!-- CANON -->
 
@@ -829,7 +826,6 @@ CANON
 
 </div>
 
-
 <!-- FILM -->
 
 <div class="preset"
@@ -857,7 +853,6 @@ FILM
 </div>
 
 </div>
-
 
 <!-- MEDITERRANEAN -->
 
@@ -887,7 +882,6 @@ MEDITERRANEAN
 
 </div>
 
-
 <!-- EDITORIAL -->
 
 <div class="preset"
@@ -916,9 +910,64 @@ EDITORIAL
 
 </div>
 
-</div>
+<!-- PARIS NOIR -->
+
+<div class="preset"
+     data-name="PARIS NOIR"
+     data-preset="parisNoir">
+
+<div class="preset-image paris-noir">
+
+<div class="preset-number">
+07
 </div>
 
+</div>
+
+<div class="preset-info">
+
+<div class="preset-name">
+PARIS NOIR
+</div>
+
+<div class="preset-description">
+Ч/Б · EDITORIAL · ПЛЁНКА
+</div>
+
+</div>
+
+</div>
+
+<!-- PARIS -->
+
+<div class="preset"
+     data-name="PARIS"
+     data-preset="paris">
+
+<div class="preset-image paris">
+
+<div class="preset-number">
+08
+</div>
+
+</div>
+
+<div class="preset-info">
+
+<div class="preset-name">
+PARIS
+</div>
+
+<div class="preset-description">
+КРЕМОВЫЙ · ТЁПЛЫЙ · LUXURY
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
 
 <!-- CONTROLS -->
 
@@ -936,7 +985,6 @@ CAFÉ
 
 </div>
 
-
 <input
   class="range"
   id="intensity"
@@ -945,7 +993,6 @@ CAFÉ
   max="100"
   value="70"
 />
-
 
 <div class="range-labels">
 
@@ -959,7 +1006,6 @@ CAFÉ
 
 </div>
 
-
 <div class="buttons">
 
 <button
@@ -969,7 +1015,6 @@ CAFÉ
 ПРИМЕНИТЬ
 
 </button>
-
 
 <button
   class="button"
@@ -981,7 +1026,6 @@ CAFÉ
 
 </div>
 
-
 <button
   class="button"
   id="downloadButton">
@@ -992,7 +1036,6 @@ CAFÉ
 
 </section>
 
-
 <!-- COMPARISON -->
 
 <section id="comparison">
@@ -1001,16 +1044,13 @@ CAFÉ
 ДО / ПОСЛЕ
 </div>
 
-
 <div class="comparison"
      id="comparisonBox">
-
 
 <img
   id="beforeImage"
   alt="Оригинал"
 />
-
 
 <div
   class="after-image"
@@ -1023,12 +1063,10 @@ CAFÉ
 
 </div>
 
-
 <div
   class="comparison-line"
   id="comparisonLine">
 </div>
-
 
 <div
   class="comparison-handle"
@@ -1037,7 +1075,6 @@ CAFÉ
 ↔
 
 </div>
-
 
 <div class="comparison-label label-before">
 ДО
@@ -1052,7 +1089,6 @@ CAFÉ
 </section>
 
 </div>
-
 
 <!-- AI ENHANCE -->
 
@@ -1090,7 +1126,6 @@ AI · СКОРО
 </div>
 
 </div>
-
 
 <!-- AI MATCH -->
 
@@ -1133,7 +1168,6 @@ AI · СКОРО
 
 </section>
 
-
 <div id="status"></div>
 
 <footer class="footer">
@@ -1141,7 +1175,6 @@ PHOTO LAB · СОЗДАНО КРИСТИНОЙ
 </footer>
 
 </div>
-
 
 <script>
 
@@ -1209,127 +1242,83 @@ let dragging = false;
 
 const PRESETS = {
 
-
-/* ==========================================
-   CAFÉ
-   КАЛИБРОВКА ПОД ЭТАЛОН
-========================================== */
-
 cafe: {
 
-  exposure: -0.22,
+  exposure: 0.20,
+  contrast: 10,
+  highlights: -25,
+  shadows: 25,
+  whites: 15,
+  blacks: -10,
 
-  contrast: 18,
+  temperature: 6,
+  tint: 2,
 
-  highlights: -28,
-
-  shadows: 8,
-
-  whites: -10,
-
-  blacks: -18,
-
-  temperature: 10,
-
-  tint: 3,
-
-  saturation: -4,
-
-  vibrance: 5,
+  saturation: -5,
+  vibrance: 8,
 
   hsl: {
 
-    red: [3, -5, -2],
-
-    orange: [-4, -6, 4],
-
-    yellow: [-10, -18, -5],
-
-    green: [-20, -25, -5],
-
-    aqua: [-10, -15, -3],
-
-    blue: [-10, -15, -5],
-
-    purple: [0, -20, -3],
-
-    magenta: [0, -10, 0]
+    red: [5, -10, -5],
+    orange: [-5, -10, 5],
+    yellow: [-10, -15, 10],
+    green: [-20, -20, 10],
+    aqua: [-10, -10, 10],
+    blue: [-10, -10, 10],
+    purple: [0, -20, 10],
+    magenta: [0, -10, 10]
 
   },
 
-  curve: "strong",
+  curve: "soft",
 
   grading: {
 
-    shadowH: 28,
+    shadowH: 190,
+    shadowS: 6,
 
-    shadowS: 8,
-
-    midH: 38,
-
+    midH: 40,
     midS: 8,
 
-    highH: 42,
-
-    highS: 10
+    highH: 45,
+    highS: 12
 
   },
 
   effects: {
 
-    clarity: -4,
-
-    grain: 8,
-
-    vignette: -8
+    clarity: -5,
+    grain: 10,
+    vignette: -10
 
   }
 
 },
 
-
-/* ==========================================
-   TENNIS
-========================================== */
-
 tennis: {
 
   exposure: 0,
-
   contrast: 30,
-
   highlights: 10,
-
   shadows: -28,
-
   whites: 18,
-
   blacks: -18,
 
   temperature: 1,
-
   tint: 0,
 
   saturation: 12,
-
   vibrance: 23,
 
   hsl: {
 
     red: [0, 4, 2],
-
     orange: [0, 20, 15],
-
     yellow: [-5, 8, 3],
-
     green: [-10, 18, 4],
-
     aqua: [-8, 6, 0],
-
     blue: [-3, 2, -10],
-
     purple: [0, 0, 0],
-
     magenta: [0, 0, 0]
 
   },
@@ -1339,15 +1328,12 @@ tennis: {
   grading: {
 
     shadowH: 190,
-
     shadowS: 4,
 
     midH: 40,
-
     midS: 3,
 
     highH: 45,
-
     highS: 5
 
   },
@@ -1355,19 +1341,12 @@ tennis: {
   effects: {
 
     clarity: 2,
-
     grain: 0,
-
     vignette: -5
 
   }
 
 },
-
-
-/* ==========================================
-   CANON
-========================================== */
 
 canon: {
 
@@ -1377,19 +1356,16 @@ canon: {
   shadows: 8,
   whites: 8,
   blacks: -4,
+
   temperature: 1,
   tint: 0,
+
   saturation: 3,
   vibrance: 8,
 
   hsl: {}
 
 },
-
-
-/* ==========================================
-   FILM
-========================================== */
 
 film: {
 
@@ -1399,24 +1375,23 @@ film: {
   shadows: 10,
   whites: -5,
   blacks: 5,
+
   temperature: 3,
   tint: 1,
+
   saturation: -8,
   vibrance: -2,
 
   hsl: {},
 
   effects: {
+
     grain: 18,
     vignette: -8
+
   }
 
 },
-
-
-/* ==========================================
-   MEDITERRANEAN
-========================================== */
 
 mediterranean: {
 
@@ -1426,23 +1401,22 @@ mediterranean: {
   shadows: 8,
   whites: 10,
   blacks: -5,
+
   temperature: 5,
   tint: 0,
+
   saturation: 5,
   vibrance: 12,
 
   hsl: {},
 
   effects: {
+
     vignette: -4
+
   }
 
 },
-
-
-/* ==========================================
-   EDITORIAL
-========================================== */
 
 editorial: {
 
@@ -1452,15 +1426,132 @@ editorial: {
   shadows: -8,
   whites: 12,
   blacks: -14,
+
   temperature: -1,
   tint: 0,
+
   saturation: -5,
   vibrance: 4,
 
   hsl: {},
 
   effects: {
+
     vignette: -10
+
+  }
+
+},
+
+/* ==========================================
+   PARIS NOIR
+   French editorial black & white
+========================================== */
+
+parisNoir: {
+
+  exposure: 0.05,
+
+  contrast: 18,
+
+  highlights: -18,
+
+  shadows: 12,
+
+  whites: -5,
+
+  blacks: -18,
+
+  temperature: 0,
+
+  tint: 0,
+
+  saturation: -100,
+
+  vibrance: -10,
+
+  hsl: {},
+
+  curve: "soft",
+
+  effects: {
+
+    grain: 16,
+
+    vignette: -10
+
+  }
+
+},
+
+/* ==========================================
+   PARIS
+   Warm Parisian editorial
+========================================== */
+
+paris: {
+
+  exposure: 0.05,
+
+  contrast: 10,
+
+  highlights: -22,
+
+  shadows: 12,
+
+  whites: 8,
+
+  blacks: -10,
+
+  temperature: 7,
+
+  tint: 1,
+
+  saturation: -10,
+
+  vibrance: 5,
+
+  hsl: {
+
+    red: [0, -5, 0],
+
+    orange: [-4, -8, 4],
+
+    yellow: [-12, -18, 8],
+
+    green: [-18, -25, 5],
+
+    aqua: [-10, -18, 5],
+
+    blue: [-8, -15, 4],
+
+    purple: [0, -20, 5],
+
+    magenta: [0, -10, 3]
+
+  },
+
+  curve: "soft",
+
+  grading: {
+
+    shadowH: 205,
+    shadowS: 5,
+
+    midH: 38,
+    midS: 6,
+
+    highH: 48,
+    highS: 10
+
+  },
+
+  effects: {
+
+    grain: 8,
+
+    vignette: -8
+
   }
 
 }
@@ -1480,7 +1571,6 @@ function clamp(value) {
   );
 
 }
-
 
 function mix(a, b, amount) {
 
@@ -1614,9 +1704,7 @@ function hslToRgb(h,s,l) {
   return [
 
     (r+m)*255,
-
     (g+m)*255,
-
     (b+m)*255
 
   ];
@@ -1638,7 +1726,6 @@ function hueDistance(a,b) {
   );
 
 }
-
 
 function applyHSL(
   r,
@@ -1939,7 +2026,6 @@ function processImage(
     let g = data[i+1];
     let b = data[i+2];
 
-
     /* EXPOSURE */
 
     const exposureMultiplier =
@@ -1951,7 +2037,6 @@ function processImage(
     r *= exposureMultiplier;
     g *= exposureMultiplier;
     b *= exposureMultiplier;
-
 
     /* CONTRAST */
 
@@ -1974,7 +2059,6 @@ function processImage(
       * contrastMultiplier
       +128;
 
-
     /* LUMINANCE */
 
     const luminance =
@@ -1989,7 +2073,6 @@ function processImage(
 
     const highlight =
       luminance;
-
 
     /* LIGHTROOM STYLE */
 
@@ -2023,7 +2106,6 @@ function processImage(
     g += correction;
     b += correction;
 
-
     /* TEMPERATURE */
 
     r +=
@@ -2032,7 +2114,6 @@ function processImage(
     b -=
       temperature * amount;
 
-
     /* TINT */
 
     r +=
@@ -2040,7 +2121,6 @@ function processImage(
 
     g -=
       tint * .35 * amount;
-
 
     /* SATURATION */
 
@@ -2061,7 +2141,6 @@ function processImage(
            saturation * amount)
         )
       );
-
 
     /* VIBRANCE */
 
@@ -2085,7 +2164,6 @@ function processImage(
         hsl[2]
       );
 
-
     /* HSL */
 
     [r,g,b] =
@@ -2096,7 +2174,6 @@ function processImage(
         preset.hsl || {},
         amount
       );
-
 
     /* CURVE */
 
@@ -2122,7 +2199,6 @@ function processImage(
 
     }
 
-
     /* COLOR GRADING */
 
     [r,g,b] =
@@ -2133,7 +2209,6 @@ function processImage(
         preset,
         amount
       );
-
 
     /* GRAIN */
 
@@ -2159,7 +2234,6 @@ function processImage(
       b += noise;
 
     }
-
 
     /* VIGNETTE */
 
@@ -2214,7 +2288,6 @@ function processImage(
 
     }
 
-
     /* FINAL PIXELS */
 
     data[i] =
@@ -2258,7 +2331,6 @@ function loadImage(src) {
   );
 
 }
-
 
 async function renderPreset() {
 
@@ -2401,7 +2473,6 @@ presetsOption.onclick =
 
   };
 
-
 enhanceOption.onclick =
   () => {
 
@@ -2422,7 +2493,6 @@ enhanceOption.onclick =
 
   };
 
-
 matchOption.onclick =
   () => {
 
@@ -2442,7 +2512,6 @@ matchOption.onclick =
       "block";
 
   };
-
 
 backButton.onclick =
   () => {
@@ -2699,7 +2768,6 @@ function setComparison(percent) {
 
 }
 
-
 function moveSlider(x) {
 
   const rect =
@@ -2718,7 +2786,6 @@ function moveSlider(x) {
 
 }
 
-
 comparisonBox.onpointerdown =
   event => {
 
@@ -2733,7 +2800,6 @@ comparisonBox.onpointerdown =
     );
 
   };
-
 
 comparisonBox.onpointermove =
   event => {
@@ -2750,14 +2816,12 @@ comparisonBox.onpointermove =
 
   };
 
-
 comparisonBox.onpointerup =
   () => {
 
     dragging = false;
 
   };
-
 
 comparisonBox.onpointercancel =
   () => {
