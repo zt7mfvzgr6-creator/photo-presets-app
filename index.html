@@ -361,6 +361,14 @@ input {
   border-radius: 17px;
 }
 
+.control-block {
+  margin-bottom: 24px;
+}
+
+.control-block:last-child {
+  margin-bottom: 0;
+}
+
 .control-top {
   display: flex;
   justify-content: space-between;
@@ -393,10 +401,92 @@ input {
   letter-spacing: 1px;
 }
 
+/* LIGHT EFFECT */
+
+.light-section {
+  border-top: 1px solid #292929;
+  padding-top: 22px;
+}
+
+.light-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.light-title {
+  font-family: Georgia, serif;
+  font-size: 19px;
+}
+
+.light-icon {
+  font-size: 15px;
+  color: #777;
+}
+
+.light-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.light-option {
+  min-height: 58px;
+  border: 1px solid #303030;
+  border-radius: 11px;
+  background: #151515;
+  color: #777;
+  cursor: pointer;
+  transition: .2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.light-option:hover {
+  border-color: #666;
+  color: #ccc;
+}
+
+.light-option.active {
+  background: #f4f1eb;
+  color: #111;
+  border-color: #f4f1eb;
+}
+
+.light-symbol {
+  font-size: 14px;
+}
+
+.light-name {
+  font-size: 8px;
+  letter-spacing: .8px;
+  font-weight: bold;
+}
+
+.light-description {
+  color: #555;
+  font-size: 9px;
+  line-height: 1.4;
+  margin-top: 10px;
+  min-height: 25px;
+}
+
+.light-intensity {
+  margin-top: 15px;
+}
+
+.light-intensity .range-labels {
+  margin-top: 7px;
+}
+
 .buttons {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .button {
@@ -590,6 +680,12 @@ input {
   letter-spacing: 1px;
   margin-top: 55px;
 }
+
+@media (max-width: 380px) {
+  .light-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 </style>
 </head>
 
@@ -742,226 +838,138 @@ input {
 
 <div class="presets">
 
-<!-- TENNIS -->
-
 <div class="preset"
      data-name="TENNIS"
      data-preset="tennis">
 
 <div class="preset-image tennis">
-
-<div class="preset-number">
-01
-</div>
-
+<div class="preset-number">01</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-TENNIS
-</div>
-
+<div class="preset-name">TENNIS</div>
 <div class="preset-description">
 КОНТРАСТ · СВЕЖЕСТЬ · СОЧНОСТЬ
 </div>
-
 </div>
 
 </div>
-
-<!-- CAFE -->
 
 <div class="preset"
      data-name="CAFÉ"
      data-preset="cafe">
 
 <div class="preset-image cafe">
-
-<div class="preset-number">
-02
-</div>
-
+<div class="preset-number">02</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-CAFÉ
-</div>
-
+<div class="preset-name">CAFÉ</div>
 <div class="preset-description">
 ТЁПЛЫЙ · МЯГКИЙ · УЮТНЫЙ
 </div>
-
 </div>
 
 </div>
-
-<!-- CANON -->
 
 <div class="preset"
      data-name="CANON"
      data-preset="canon">
 
 <div class="preset-image canon">
-
-<div class="preset-number">
-03
-</div>
-
+<div class="preset-number">03</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-CANON
-</div>
-
+<div class="preset-name">CANON</div>
 <div class="preset-description">
 ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ
 </div>
-
 </div>
 
 </div>
-
-<!-- FILM -->
 
 <div class="preset"
      data-name="FILM"
      data-preset="film">
 
 <div class="preset-image film">
-
-<div class="preset-number">
-04
-</div>
-
+<div class="preset-number">04</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-FILM
-</div>
-
+<div class="preset-name">FILM</div>
 <div class="preset-description">
 ПЛЁНКА · МЯГКОСТЬ
 </div>
-
 </div>
 
 </div>
-
-<!-- MEDITERRANEAN -->
 
 <div class="preset"
      data-name="MEDITERRANEAN"
      data-preset="mediterranean">
 
 <div class="preset-image mediterranean">
-
-<div class="preset-number">
-05
-</div>
-
+<div class="preset-number">05</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-MEDITERRANEAN
-</div>
-
+<div class="preset-name">MEDITERRANEAN</div>
 <div class="preset-description">
 СОЛНЦЕ · МОРЕ · ЛЕТО
 </div>
-
 </div>
 
 </div>
-
-<!-- EDITORIAL -->
 
 <div class="preset"
      data-name="EDITORIAL"
      data-preset="editorial">
 
 <div class="preset-image editorial">
-
-<div class="preset-number">
-06
-</div>
-
+<div class="preset-number">06</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-EDITORIAL
-</div>
-
+<div class="preset-name">EDITORIAL</div>
 <div class="preset-description">
 МОДА · КОНТРАСТ · ДРАМА
 </div>
-
 </div>
 
 </div>
-
-<!-- PARIS NOIR -->
 
 <div class="preset"
      data-name="PARIS NOIR"
      data-preset="parisNoir">
 
 <div class="preset-image paris-noir">
-
-<div class="preset-number">
-07
-</div>
-
+<div class="preset-number">07</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-PARIS NOIR
-</div>
-
+<div class="preset-name">PARIS NOIR</div>
 <div class="preset-description">
 Ч/Б · EDITORIAL · ПЛЁНКА
 </div>
-
 </div>
 
 </div>
-
-<!-- PARIS -->
 
 <div class="preset"
      data-name="PARIS"
      data-preset="paris">
 
 <div class="preset-image paris">
-
-<div class="preset-number">
-08
-</div>
-
+<div class="preset-number">08</div>
 </div>
 
 <div class="preset-info">
-
-<div class="preset-name">
-PARIS
-</div>
-
+<div class="preset-name">PARIS</div>
 <div class="preset-description">
 КРЕМОВЫЙ · ТЁПЛЫЙ · LUXURY
 </div>
-
 </div>
 
 </div>
@@ -972,6 +980,10 @@ PARIS
 <!-- CONTROLS -->
 
 <section id="controls">
+
+<!-- PRESET INTENSITY -->
+
+<div class="control-block">
 
 <div class="control-top">
 
@@ -996,13 +1008,128 @@ CAFÉ
 
 <div class="range-labels">
 
-<span>
-МЯГКО
-</span>
+<span>МЯГКО</span>
+<span>ИНТЕНСИВНО</span>
 
-<span>
-ИНТЕНСИВНО
-</span>
+</div>
+
+</div>
+
+<!-- LIGHT -->
+
+<div class="control-block light-section">
+
+<div class="light-title-row">
+
+<div class="light-title">
+  LIGHT
+</div>
+
+<div class="light-icon">
+  ✦
+</div>
+
+</div>
+
+<div class="light-options">
+
+<button
+  class="light-option active"
+  data-light="off">
+
+  <div class="light-symbol">
+    ○
+  </div>
+
+  <div class="light-name">
+    OFF
+  </div>
+
+</button>
+
+<button
+  class="light-option"
+  data-light="flash">
+
+  <div class="light-symbol">
+    ⚡
+  </div>
+
+  <div class="light-name">
+    FLASH
+  </div>
+
+</button>
+
+<button
+  class="light-option"
+  data-light="studio">
+
+  <div class="light-symbol">
+    ◉
+  </div>
+
+  <div class="light-name">
+    STUDIO
+  </div>
+
+</button>
+
+<button
+  class="light-option"
+  data-light="cinema">
+
+  <div class="light-symbol">
+    ◐
+  </div>
+
+  <div class="light-name">
+    CINEMA
+  </div>
+
+</button>
+
+</div>
+
+<div class="light-description"
+     id="lightDescription">
+
+  Без дополнительного света
+
+</div>
+
+<div class="light-intensity">
+
+<div class="control-top">
+
+<div class="control-number">
+  INTENSITY
+</div>
+
+<div class="control-number"
+     id="lightNumber">
+  50%
+</div>
+
+</div>
+
+<input
+  class="range"
+  id="lightIntensity"
+  type="range"
+  min="0"
+  max="100"
+  value="50"
+/>
+
+<div class="range-labels">
+
+<span>МЯГКО</span>
+<span>СИЛЬНО</span>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1180,7 +1307,7 @@ PHOTO LAB · СОЗДАНО КРИСТИНОЙ
 
 /* ==========================================
    PHOTO LAB
-   REAL PHOTO PRESETS
+   REAL PHOTO PRESETS + LIGHT FX
 ========================================== */
 
 const $ = id => document.getElementById(id);
@@ -1204,7 +1331,6 @@ const uploadContent = $("uploadContent");
 const changePhoto = $("changePhoto");
 
 const presetSection = $("presetSection");
-
 const controls = $("controls");
 
 const comparison = $("comparison");
@@ -1222,15 +1348,19 @@ const intensity = $("intensity");
 const controlNumber = $("controlNumber");
 const controlName = $("controlName");
 
+const lightIntensity = $("lightIntensity");
+const lightNumber = $("lightNumber");
+const lightDescription = $("lightDescription");
+
 const applyButton = $("applyButton");
 const originalButton = $("originalButton");
 
 const downloadButton = $("downloadButton");
-
 const status = $("status");
 
 let originalImage = null;
 let selectedPreset = null;
+let selectedLight = "off";
 let filteredDataURL = null;
 
 let dragging = false;
@@ -1443,31 +1573,19 @@ editorial: {
 
 },
 
-/* ==========================================
-   PARIS NOIR
-   French editorial black & white
-========================================== */
-
 parisNoir: {
 
   exposure: 0.05,
-
   contrast: 18,
-
   highlights: -18,
-
   shadows: 12,
-
   whites: -5,
-
   blacks: -18,
 
   temperature: 0,
-
   tint: 0,
 
   saturation: -100,
-
   vibrance: -10,
 
   hsl: {},
@@ -1477,56 +1595,36 @@ parisNoir: {
   effects: {
 
     grain: 16,
-
     vignette: -10
 
   }
 
 },
 
-/* ==========================================
-   PARIS
-   Warm Parisian editorial
-========================================== */
-
 paris: {
 
   exposure: 0.05,
-
   contrast: 10,
-
   highlights: -22,
-
   shadows: 12,
-
   whites: 8,
-
   blacks: -10,
 
   temperature: 7,
-
   tint: 1,
 
   saturation: -10,
-
   vibrance: 5,
 
   hsl: {
 
     red: [0, -5, 0],
-
     orange: [-4, -8, 4],
-
     yellow: [-12, -18, 8],
-
     green: [-18, -25, 5],
-
     aqua: [-10, -18, 5],
-
     blue: [-8, -15, 4],
-
     purple: [0, -20, 5],
-
     magenta: [0, -10, 3]
 
   },
@@ -1549,10 +1647,60 @@ paris: {
   effects: {
 
     grain: 8,
-
     vignette: -8
 
   }
+
+}
+
+};
+
+
+/* ==========================================
+   LIGHT FX
+========================================== */
+
+const LIGHTS = {
+
+off: {
+
+  name: "OFF",
+
+  description:
+    "Без дополнительного света"
+
+},
+
+flash: {
+
+  name: "FLASH",
+
+  description:
+    "Яркий импульс света, эффект профессиональной вспышки",
+
+  type: "flash"
+
+},
+
+studio: {
+
+  name: "STUDIO",
+
+  description:
+    "Мягкий направленный фото-свет на объект",
+
+  type: "studio"
+
+},
+
+cinema: {
+
+  name: "CINEMA",
+
+  description:
+    "Атмосферный направленный свет с глубоким фоном",
+
+  type: "cinema"
 
 }
 
@@ -1984,7 +2132,7 @@ function applyColorGrading(
 
 
 /* ==========================================
-   MAIN PROCESSING
+   MAIN PRESET PROCESSING
 ========================================== */
 
 function processImage(
@@ -2288,8 +2436,6 @@ function processImage(
 
     }
 
-    /* FINAL PIXELS */
-
     data[i] =
       clamp(r);
 
@@ -2307,7 +2453,213 @@ function processImage(
 
 
 /* ==========================================
-   RENDER
+   LIGHT FX PROCESSING
+========================================== */
+
+function applyLightEffect(
+  imageData,
+  type,
+  intensityAmount
+) {
+
+  if(
+    type === "off" ||
+    intensityAmount <= 0
+  ) {
+
+    return imageData;
+
+  }
+
+  const data =
+    imageData.data;
+
+  const width =
+    imageData.width;
+
+  const height =
+    imageData.height;
+
+  const strength =
+    intensityAmount / 100;
+
+  for(
+    let i = 0;
+    i < data.length;
+    i += 4
+  ) {
+
+    const pixel =
+      i / 4;
+
+    const x =
+      pixel % width;
+
+    const y =
+      Math.floor(
+        pixel / width
+      );
+
+    /*
+      Центральная зона света.
+      Немного смещена вверх,
+      чтобы визуально напоминать
+      свет на лице/верхней части объекта.
+    */
+
+    const centerX =
+      width * .50;
+
+    const centerY =
+      height * .43;
+
+    const dx =
+      (x-centerX) /
+      (width*.50);
+
+    const dy =
+      (y-centerY) /
+      (height*.62);
+
+    const distance =
+      Math.sqrt(
+        dx*dx +
+        dy*dy
+      );
+
+    let falloff =
+      Math.max(
+        0,
+        1-distance
+      );
+
+    /*
+      Более мягкая градация
+    */
+
+    if(type === "studio") {
+
+      falloff =
+        Math.pow(
+          falloff,
+          1.35
+        );
+
+      const light =
+        falloff *
+        strength *
+        38;
+
+      data[i] += light;
+      data[i+1] += light;
+      data[i+2] += light;
+
+    }
+
+    /*
+      FLASH
+    */
+
+    else if(type === "flash") {
+
+      falloff =
+        Math.pow(
+          falloff,
+          1.8
+        );
+
+      const light =
+        falloff *
+        strength *
+        55;
+
+      data[i] += light;
+      data[i+1] += light;
+      data[i+2] += light;
+
+      /*
+        Лёгкое увеличение
+        микроконтраста вокруг света
+      */
+
+      const localContrast =
+        falloff *
+        strength *
+        8;
+
+      data[i] =
+        (data[i]-128)
+        * (1 + localContrast/100)
+        +128;
+
+      data[i+1] =
+        (data[i+1]-128)
+        * (1 + localContrast/100)
+        +128;
+
+      data[i+2] =
+        (data[i+2]-128)
+        * (1 + localContrast/100)
+        +128;
+
+    }
+
+    /*
+      CINEMA
+    */
+
+    else if(type === "cinema") {
+
+      falloff =
+        Math.pow(
+          falloff,
+          1.55
+        );
+
+      const light =
+        falloff *
+        strength *
+        32;
+
+      /*
+        Тёплый киношный свет
+      */
+
+      data[i] +=
+        light * 1.10;
+
+      data[i+1] +=
+        light * .93;
+
+      data[i+2] +=
+        light * .72;
+
+      /*
+        Фон слегка затемняем.
+        Чем дальше от источника,
+        тем сильнее эффект.
+      */
+
+      const background =
+        (1-falloff) *
+        strength *
+        7;
+
+      data[i] -= background;
+      data[i+1] -= background;
+      data[i+2] -= background;
+
+    }
+
+  }
+
+  return imageData;
+
+}
+
+
+/* ==========================================
+   IMAGE LOADER
 ========================================== */
 
 function loadImage(src) {
@@ -2331,6 +2683,11 @@ function loadImage(src) {
   );
 
 }
+
+
+/* ==========================================
+   RENDER
+========================================== */
 
 async function renderPreset() {
 
@@ -2404,15 +2761,34 @@ async function renderPreset() {
       canvas.height
     );
 
-  const amount =
+  const presetAmount =
     Number(
       intensity.value
     ) / 100;
 
+  /*
+    1. Основной пресет
+  */
+
   processImage(
     imageData,
     PRESETS[selectedPreset],
-    amount
+    presetAmount
+  );
+
+  /*
+    2. Дополнительный LIGHT
+  */
+
+  const selectedLightIntensity =
+    Number(
+      lightIntensity.value
+    );
+
+  applyLightEffect(
+    imageData,
+    selectedLight,
+    selectedLightIntensity
   );
 
   ctx.putImageData(
@@ -2568,6 +2944,12 @@ photoInput.onchange =
         filteredDataURL =
           null;
 
+        selectedPreset =
+          null;
+
+        selectedLight =
+          "off";
+
         photoPreview.src =
           originalImage;
 
@@ -2597,6 +2979,41 @@ photoInput.onchange =
 
         downloadButton.style.display =
           "none";
+
+        document
+        .querySelectorAll(".preset")
+        .forEach(
+          item =>
+            item.classList.remove(
+              "active"
+            )
+        );
+
+        document
+        .querySelectorAll(".light-option")
+        .forEach(
+          item =>
+            item.classList.remove(
+              "active"
+            )
+        );
+
+        document
+        .querySelector(
+          '[data-light="off"]'
+        )
+        .classList.add(
+          "active"
+        );
+
+        lightDescription.textContent =
+          LIGHTS.off.description;
+
+        lightIntensity.value =
+          50;
+
+        lightNumber.textContent =
+          "50%";
 
         status.textContent =
           "Фотография загружена";
@@ -2655,7 +3072,76 @@ document
 
 
 /* ==========================================
-   INTENSITY
+   LIGHT SELECT
+========================================== */
+
+document
+.querySelectorAll(".light-option")
+.forEach(
+  element => {
+
+    element.onclick =
+      () => {
+
+        document
+        .querySelectorAll(".light-option")
+        .forEach(
+          item =>
+            item.classList.remove(
+              "active"
+            )
+        );
+
+        element.classList.add(
+          "active"
+        );
+
+        selectedLight =
+          element.dataset.light;
+
+        lightDescription.textContent =
+          LIGHTS[selectedLight].description;
+
+        if(
+          selectedLight === "off"
+        ) {
+
+          lightIntensity.value =
+            0;
+
+          lightNumber.textContent =
+            "0%";
+
+        }
+
+        else if(
+          Number(lightIntensity.value) === 0
+        ) {
+
+          lightIntensity.value =
+            50;
+
+          lightNumber.textContent =
+            "50%";
+
+        }
+
+        if(
+          filteredDataURL
+        ) {
+
+          renderPreset();
+
+        }
+
+      };
+
+  }
+);
+
+
+/* ==========================================
+   PRESET INTENSITY
 ========================================== */
 
 intensity.oninput =
@@ -2663,6 +3149,27 @@ intensity.oninput =
 
     controlNumber.textContent =
       intensity.value + "%";
+
+    if(
+      filteredDataURL
+    ) {
+
+      renderPreset();
+
+    }
+
+  };
+
+
+/* ==========================================
+   LIGHT INTENSITY
+========================================== */
+
+lightIntensity.oninput =
+  () => {
+
+    lightNumber.textContent =
+      lightIntensity.value + "%";
 
     if(
       filteredDataURL
@@ -2735,6 +3242,8 @@ downloadButton.onclick =
     link.download =
       "photo-lab-" +
       selectedPreset +
+      "-" +
+      selectedLight +
       ".jpg";
 
     link.click();
