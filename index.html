@@ -1,2169 +1,2908 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>PHOTO LAB</title>
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: #111;
-      color: #f4f1eb;
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-    }
-
-    button,
-    input {
-      font-family: inherit;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 28px 20px 60px;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 55px;
-    }
-
-    .logo {
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .pro {
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      border: 1px solid #555;
-      border-radius: 30px;
-      padding: 7px 12px;
-      color: #ccc;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      margin-bottom: 38px;
-    }
-
-    .hero h1 {
-      font-family: Georgia, serif;
-      font-size: 43px;
-      line-height: .98;
-      font-weight: normal;
-      letter-spacing: -2px;
-      margin-bottom: 18px;
-    }
-
-    .hero p {
-      color: #888;
-      font-size: 14px;
-      line-height: 1.5;
-      max-width: 330px;
-    }
-
-    /* =========================
-       MAIN OPTIONS
-    ========================= */
-
-    .section-title {
-      color: #666;
-      font-size: 9px;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .option {
-      position: relative;
-      width: 100%;
-      min-height: 125px;
-      padding: 22px;
-      border: 1px solid #292929;
-      border-radius: 18px;
-      background: #191919;
-      cursor: pointer;
-      overflow: hidden;
-      transition: .25s ease;
-    }
-
-    .option:hover {
-      border-color: #666;
-      transform: translateY(-2px);
-    }
-
-    .option:active {
-      transform: scale(.99);
-    }
-
-    .option-number {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-
-      width: 28px;
-      height: 28px;
-
-      border-radius: 50%;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      background: #252525;
-      color: #777;
-
-      font-size: 9px;
-    }
-
-    .option-name {
-      font-family: Georgia, serif;
-      font-size: 27px;
-      margin-bottom: 8px;
-      padding-right: 60px;
-    }
-
-    .option-description {
-      color: #777;
-      font-size: 11px;
-      letter-spacing: .3px;
-      max-width: 270px;
-      line-height: 1.4;
-    }
-
-    .option-arrow {
-      position: absolute;
-      bottom: 18px;
-      right: 20px;
-
-      color: #777;
-      font-size: 18px;
-
-      transition: .2s;
-    }
-
-    .option:hover .option-arrow {
-      transform: translateX(5px);
-      color: #f4f1eb;
-    }
-
-    /* =========================
-       PREMIUM OPTION
-    ========================= */
-
-    .option-premium {
-      background:
-        radial-gradient(
-          circle at 90% 10%,
-          #35302a 0,
-          #191919 45%
-        );
-    }
-
-    .premium-badge {
-      position: absolute;
-      top: 20px;
-      right: 58px;
-
-      font-size: 8px;
-      letter-spacing: 1.2px;
-
-      padding: 5px 8px;
-
-      border: 1px solid #555;
-      border-radius: 20px;
-
-      color: #aaa;
-    }
-
-    /* =========================
-       WORKSPACE
-    ========================= */
-
-    #workspace {
-      display: none;
-      margin-top: 40px;
-    }
-
-    /* =========================
-       BACK BUTTON
-    ========================= */
-
-    .back-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      border: none;
-      background: transparent;
-
-      color: #777;
-
-      font-size: 11px;
-      letter-spacing: .5px;
-
-      cursor: pointer;
-
-      margin-bottom: 22px;
-    }
-
-    .back-button:hover {
-      color: #f4f1eb;
-    }
-
-    /* =========================
-       WORKSPACE TITLE
-    ========================= */
-
-    .workspace-title {
-      font-family: Georgia, serif;
-      font-size: 30px;
-      margin-bottom: 7px;
-    }
-
-    .workspace-description {
-      color: #777;
-      font-size: 12px;
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
-
-    /* =========================
-       UPLOAD
-    ========================= */
-
-    .upload {
-      position: relative;
-
-      width: 100%;
-      height: 280px;
-
-      border: 1px dashed #555;
-      border-radius: 18px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      text-align: center;
-
-      cursor: pointer;
-      overflow: hidden;
-
-      margin-bottom: 30px;
-    }
-
-    .upload:hover {
-      border-color: #aaa;
-    }
-
-    .upload-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .upload-title {
-      font-size: 15px;
-      margin-bottom: 7px;
-    }
-
-    .upload-subtitle {
-      color: #777;
-      font-size: 12px;
-    }
-
-    #photoInput {
-      display: none;
-    }
-
-    #photoPreview {
-      display: none;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-    }
-
-    .change-photo {
-      display: none;
-
-      position: absolute;
-
-      bottom: 12px;
-      right: 12px;
-
-      background: rgba(0,0,0,.75);
-
-      border: 1px solid #666;
-
-      border-radius: 20px;
-
-      padding: 8px 12px;
-
-      font-size: 11px;
-
-      z-index: 5;
-    }
-
-    /* =========================
-       PRESETS
-    ========================= */
-
-    #presetSection {
-      display: none;
-    }
-
-    .presets {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .preset {
-      background: #191919;
-
-      border: 1px solid #292929;
-
-      border-radius: 16px;
-
-      overflow: hidden;
-
-      cursor: pointer;
-
-      transition: .2s;
-    }
-
-    .preset:hover {
-      border-color: #666;
-      transform: translateY(-2px);
-    }
-
-    .preset.active {
-      border-color: #f4f1eb;
-    }
-
-    .preset-image {
-      height: 125px;
-      position: relative;
-    }
-
-    .old-money {
-      background:
-        linear-gradient(
-          135deg,
-          #b9a58c,
-          #4c4035
-        );
-    }
-
-    .canon {
-      background:
-        linear-gradient(
-          135deg,
-          #8fa6b2,
-          #d8b69a
-        );
-    }
-
-    .film {
-      background:
-        linear-gradient(
-          135deg,
-          #8d7d65,
-          #3e4540
-        );
-    }
-
-    .cafe {
-      background:
-        linear-gradient(
-          135deg,
-          #9c6044,
-          #30231d
-        );
-    }
-
-    .mediterranean {
-      background:
-        linear-gradient(
-          135deg,
-          #277e91,
-          #d6a875
-        );
-    }
-
-    .editorial {
-      background:
-        linear-gradient(
-          135deg,
-          #777,
-          #191919
-        );
-    }
-
-    .preset-number {
-      position: absolute;
-
-      top: 10px;
-      left: 10px;
-
-      width: 25px;
-      height: 25px;
-
-      border-radius: 50%;
-
-      background: rgba(0,0,0,.5);
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      font-size: 10px;
-    }
-
-    .preset-info {
-      padding: 13px;
-    }
-
-    .preset-name {
-      font-family: Georgia, serif;
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .preset-description {
-      color: #777;
-      font-size: 9px;
-      letter-spacing: .4px;
-    }
-
-    /* =========================
-       CONTROLS
-    ========================= */
-
-    #controls {
-      display: none;
-
-      margin-top: 25px;
-
-      padding: 20px;
-
-      background: #191919;
-
-      border-radius: 17px;
-    }
-
-    .control-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      margin-bottom: 15px;
-    }
-
-    .control-name {
-      font-family: Georgia, serif;
-      font-size: 19px;
-    }
-
-    .control-number {
-      font-size: 12px;
-      color: #888;
-    }
-
-    .range {
-      width: 100%;
-
-      accent-color: #f4f1eb;
-
-      cursor: pointer;
-    }
-
-    .range-labels {
-      display: flex;
-      justify-content: space-between;
-
-      color: #555;
-
-      font-size: 9px;
-
-      margin-top: 8px;
-
-      letter-spacing: 1px;
-    }
-
-    /* =========================
-       BUTTONS
-    ========================= */
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .button {
-      border-radius: 13px;
-
-      padding: 16px;
-
-      font-size: 11px;
-
-      font-weight: bold;
-
-      letter-spacing: 1px;
-
-      cursor: pointer;
-    }
-
-    #applyButton {
-      flex: 1;
-
-      background: #f4f1eb;
-
-      color: #111;
-
-      border: none;
-    }
-
-    #originalButton {
-      background: transparent;
-
-      color: #f4f1eb;
-
-      border: 1px solid #444;
-    }
-
-    #downloadButton {
-      display: none;
-
-      width: 100%;
-
-      margin-top: 12px;
-
-      background: transparent;
-
-      color: #f4f1eb;
-
-      border: 1px solid #444;
-    }
-
-    /* =========================
-       BEFORE / AFTER
-    ========================= */
-
-    #comparison {
-      display: none;
-      margin-top: 30px;
-    }
-
-    .comparison-title {
-      font-size: 10px;
-      color: #777;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .comparison {
-      position: relative;
-
-      width: 100%;
-      height: 360px;
-
-      border-radius: 18px;
-
-      overflow: hidden;
-
-      background: #222;
-
-      user-select: none;
-
-      touch-action: none;
-    }
-
-    .comparison > img {
-      position: absolute;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      pointer-events: none;
-    }
-
-    .after-image {
-      position: absolute;
-
-      top: 0;
-      left: 0;
-
-      width: 50%;
-      height: 100%;
-
-      overflow: hidden;
-    }
-
-    .after-image img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      pointer-events: none;
-    }
-
-    .comparison-line {
-      position: absolute;
-
-      top: 0;
-      bottom: 0;
-
-      left: 50%;
-
-      width: 2px;
-
-      background: #fff;
-
-      transform: translateX(-50%);
-
-      z-index: 10;
-
-      pointer-events: none;
-    }
-
-    .comparison-handle {
-      position: absolute;
-
-      top: 50%;
-      left: 50%;
-
-      width: 42px;
-      height: 42px;
-
-      border-radius: 50%;
-
-      background: #f4f1eb;
-
-      color: #111;
-
-      transform:
-        translate(-50%, -50%);
-
-      display: flex;
-
-      justify-content: center;
-      align-items: center;
-
-      font-size: 15px;
-
-      font-weight: bold;
-
-      z-index: 11;
-
-      pointer-events: none;
-    }
-
-    .comparison-label {
-      position: absolute;
-
-      top: 14px;
-
-      padding: 7px 10px;
-
-      border-radius: 20px;
-
-      background: rgba(0,0,0,.55);
-
-      font-size: 9px;
-
-      letter-spacing: 1px;
-
-      z-index: 12;
-    }
-
-    .label-before {
-      left: 14px;
-    }
-
-    .label-after {
-      right: 14px;
-    }
-
-    /* =========================
-       AI SCREENS
-    ========================= */
-
-    .ai-screen {
-      display: none;
-    }
-
-    .ai-box {
-      border: 1px solid #292929;
-
-      background: #191919;
-
-      border-radius: 18px;
-
-      padding: 30px 22px;
-
-      text-align: center;
-    }
-
-    .ai-icon {
-      font-size: 30px;
-      margin-bottom: 18px;
-    }
-
-    .ai-box h3 {
-      font-family: Georgia, serif;
-
-      font-size: 24px;
-
-      font-weight: normal;
-
-      margin-bottom: 10px;
-    }
-
-    .ai-box p {
-      color: #777;
-
-      font-size: 12px;
-
-      line-height: 1.5;
-
-      max-width: 280px;
-
-      margin: 0 auto 25px;
-    }
-
-    .ai-coming {
-      display: inline-block;
-
-      padding: 9px 14px;
-
-      border: 1px solid #444;
-
-      border-radius: 30px;
-
-      color: #888;
-
-      font-size: 9px;
-
-      letter-spacing: 1.5px;
-    }
-
-    /* =========================
-       STATUS
-    ========================= */
-
-    #status {
-      min-height: 20px;
-
-      text-align: center;
-
-      color: #777;
-
-      font-size: 12px;
-
-      margin-top: 15px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    .footer {
-      text-align: center;
-
-      color: #444;
-
-      font-size: 9px;
-
-      letter-spacing: 1px;
-
-      margin-top: 55px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 380px) {
-
-      .hero h1 {
-        font-size: 37px;
-      }
-
-      .option-name {
-        font-size: 24px;
-      }
-
-    }
-
-  </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHOTO LAB</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #111;
+  color: #f4f1eb;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+.app {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 55px;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.pro {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  border: 1px solid #555;
+  border-radius: 30px;
+  padding: 7px 12px;
+  color: #ccc;
+}
+
+.hero {
+  margin-bottom: 38px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: 43px;
+  line-height: .98;
+  font-weight: normal;
+  letter-spacing: -2px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  color: #888;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 330px;
+}
+
+.section-title {
+  color: #666;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  position: relative;
+  width: 100%;
+  min-height: 125px;
+  padding: 22px;
+  border: 1px solid #292929;
+  border-radius: 18px;
+  background: #191919;
+  cursor: pointer;
+  overflow: hidden;
+  transition: .25s ease;
+}
+
+.option:hover {
+  border-color: #666;
+  transform: translateY(-2px);
+}
+
+.option-number {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #252525;
+  color: #777;
+  font-size: 9px;
+}
+
+.option-name {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  margin-bottom: 8px;
+  padding-right: 60px;
+}
+
+.option-description {
+  color: #777;
+  font-size: 11px;
+  line-height: 1.4;
+  max-width: 290px;
+}
+
+.option-arrow {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  color: #777;
+  font-size: 18px;
+}
+
+.option-premium {
+  background:
+    radial-gradient(circle at 90% 10%, #35302a 0, #191919 45%);
+}
+
+.premium-badge {
+  position: absolute;
+  top: 20px;
+  right: 58px;
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  padding: 5px 8px;
+  border: 1px solid #555;
+  border-radius: 20px;
+  color: #aaa;
+}
+
+/* WORKSPACE */
+
+#workspace {
+  display: none;
+  margin-top: 40px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 11px;
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+
+.back-button:hover {
+  color: #f4f1eb;
+}
+
+.workspace-title {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  margin-bottom: 7px;
+}
+
+.workspace-description {
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+/* UPLOAD */
+
+.upload {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border: 1px dashed #555;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.upload:hover {
+  border-color: #aaa;
+}
+
+.upload-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.upload-title {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.upload-subtitle {
+  color: #777;
+  font-size: 12px;
+}
+
+#photoInput {
+  display: none;
+}
+
+#photoPreview {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.change-photo {
+  display: none;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,.75);
+  border: 1px solid #666;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 11px;
+  z-index: 5;
+}
+
+/* PRESETS */
+
+#presetSection {
+  display: none;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.preset {
+  background: #191919;
+  border: 1px solid #292929;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.preset:hover {
+  border-color: #666;
+  transform: translateY(-2px);
+}
+
+.preset.active {
+  border-color: #f4f1eb;
+}
+
+.preset-image {
+  height: 125px;
+  position: relative;
+}
+
+.cafe {
+  background: linear-gradient(135deg,#9c6044,#30231d);
+}
+
+.tennis {
+  background: linear-gradient(135deg,#8ca477,#3d4a3b);
+}
+
+.canon {
+  background: linear-gradient(135deg,#8fa6b2,#d8b69a);
+}
+
+.film {
+  background: linear-gradient(135deg,#8d7d65,#3e4540);
+}
+
+.mediterranean {
+  background: linear-gradient(135deg,#277e91,#d6a875);
+}
+
+.editorial {
+  background: linear-gradient(135deg,#777,#191919);
+}
+
+.preset-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.preset-info {
+  padding: 13px;
+}
+
+.preset-name {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.preset-description {
+  color: #777;
+  font-size: 9px;
+  letter-spacing: .4px;
+}
+
+/* CONTROLS */
+
+#controls {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: #191919;
+  border-radius: 17px;
+}
+
+.control-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.control-name {
+  font-family: Georgia, serif;
+  font-size: 19px;
+}
+
+.control-number {
+  font-size: 12px;
+  color: #888;
+}
+
+.range {
+  width: 100%;
+  accent-color: #f4f1eb;
+  cursor: pointer;
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+  font-size: 9px;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button {
+  border-radius: 13px;
+  padding: 16px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+#applyButton {
+  flex: 1;
+  background: #f4f1eb;
+  color: #111;
+  border: none;
+}
+
+#originalButton {
+  background: transparent;
+  color: #f4f1eb;
+  border: 1px solid #444;
+}
+
+#downloadButton {
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+  background: transparent;
+  color: #f4f1eb;
+  border: 1px solid #444;
+}
+
+/* COMPARISON */
+
+#comparison {
+  display: none;
+  margin-top: 30px;
+}
+
+.comparison-title {
+  font-size: 10px;
+  color: #777;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.comparison {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #222;
+  user-select: none;
+  touch-action: none;
+}
+
+.comparison > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.after-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.comparison-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #f4f1eb;
+  color: #111;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  z-index: 11;
+  pointer-events: none;
+}
+
+.comparison-label {
+  position: absolute;
+  top: 14px;
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: rgba(0,0,0,.55);
+  font-size: 9px;
+  letter-spacing: 1px;
+  z-index: 12;
+}
+
+.label-before {
+  left: 14px;
+}
+
+.label-after {
+  right: 14px;
+}
+
+/* AI */
+
+.ai-screen {
+  display: none;
+}
+
+.ai-box {
+  border: 1px solid #292929;
+  background: #191919;
+  border-radius: 18px;
+  padding: 30px 22px;
+  text-align: center;
+}
+
+.ai-icon {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.ai-box h3 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.ai-box p {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0 auto 25px;
+}
+
+.ai-coming {
+  display: inline-block;
+  padding: 9px 14px;
+  border: 1px solid #444;
+  border-radius: 30px;
+  color: #888;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+#status {
+  min-height: 20px;
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+  margin-top: 15px;
+}
+
+.footer {
+  text-align: center;
+  color: #444;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-top: 55px;
+}
+</style>
 </head>
-
 
 <body>
 
-
 <div class="app">
 
+<header class="header">
+  <div class="logo">PHOTO LAB</div>
+  <div class="pro">PRO</div>
+</header>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+<!-- HOME -->
 
-  <header class="header">
+<div id="homeScreen">
 
-    <div class="logo">
-      PHOTO LAB
-    </div>
+<section class="hero">
+  <h1>Твои фотографии.<br>Твой визуальный стиль.</h1>
 
-    <div class="pro">
-      PRO
-    </div>
+  <p>
+    Авторские пресеты и AI-инструменты
+    для создания красивых фотографий.
+  </p>
+</section>
 
-  </header>
+<div class="section-title">ЧТО БУДЕМ ДЕЛАТЬ?</div>
 
+<div class="options">
 
-  <!-- =========================
-       HOME
-  ========================= -->
+<div class="option" id="presetsOption">
 
-  <div id="homeScreen">
+  <div class="option-number">01</div>
 
-
-    <section class="hero">
-
-      <h1>
-        Твои фотографии.<br>
-        Твой визуальный стиль.
-      </h1>
-
-      <p>
-        Авторские пресеты и AI-инструменты
-        для создания красивых фотографий.
-      </p>
-
-    </section>
-
-
-    <div class="section-title">
-      ЧТО БУДЕМ ДЕЛАТЬ?
-    </div>
-
-
-    <div class="options">
-
-
-      <!-- =========================
-           PRESETS
-      ========================= -->
-
-      <div
-        class="option"
-        id="presetsOption"
-      >
-
-        <div class="option-number">
-          01
-        </div>
-
-        <div class="option-name">
-          ПРЕСЕТЫ
-        </div>
-
-        <div class="option-description">
-          Авторские стили для твоих фотографий
-        </div>
-
-        <div class="option-arrow">
-          →
-        </div>
-
-      </div>
-
-
-      <!-- =========================
-           AI ENHANCE
-      ========================= -->
-
-      <div
-        class="option"
-        id="enhanceOption"
-      >
-
-        <div class="option-number">
-          02
-        </div>
-
-        <div class="option-name">
-          УЛУЧШИТЬ КАЧЕСТВО
-        </div>
-
-        <div class="option-description">
-          Умное AI-улучшение фотографии
-        </div>
-
-        <div class="option-arrow">
-          →
-        </div>
-
-      </div>
-
-
-      <!-- =========================
-           AI MATCH
-      ========================= -->
-
-      <div
-        class="option option-premium"
-        id="matchOption"
-      >
-
-        <div class="premium-badge">
-          PRO
-        </div>
-
-        <div class="option-number">
-          03
-        </div>
-
-        <div class="option-name">
-          ПОВТОРИТЬ СТИЛЬ
-        </div>
-
-        <div class="option-description">
-          AI перенесёт цвет и атмосферу референса
-        </div>
-
-        <div class="option-arrow">
-          →
-        </div>
-
-      </div>
-
-
-    </div>
-
+  <div class="option-name">
+    ПРЕСЕТЫ
   </div>
 
+  <div class="option-description">
+    Авторские стили для твоих фотографий
+  </div>
 
-  <!-- =========================
-       WORKSPACE
-  ========================= -->
+  <div class="option-arrow">
+    →
+  </div>
 
-  <section id="workspace">
+</div>
 
 
-    <button
-      class="back-button"
-      id="backButton"
-    >
-      ← Назад
-    </button>
+<div class="option" id="enhanceOption">
 
+  <div class="option-number">02</div>
 
-    <!-- =========================
-         PRESETS WORKSPACE
-    ========================= -->
+  <div class="option-name">
+    УЛУЧШИТЬ КАЧЕСТВО
+  </div>
 
-    <div id="presetsWorkspace">
+  <div class="option-description">
+    Умное AI-улучшение фотографии
+  </div>
 
-      <div class="workspace-title">
-        ПРЕСЕТЫ
-      </div>
+  <div class="option-arrow">
+    →
+  </div>
 
-      <div class="workspace-description">
-        Выбери настроение фотографии
-      </div>
+</div>
 
 
-      <!-- =========================
-           UPLOAD
-      ========================= -->
+<div class="option option-premium" id="matchOption">
 
-      <label
-        class="upload"
-        for="photoInput"
-      >
+  <div class="premium-badge">
+    PRO
+  </div>
 
-        <div id="uploadContent">
+  <div class="option-number">
+    03
+  </div>
 
-          <div class="upload-icon">
-            ＋
-          </div>
+  <div class="option-name">
+    ПОВТОРИТЬ СТИЛЬ
+  </div>
 
-          <div class="upload-title">
-            Добавить фотографию
-          </div>
+  <div class="option-description">
+    AI перенесёт цвет и атмосферу референса
+  </div>
 
-          <div class="upload-subtitle">
-            JPG, PNG до 20 МБ
-          </div>
+  <div class="option-arrow">
+    →
+  </div>
 
-        </div>
+</div>
 
+</div>
+</div>
 
-        <img
-          id="photoPreview"
-          alt="Предпросмотр фотографии"
-        >
 
+<!-- WORKSPACE -->
 
-        <div
-          class="change-photo"
-          id="changePhoto"
-        >
-          Изменить фото
-        </div>
+<section id="workspace">
 
-      </label>
+<button class="back-button" id="backButton">
+  ← Назад
+</button>
 
 
-      <input
-        id="photoInput"
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-      >
+<!-- PRESETS -->
 
+<div id="presetsWorkspace">
 
-      <!-- =========================
-           PRESETS
-      ========================= -->
+<div class="workspace-title">
+  ПРЕСЕТЫ
+</div>
 
-      <div id="presetSection">
+<div class="workspace-description">
+  Выбери настроение фотографии
+</div>
 
-        <div class="section-title">
-          ВЫБЕРИ СТИЛЬ
-        </div>
 
+<label class="upload" for="photoInput">
 
-        <div class="presets">
+<div id="uploadContent">
 
+  <div class="upload-icon">
+    ＋
+  </div>
 
-          <div
-            class="preset"
-            data-name="Old Money"
-          >
+  <div class="upload-title">
+    Добавить фотографию
+  </div>
 
-            <div class="preset-image old-money">
+  <div class="upload-subtitle">
+    JPG, PNG до 20 МБ
+  </div>
 
-              <div class="preset-number">
-                01
-              </div>
+</div>
 
-            </div>
+<img id="photoPreview" alt="Предпросмотр фотографии">
 
-            <div class="preset-info">
+<div class="change-photo" id="changePhoto">
+  Изменить фото
+</div>
 
-              <div class="preset-name">
-                Old Money
-              </div>
+</label>
 
-              <div class="preset-description">
-                ЭЛЕГАНТНЫЙ · ВНЕВРЕМЕННОЙ
-              </div>
 
-            </div>
+<input
+  id="photoInput"
+  type="file"
+  accept="image/jpeg,image/png,image/webp"
+/>
 
-          </div>
 
+<div id="presetSection">
 
-          <div
-            class="preset"
-            data-name="Canon"
-          >
+<div class="section-title">
+  ВЫБЕРИ СТИЛЬ
+</div>
 
-            <div class="preset-image canon">
 
-              <div class="preset-number">
-                02
-              </div>
+<div class="presets">
 
-            </div>
 
-            <div class="preset-info">
+<!-- TENNIS -->
 
-              <div class="preset-name">
-                Canon
-              </div>
+<div class="preset"
+     data-name="TENNIS"
+     data-preset="tennis">
 
-              <div class="preset-description">
-                ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ
-              </div>
+<div class="preset-image tennis">
 
-            </div>
+<div class="preset-number">
+01
+</div>
 
-          </div>
+</div>
 
+<div class="preset-info">
 
-          <div
-            class="preset"
-            data-name="Film"
-          >
+<div class="preset-name">
+TENNIS
+</div>
 
-            <div class="preset-image film">
+<div class="preset-description">
+КОНТРАСТ · СВЕЖЕСТЬ · СОЧНОСТЬ
+</div>
 
-              <div class="preset-number">
-                03
-              </div>
+</div>
 
-            </div>
+</div>
 
-            <div class="preset-info">
 
-              <div class="preset-name">
-                Film
-              </div>
+<!-- CAFE -->
 
-              <div class="preset-description">
-                ПЛЁНКА · МЯГКОСТЬ
-              </div>
+<div class="preset"
+     data-name="CAFÉ"
+     data-preset="cafe">
 
-            </div>
+<div class="preset-image cafe">
 
-          </div>
+<div class="preset-number">
+02
+</div>
 
+</div>
 
-          <div
-            class="preset"
-            data-name="Cafe"
-          >
+<div class="preset-info">
 
-            <div class="preset-image cafe">
+<div class="preset-name">
+CAFÉ
+</div>
 
-              <div class="preset-number">
-                04
-              </div>
+<div class="preset-description">
+ТЁПЛЫЙ · МЯГКИЙ · УЮТНЫЙ
+</div>
 
-            </div>
+</div>
 
-            <div class="preset-info">
+</div>
 
-              <div class="preset-name">
-                Cafe
-              </div>
 
-              <div class="preset-description">
-                ТЁПЛЫЙ · АТМОСФЕРНЫЙ
-              </div>
+<!-- CANON -->
 
-            </div>
+<div class="preset"
+     data-name="CANON"
+     data-preset="canon">
 
-          </div>
+<div class="preset-image canon">
 
+<div class="preset-number">
+03
+</div>
 
-          <div
-            class="preset"
-            data-name="Mediterranean"
-          >
+</div>
 
-            <div class="preset-image mediterranean">
+<div class="preset-info">
 
-              <div class="preset-number">
-                05
-              </div>
+<div class="preset-name">
+CANON
+</div>
 
-            </div>
+<div class="preset-description">
+ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ
+</div>
 
-            <div class="preset-info">
+</div>
 
-              <div class="preset-name">
-                Mediterranean
-              </div>
+</div>
 
-              <div class="preset-description">
-                СОЛНЦЕ · МОРЕ · ЛЕТО
-              </div>
 
-            </div>
+<!-- FILM -->
 
-          </div>
+<div class="preset"
+     data-name="FILM"
+     data-preset="film">
 
+<div class="preset-image film">
 
-          <div
-            class="preset"
-            data-name="Editorial"
-          >
+<div class="preset-number">
+04
+</div>
 
-            <div class="preset-image editorial">
+</div>
 
-              <div class="preset-number">
-                06
-              </div>
+<div class="preset-info">
 
-            </div>
+<div class="preset-name">
+FILM
+</div>
 
-            <div class="preset-info">
+<div class="preset-description">
+ПЛЁНКА · МЯГКОСТЬ
+</div>
 
-              <div class="preset-name">
-                Editorial
-              </div>
+</div>
 
-              <div class="preset-description">
-                МОДА · КОНТРАСТ · ДРАМА
-              </div>
+</div>
 
-            </div>
 
-          </div>
+<!-- MEDITERRANEAN -->
 
+<div class="preset"
+     data-name="MEDITERRANEAN"
+     data-preset="mediterranean">
 
-        </div>
+<div class="preset-image mediterranean">
 
-      </div>
+<div class="preset-number">
+05
+</div>
 
+</div>
 
-      <!-- =========================
-           CONTROLS
-      ========================= -->
+<div class="preset-info">
 
-      <section id="controls">
+<div class="preset-name">
+MEDITERRANEAN
+</div>
 
-        <div class="control-top">
+<div class="preset-description">
+СОЛНЦЕ · МОРЕ · ЛЕТО
+</div>
 
-          <div
-            class="control-name"
-            id="controlName"
-          >
-            Old Money
-          </div>
+</div>
 
-          <div
-            class="control-number"
-            id="controlNumber"
-          >
-            70%
-          </div>
+</div>
 
-        </div>
 
+<!-- EDITORIAL -->
 
-        <input
-          class="range"
-          id="intensity"
-          type="range"
-          min="0"
-          max="100"
-          value="70"
-        >
+<div class="preset"
+     data-name="EDITORIAL"
+     data-preset="editorial">
 
+<div class="preset-image editorial">
 
-        <div class="range-labels">
+<div class="preset-number">
+06
+</div>
 
-          <span>
-            МЯГКО
-          </span>
+</div>
 
-          <span>
-            ИНТЕНСИВНО
-          </span>
+<div class="preset-info">
 
-        </div>
+<div class="preset-name">
+EDITORIAL
+</div>
 
+<div class="preset-description">
+МОДА · КОНТРАСТ · ДРАМА
+</div>
 
-        <div class="buttons">
+</div>
 
-          <button
-            class="button"
-            id="applyButton"
-          >
-            ПРИМЕНИТЬ
-          </button>
+</div>
 
-          <button
-            class="button"
-            id="originalButton"
-          >
-            ОРИГИНАЛ
-          </button>
+</div>
+</div>
 
-        </div>
 
+<!-- CONTROLS -->
 
-        <button
-          class="button"
-          id="downloadButton"
-        >
-          СОХРАНИТЬ ФОТО
-        </button>
+<section id="controls">
 
-      </section>
+<div class="control-top">
 
+<div class="control-name" id="controlName">
+CAFÉ
+</div>
 
-      <!-- =========================
-           BEFORE / AFTER
-      ========================= -->
+<div class="control-number" id="controlNumber">
+70%
+</div>
 
-      <section id="comparison">
+</div>
 
-        <div class="comparison-title">
-          ДО / ПОСЛЕ
-        </div>
 
+<input
+  class="range"
+  id="intensity"
+  type="range"
+  min="0"
+  max="100"
+  value="70"
+/>
 
-        <div
-          class="comparison"
-          id="comparisonBox"
-        >
 
-          <img
-            id="beforeImage"
-            alt="Оригинал"
-          >
+<div class="range-labels">
 
+<span>
+МЯГКО
+</span>
 
-          <div
-            class="after-image"
-            id="afterImageContainer"
-          >
+<span>
+ИНТЕНСИВНО
+</span>
 
-            <img
-              id="afterImage"
-              alt="После обработки"
-            >
+</div>
 
-          </div>
 
+<div class="buttons">
 
-          <div
-            class="comparison-line"
-            id="comparisonLine"
-          >
-          </div>
+<button
+  class="button"
+  id="applyButton">
 
+ПРИМЕНИТЬ
 
-          <div
-            class="comparison-handle"
-            id="comparisonHandle"
-          >
-            ↔
-          </div>
+</button>
 
 
-          <div
-            class="comparison-label label-before"
-          >
-            ДО
-          </div>
+<button
+  class="button"
+  id="originalButton">
 
+ОРИГИНАЛ
 
-          <div
-            class="comparison-label label-after"
-          >
-            ПОСЛЕ
-          </div>
+</button>
 
-        </div>
+</div>
 
-      </section>
 
+<button
+  class="button"
+  id="downloadButton">
 
-    </div>
+СОХРАНИТЬ ФОТО
 
+</button>
 
-    <!-- =========================
-         AI ENHANCE
-    ========================= -->
+</section>
 
-    <div
-      class="ai-screen"
-      id="enhanceWorkspace"
-    >
 
-      <div class="workspace-title">
-        УЛУЧШИТЬ КАЧЕСТВО
-      </div>
+<!-- COMPARISON -->
 
-      <div class="workspace-description">
-        Умное улучшение фотографии с помощью AI
-      </div>
+<section id="comparison">
 
+<div class="comparison-title">
+ДО / ПОСЛЕ
+</div>
 
-      <div class="ai-box">
 
-        <div class="ai-icon">
-          ✦
-        </div>
+<div class="comparison"
+     id="comparisonBox">
 
-        <h3>
-          Скоро здесь будет магия
-        </h3>
 
-        <p>
-          AI автоматически определит качество
-          фотографии и улучшит детали,
-          резкость и шум.
-        </p>
+<img
+  id="beforeImage"
+  alt="Оригинал"
+/>
 
-        <div class="ai-coming">
-          AI · СКОРО
-        </div>
 
-      </div>
+<div
+  class="after-image"
+  id="afterImageContainer">
 
-    </div>
+<img
+  id="afterImage"
+  alt="После обработки"
+/>
 
+</div>
 
-    <!-- =========================
-         AI MATCH
-    ========================= -->
 
-    <div
-      class="ai-screen"
-      id="matchWorkspace"
-    >
+<div
+  class="comparison-line"
+  id="comparisonLine">
+</div>
 
-      <div class="workspace-title">
-        ПОВТОРИТЬ СТИЛЬ
-      </div>
 
-      <div class="workspace-description">
-        Перенеси цвет и атмосферу понравившейся
-        фотографии на свою
-      </div>
+<div
+  class="comparison-handle"
+  id="comparisonHandle">
 
+↔
 
-      <div class="ai-box">
+</div>
 
-        <div class="ai-icon">
-          ◇
-        </div>
 
-        <h3>
-          Твой стиль. Новый кадр.
-        </h3>
+<div class="comparison-label label-before">
+ДО
+</div>
 
-        <p>
-          Загрузи свою фотографию и референс.
-          AI проанализирует цвет и атмосферу
-          и создаст новую стилистику.
-        </p>
+<div class="comparison-label label-after">
+ПОСЛЕ
+</div>
 
-        <div class="ai-coming">
-          AI · СКОРО
-        </div>
+</div>
 
-      </div>
+</section>
 
-    </div>
+</div>
 
 
-  </section>
+<!-- AI ENHANCE -->
 
+<div
+  class="ai-screen"
+  id="enhanceWorkspace">
 
-  <div id="status"></div>
+<div class="workspace-title">
+УЛУЧШИТЬ КАЧЕСТВО
+</div>
 
+<div class="workspace-description">
+Умное улучшение фотографии с помощью AI
+</div>
 
-  <footer class="footer">
-    PHOTO LAB · СОЗДАНО КРИСТИНОЙ
-  </footer>
+<div class="ai-box">
 
+<div class="ai-icon">
+✦
+</div>
+
+<h3>
+Скоро здесь будет магия
+</h3>
+
+<p>
+AI автоматически определит качество фотографии
+и улучшит детали, резкость и шум.
+</p>
+
+<div class="ai-coming">
+AI · СКОРО
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AI MATCH -->
+
+<div
+  class="ai-screen"
+  id="matchWorkspace">
+
+<div class="workspace-title">
+ПОВТОРИТЬ СТИЛЬ
+</div>
+
+<div class="workspace-description">
+Перенеси цвет и атмосферу понравившейся фотографии
+на свою
+</div>
+
+<div class="ai-box">
+
+<div class="ai-icon">
+◇
+</div>
+
+<h3>
+Твой стиль. Новый кадр.
+</h3>
+
+<p>
+Загрузи свою фотографию и референс.
+AI проанализирует цвет и атмосферу
+и создаст новую стилистику.
+</p>
+
+<div class="ai-coming">
+AI · СКОРО
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div id="status"></div>
+
+<footer class="footer">
+PHOTO LAB · СОЗДАНО КРИСТИНОЙ
+</footer>
 
 </div>
 
 
 <script>
 
-
-  /* =========================
-     ELEMENTS
-  ========================= */
-
-  const homeScreen =
-    document.getElementById(
-      "homeScreen"
-    );
-
-  const workspace =
-    document.getElementById(
-      "workspace"
-    );
-
-  const presetsWorkspace =
-    document.getElementById(
-      "presetsWorkspace"
-    );
-
-  const enhanceWorkspace =
-    document.getElementById(
-      "enhanceWorkspace"
-    );
-
-  const matchWorkspace =
-    document.getElementById(
-      "matchWorkspace"
-    );
-
-  const presetsOption =
-    document.getElementById(
-      "presetsOption"
-    );
-
-  const enhanceOption =
-    document.getElementById(
-      "enhanceOption"
-    );
-
-  const matchOption =
-    document.getElementById(
-      "matchOption"
-    );
-
-  const backButton =
-    document.getElementById(
-      "backButton"
-    );
-
-  const photoInput =
-    document.getElementById(
-      "photoInput"
-    );
-
-  const photoPreview =
-    document.getElementById(
-      "photoPreview"
-    );
-
-  const uploadContent =
-    document.getElementById(
-      "uploadContent"
-    );
-
-  const changePhoto =
-    document.getElementById(
-      "changePhoto"
-    );
-
-  const presetSection =
-    document.getElementById(
-      "presetSection"
-    );
-
-  const controls =
-    document.getElementById(
-      "controls"
-    );
-
-  const comparison =
-    document.getElementById(
-      "comparison"
-    );
-
-  const comparisonBox =
-    document.getElementById(
-      "comparisonBox"
-    );
-
-  const beforeImage =
-    document.getElementById(
-      "beforeImage"
-    );
-
-  const afterImage =
-    document.getElementById(
-      "afterImage"
-    );
-
-  const afterImageContainer =
-    document.getElementById(
-      "afterImageContainer"
-    );
-
-  const comparisonLine =
-    document.getElementById(
-      "comparisonLine"
-    );
-
-  const comparisonHandle =
-    document.getElementById(
-      "comparisonHandle"
-    );
-
-  const intensity =
-    document.getElementById(
-      "intensity"
-    );
-
-  const intensityNumber =
-    document.getElementById(
-      "controlNumber"
-    );
-
-  const controlName =
-    document.getElementById(
-      "controlName"
-    );
-
-  const applyButton =
-    document.getElementById(
-      "applyButton"
-    );
-
-  const originalButton =
-    document.getElementById(
-      "originalButton"
-    );
-
-  const downloadButton =
-    document.getElementById(
-      "downloadButton"
-    );
-
-  const status =
-    document.getElementById(
-      "status"
-    );
+/* ==========================================
+   PHOTO LAB
+   REAL PHOTO PRESETS
+========================================== */
 
 
-  const presets =
-    document.querySelectorAll(
-      ".preset"
-    );
+const $ = id => document.getElementById(id);
 
 
-  /* =========================
-     VARIABLES
-  ========================= */
+const homeScreen = $("homeScreen");
+const workspace = $("workspace");
 
-  let originalImage = null;
+const presetsWorkspace = $("presetsWorkspace");
+const enhanceWorkspace = $("enhanceWorkspace");
+const matchWorkspace = $("matchWorkspace");
 
-  let selectedPreset = null;
+const presetsOption = $("presetsOption");
+const enhanceOption = $("enhanceOption");
+const matchOption = $("matchOption");
 
-  let currentWorkspace = null;
+const backButton = $("backButton");
+
+const photoInput = $("photoInput");
+const photoPreview = $("photoPreview");
+const uploadContent = $("uploadContent");
+const changePhoto = $("changePhoto");
+
+const presetSection = $("presetSection");
+
+const controls = $("controls");
+
+const comparison = $("comparison");
+const comparisonBox = $("comparisonBox");
+
+const beforeImage = $("beforeImage");
+const afterImage = $("afterImage");
+
+const afterImageContainer = $("afterImageContainer");
+
+const comparisonLine = $("comparisonLine");
+const comparisonHandle = $("comparisonHandle");
+
+const intensity = $("intensity");
+const controlNumber = $("controlNumber");
+const controlName = $("controlName");
+
+const applyButton = $("applyButton");
+const originalButton = $("originalButton");
+
+const downloadButton = $("downloadButton");
+
+const status = $("status");
 
 
-  /* =========================
-     OPEN PRESETS
-  ========================= */
+let originalImage = null;
+let selectedPreset = null;
+let filteredDataURL = null;
 
-  presetsOption.addEventListener(
-    "click",
-    function() {
+let dragging = false;
 
-      currentWorkspace =
-        "presets";
 
-      homeScreen.style.display =
-        "none";
+/* ==========================================
+   PRESET DATA
+========================================== */
 
-      workspace.style.display =
-        "block";
 
-      presetsWorkspace.style.display =
-        "block";
+/*
+   CAFÉ
+   Based on our reference analysis.
 
-      enhanceWorkspace.style.display =
-        "none";
+   Warm
+   Soft
+   Cozy
+   Creamy highlights
+   Natural skin
+   Muted colors
+*/
 
-      matchWorkspace.style.display =
-        "none";
 
-      status.textContent =
-        "";
+const PRESETS = {
 
-    }
+cafe: {
+
+  exposure: 0.20,
+
+  contrast: 10,
+
+  highlights: -25,
+
+  shadows: 25,
+
+  whites: 15,
+
+  blacks: -10,
+
+  temperature: 6,
+
+  tint: 2,
+
+  saturation: -5,
+
+  vibrance: 8,
+
+  hsl: {
+
+    red: [5, -10, -5],
+
+    orange: [-5, -10, 5],
+
+    yellow: [-10, -15, 10],
+
+    green: [-20, -20, 10],
+
+    aqua: [-10, -10, 10],
+
+    blue: [-10, -10, 10],
+
+    purple: [0, -20, 10],
+
+    magenta: [0, -10, 10]
+
+  },
+
+  curve: "soft",
+
+  grading: {
+
+    shadowH: 190,
+
+    shadowS: 6,
+
+    midH: 40,
+
+    midS: 8,
+
+    highH: 45,
+
+    highS: 12
+
+  },
+
+  effects: {
+
+    clarity: -5,
+
+    grain: 10,
+
+    vignette: -10
+
+  }
+
+},
+
+
+/*
+   TENNIS
+
+   Strong S curve
+   Warm skin
+   Rich green
+   Slightly cooler background
+*/
+
+
+tennis: {
+
+  exposure: 0,
+
+  contrast: 30,
+
+  highlights: 10,
+
+  shadows: -28,
+
+  whites: 18,
+
+  blacks: -18,
+
+  temperature: 1,
+
+  tint: 0,
+
+  saturation: 12,
+
+  vibrance: 23,
+
+  hsl: {
+
+    red: [0, 4, 2],
+
+    orange: [0, 20, 15],
+
+    yellow: [-5, 8, 3],
+
+    green: [-10, 18, 4],
+
+    aqua: [-8, 6, 0],
+
+    blue: [-3, 2, -10],
+
+    purple: [0, 0, 0],
+
+    magenta: [0, 0, 0]
+
+  },
+
+  curve: "strong",
+
+  grading: {
+
+    shadowH: 190,
+
+    shadowS: 4,
+
+    midH: 40,
+
+    midS: 3,
+
+    highH: 45,
+
+    highS: 5
+
+  },
+
+  effects: {
+
+    clarity: 2,
+
+    grain: 0,
+
+    vignette: -5
+
+  }
+
+},
+
+
+/* PLACEHOLDERS */
+
+canon: {
+
+  exposure: .05,
+  contrast: 5,
+  highlights: -8,
+  shadows: 8,
+  whites: 8,
+  blacks: -4,
+  temperature: 1,
+  tint: 0,
+  saturation: 3,
+  vibrance: 8,
+
+  hsl: {}
+
+},
+
+
+film: {
+
+  exposure: .05,
+  contrast: -5,
+  highlights: -10,
+  shadows: 10,
+  whites: -5,
+  blacks: 5,
+  temperature: 3,
+  tint: 1,
+  saturation: -8,
+  vibrance: -2,
+
+  hsl: {},
+
+  effects: {
+    grain: 18,
+    vignette: -8
+  }
+
+},
+
+
+mediterranean: {
+
+  exposure: .1,
+  contrast: 8,
+  highlights: -8,
+  shadows: 8,
+  whites: 10,
+  blacks: -5,
+  temperature: 5,
+  tint: 0,
+  saturation: 5,
+  vibrance: 12,
+
+  hsl: {},
+
+  effects: {
+    vignette: -4
+  }
+
+},
+
+
+editorial: {
+
+  exposure: 0,
+  contrast: 22,
+  highlights: -5,
+  shadows: -8,
+  whites: 12,
+  blacks: -14,
+  temperature: -1,
+  tint: 0,
+  saturation: -5,
+  vibrance: 4,
+
+  hsl: {},
+
+  effects: {
+    vignette: -10
+  }
+
+}
+
+};
+
+
+/* ==========================================
+   COLOR FUNCTIONS
+========================================== */
+
+
+function clamp(value) {
+
+  return Math.max(
+    0,
+    Math.min(255, value)
   );
 
+}
 
-  /* =========================
-     OPEN AI ENHANCE
-  ========================= */
 
-  enhanceOption.addEventListener(
-    "click",
-    function() {
+function mix(a, b, amount) {
 
-      currentWorkspace =
-        "enhance";
+  return a + (b - a) * amount;
 
-      homeScreen.style.display =
-        "none";
+}
 
-      workspace.style.display =
-        "block";
 
-      presetsWorkspace.style.display =
-        "none";
+/* RGB → HSL */
 
-      enhanceWorkspace.style.display =
-        "block";
+function rgbToHsl(r, g, b) {
 
-      matchWorkspace.style.display =
-        "none";
+  r /= 255;
+  g /= 255;
+  b /= 255;
 
-      status.textContent =
-        "";
+  const max = Math.max(r,g,b);
+  const min = Math.min(r,g,b);
 
-    }
+  let h;
+  let s;
+
+  const l = (max + min) / 2;
+
+  if(max === min) {
+
+    return [0,0,l];
+
+  }
+
+  const d = max - min;
+
+  s = l > .5
+    ? d / (2 - max - min)
+    : d / (max + min);
+
+  switch(max) {
+
+    case r:
+      h = (g-b) / d + (g < b ? 6 : 0);
+      break;
+
+    case g:
+      h = (b-r) / d + 2;
+      break;
+
+    default:
+      h = (r-g) / d + 4;
+
+  }
+
+  h *= 60;
+
+  return [h,s,l];
+
+}
+
+
+/* HSL → RGB */
+
+function hslToRgb(h,s,l) {
+
+  h = ((h % 360) + 360) % 360;
+
+  s = Math.max(
+    0,
+    Math.min(1,s)
   );
 
-
-  /* =========================
-     OPEN AI MATCH
-  ========================= */
-
-  matchOption.addEventListener(
-    "click",
-    function() {
-
-      currentWorkspace =
-        "match";
-
-      homeScreen.style.display =
-        "none";
-
-      workspace.style.display =
-        "block";
-
-      presetsWorkspace.style.display =
-        "none";
-
-      enhanceWorkspace.style.display =
-        "none";
-
-      matchWorkspace.style.display =
-        "block";
-
-      status.textContent =
-        "";
-
-    }
+  l = Math.max(
+    0,
+    Math.min(1,l)
   );
 
+  const c =
+    (1 - Math.abs(2*l - 1)) * s;
 
-  /* =========================
-     BACK
-  ========================= */
+  const x =
+    c *
+    (1 - Math.abs((h/60)%2 - 1));
 
-  backButton.addEventListener(
-    "click",
-    function() {
+  const m =
+    l - c/2;
 
-      workspace.style.display =
-        "none";
+  let r = 0;
+  let g = 0;
+  let b = 0;
 
-      homeScreen.style.display =
-        "block";
 
-      status.textContent =
-        "";
+  if(h < 60) {
 
-    }
-  );
+    r = c;
+    g = x;
 
+  }
 
-  /* =========================
-     PHOTO UPLOAD
-  ========================= */
+  else if(h < 120) {
 
-  photoInput.addEventListener(
-    "change",
-    function(event) {
+    r = x;
+    g = c;
 
-      const file =
-        event.target.files[0];
+  }
 
-      if (!file) {
-        return;
-      }
+  else if(h < 180) {
 
+    g = c;
+    b = x;
 
-      const reader =
-        new FileReader();
+  }
 
+  else if(h < 240) {
 
-      reader.onload =
-        function(e) {
+    g = x;
+    b = c;
 
-          originalImage =
-            e.target.result;
+  }
 
+  else if(h < 300) {
 
-          photoPreview.src =
-            originalImage;
+    r = x;
+    b = c;
 
+  }
 
-          beforeImage.src =
-            originalImage;
+  else {
 
-
-          afterImage.src =
-            originalImage;
-
-
-          photoPreview.style.display =
-            "block";
-
-
-          uploadContent.style.display =
-            "none";
-
-
-          changePhoto.style.display =
-            "block";
-
-
-          presetSection.style.display =
-            "block";
-
-
-          controls.style.display =
-            "none";
-
-
-          comparison.style.display =
-            "none";
-
-
-          downloadButton.style.display =
-            "none";
-
-
-          status.textContent =
-            "Фотография загружена";
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-
-  /* =========================
-     PRESET SELECTION
-  ========================= */
-
-  presets.forEach(
-    function(preset) {
-
-      preset.addEventListener(
-        "click",
-        function() {
-
-          presets.forEach(
-            function(item) {
-
-              item.classList.remove(
-                "active"
-              );
-
-            }
-          );
-
-
-          this.classList.add(
-            "active"
-          );
-
-
-          selectedPreset =
-            this.dataset.name;
-
-
-          controlName.textContent =
-            selectedPreset;
-
-
-          controls.style.display =
-            "block";
-
-
-          status.textContent =
-            "Выбран стиль: " +
-            selectedPreset;
-
-        }
-      );
-
-    }
-  );
-
-
-  /* =========================
-     INTENSITY
-  ========================= */
-
-  intensity.addEventListener(
-    "input",
-    function() {
-
-      intensityNumber.textContent =
-        this.value + "%";
-
-    }
-  );
-
-
-  /* =========================
-     APPLY
-  ========================= */
-
-  applyButton.addEventListener(
-    "click",
-    function() {
-
-      if (!originalImage) {
-
-        status.textContent =
-          "Сначала добавьте фотографию";
-
-        return;
-
-      }
-
-
-      if (!selectedPreset) {
-
-        status.textContent =
-          "Сначала выберите пресет";
-
-        return;
-
-      }
-
-
-      status.textContent =
-        "Обрабатываем фотографию...";
-
-
-      setTimeout(
-        function() {
-
-          beforeImage.src =
-            originalImage;
-
-
-          afterImage.src =
-            originalImage;
-
-
-          comparison.style.display =
-            "block";
-
-
-          downloadButton.style.display =
-            "block";
-
-
-          status.textContent =
-            "Готово ✦";
-
-        },
-        500
-      );
-
-    }
-  );
-
-
-  /* =========================
-     ORIGINAL
-  ========================= */
-
-  originalButton.addEventListener(
-    "click",
-    function() {
-
-      if (!originalImage) {
-        return;
-      }
-
-
-      photoPreview.src =
-        originalImage;
-
-
-      beforeImage.src =
-        originalImage;
-
-
-      afterImage.src =
-        originalImage;
-
-
-      comparison.style.display =
-        "none";
-
-
-      downloadButton.style.display =
-        "none";
-
-
-      status.textContent =
-        "Показан оригинал";
-
-    }
-  );
-
-
-  /* =========================
-     BEFORE / AFTER SLIDER
-  ========================= */
-
-  let dragging = false;
-
-
-  function moveSlider(clientX) {
-
-    const rect =
-      comparisonBox.getBoundingClientRect();
-
-
-    let position =
-      ((clientX - rect.left) /
-      rect.width) * 100;
-
-
-    position =
-      Math.max(
-        0,
-        Math.min(
-          100,
-          position
-        )
-      );
-
-
-    afterImageContainer.style.width =
-      position + "%";
-
-
-    comparisonLine.style.left =
-      position + "%";
-
-
-    comparisonHandle.style.left =
-      position + "%";
+    r = c;
+    b = x;
 
   }
 
 
-  comparisonBox.addEventListener(
-    "pointerdown",
-    function(event) {
+  return [
 
-      dragging = true;
+    (r+m)*255,
+
+    (g+m)*255,
+
+    (b+m)*255
+
+  ];
+
+}
 
 
-      comparisonBox.setPointerCapture(
-        event.pointerId
+/* ==========================================
+   HSL ZONES
+========================================== */
+
+
+function hueDistance(a,b) {
+
+  const d = Math.abs(a-b);
+
+  return Math.min(
+    d,
+    360-d
+  );
+
+}
+
+
+function applyHSL(
+  r,
+  g,
+  b,
+  hsl,
+  amount
+) {
+
+  let [h,s,l] =
+    rgbToHsl(r,g,b);
+
+
+  const zones = [
+
+    ["red",0],
+    ["orange",30],
+    ["yellow",60],
+    ["green",120],
+    ["aqua",180],
+    ["blue",240],
+    ["purple",280],
+    ["magenta",330]
+
+  ];
+
+
+  let best = null;
+  let weight = 0;
+
+
+  for(
+    const [name,center]
+    of zones
+  ) {
+
+    const w = Math.max(
+      0,
+      1 -
+      hueDistance(h,center)/38
+    );
+
+
+    if(w > weight) {
+
+      weight = w;
+      best = name;
+
+    }
+
+  }
+
+
+  if(
+    best &&
+    hsl[best]
+  ) {
+
+    const [
+      hueShift,
+      saturationShift,
+      lightnessShift
+    ] = hsl[best];
+
+
+    const w =
+      weight * amount;
+
+
+    h +=
+      hueShift * w;
+
+
+    s +=
+      s *
+      (saturationShift/100)
+      * w;
+
+
+    l +=
+      l *
+      (lightnessShift/100)
+      * w;
+
+  }
+
+
+  return hslToRgb(
+    h,
+    s,
+    l
+  );
+
+}
+
+
+/* ==========================================
+   CURVES
+========================================== */
+
+
+function toneCurve(
+  value,
+  type
+) {
+
+  let x =
+    value / 255;
+
+
+  let y = x;
+
+
+  if(type === "strong") {
+
+    if(x < .5) {
+
+      y =
+        x -
+        .12 *
+        (1 - 2*x);
+
+    }
+
+    else {
+
+      y =
+        x +
+        .10 *
+        (2*x - 1);
+
+    }
+
+    y =
+      Math.pow(
+        Math.max(
+          0,
+          Math.min(1,y)
+        ),
+        .97
+      );
+
+  }
+
+
+  else if(type === "soft") {
+
+    if(x < .5) {
+
+      y =
+        x -
+        .055 *
+        (1 - 2*x);
+
+    }
+
+    else {
+
+      y =
+        x +
+        .045 *
+        (2*x - 1);
+
+    }
+
+  }
+
+
+  return clamp(
+    y * 255
+  );
+
+}
+
+
+/* ==========================================
+   COLOR GRADING
+========================================== */
+
+
+function applyColorGrading(
+  r,
+  g,
+  b,
+  preset,
+  amount
+) {
+
+  if(!preset.grading) {
+
+    return [r,g,b];
+
+  }
+
+
+  let [h,s,l] =
+    rgbToHsl(r,g,b);
+
+
+  let gradingHue;
+  let gradingSat;
+
+
+  if(l < .32) {
+
+    gradingHue =
+      preset.grading.shadowH;
+
+    gradingSat =
+      preset.grading.shadowS;
+
+  }
+
+  else if(l < .68) {
+
+    gradingHue =
+      preset.grading.midH;
+
+    gradingSat =
+      preset.grading.midS;
+
+  }
+
+  else {
+
+    gradingHue =
+      preset.grading.highH;
+
+    gradingSat =
+      preset.grading.highS;
+
+  }
+
+
+  const strength =
+    (1-s)
+    * .55
+    * amount;
+
+
+  if(strength <= 0) {
+
+    return [r,g,b];
+
+  }
+
+
+  const grading =
+    hslToRgb(
+      gradingHue,
+      gradingSat/100 * strength,
+      l
+    );
+
+
+  return [
+
+    mix(
+      r,
+      grading[0],
+      .10 * strength
+    ),
+
+    mix(
+      g,
+      grading[1],
+      .10 * strength
+    ),
+
+    mix(
+      b,
+      grading[2],
+      .10 * strength
+    )
+
+  ];
+
+}
+
+
+/* ==========================================
+   MAIN PROCESSING
+========================================== */
+
+
+function processImage(
+  imageData,
+  preset,
+  amount
+) {
+
+  const data =
+    imageData.data;
+
+
+  const exposure =
+    preset.exposure || 0;
+
+
+  const contrast =
+    (preset.contrast || 0) / 100;
+
+
+  const saturation =
+    (preset.saturation || 0) / 100;
+
+
+  const vibrance =
+    (preset.vibrance || 0) / 100;
+
+
+  const temperature =
+    (preset.temperature || 0)
+    * 1.15;
+
+
+  const tint =
+    (preset.tint || 0)
+    * .7;
+
+
+  for(
+    let i=0;
+    i<data.length;
+    i+=4
+  ) {
+
+
+    let r = data[i];
+    let g = data[i+1];
+    let b = data[i+2];
+
+
+    /* EXPOSURE */
+
+    const exposureMultiplier =
+      Math.pow(
+        2,
+        exposure * amount
       );
 
 
-      moveSlider(
-        event.clientX
+    r *= exposureMultiplier;
+    g *= exposureMultiplier;
+    b *= exposureMultiplier;
+
+
+    /* CONTRAST */
+
+    const contrastMultiplier =
+      1 +
+      contrast * amount;
+
+
+    r =
+      (r-128)
+      * contrastMultiplier
+      +128;
+
+
+    g =
+      (g-128)
+      * contrastMultiplier
+      +128;
+
+
+    b =
+      (b-128)
+      * contrastMultiplier
+      +128;
+
+
+    /* LUMINANCE */
+
+    const luminance =
+      (
+        r*.2126 +
+        g*.7152 +
+        b*.0722
+      ) / 255;
+
+
+    const shadow =
+      1-luminance;
+
+
+    const highlight =
+      luminance;
+
+
+    /* LIGHTROOM STYLE */
+
+    const shadows =
+      (preset.shadows || 0)
+      /100
+      * amount;
+
+
+    const highlights =
+      (preset.highlights || 0)
+      /100
+      * amount;
+
+
+    const whites =
+      (preset.whites || 0)
+      /100
+      * amount;
+
+
+    const blacks =
+      (preset.blacks || 0)
+      /100
+      * amount;
+
+
+    const correction =
+      shadows * 35 * shadow +
+      highlights * 25 * highlight +
+      whites * 18 * Math.pow(highlight,2) +
+      blacks * 18 * Math.pow(1-highlight,2);
+
+
+    r += correction;
+    g += correction;
+    b += correction;
+
+
+    /* TEMPERATURE */
+
+    r +=
+      temperature * amount;
+
+
+    b -=
+      temperature * amount;
+
+
+    /* TINT */
+
+    r +=
+      tint * amount;
+
+
+    g -=
+      tint * .35 * amount;
+
+
+    /* SATURATION */
+
+    let hsl =
+      rgbToHsl(
+        clamp(r),
+        clamp(g),
+        clamp(b)
       );
 
-    }
-  );
 
-
-  comparisonBox.addEventListener(
-    "pointermove",
-    function(event) {
-
-      if (!dragging) {
-        return;
-      }
-
-
-      moveSlider(
-        event.clientX
+    hsl[1] =
+      Math.max(
+        0,
+        Math.min(
+          1,
+          hsl[1] *
+          (1 +
+           saturation * amount)
+        )
       );
 
+
+    /* VIBRANCE */
+
+    const vibranceBoost =
+      vibrance *
+      amount *
+      (1-hsl[1])
+      * .8;
+
+
+    hsl[1] =
+      Math.min(
+        1,
+        hsl[1] +
+        vibranceBoost
+      );
+
+
+    [r,g,b] =
+      hslToRgb(
+        hsl[0],
+        hsl[1],
+        hsl[2]
+      );
+
+
+    /* HSL */
+
+    [r,g,b] =
+      applyHSL(
+        r,
+        g,
+        b,
+        preset.hsl || {},
+        amount
+      );
+
+
+    /* CURVE */
+
+    if(preset.curve) {
+
+      r =
+        toneCurve(
+          r,
+          preset.curve
+        );
+
+      g =
+        toneCurve(
+          g,
+          preset.curve
+        );
+
+      b =
+        toneCurve(
+          b,
+          preset.curve
+        );
+
     }
-  );
 
 
-  comparisonBox.addEventListener(
-    "pointerup",
-    function() {
+    /* COLOR GRADING */
 
-      dragging = false;
+    [r,g,b] =
+      applyColorGrading(
+        r,
+        g,
+        b,
+        preset,
+        amount
+      );
+
+
+    /* GRAIN */
+
+    if(
+      preset.effects &&
+      preset.effects.grain
+    ) {
+
+      const grain =
+        preset.effects.grain
+        /100
+        * amount;
+
+
+      const noise =
+        (
+          Math.random()-.5
+        )
+        * grain
+        * 22;
+
+
+      r += noise;
+      g += noise;
+      b += noise;
 
     }
-  );
 
 
-  comparisonBox.addEventListener(
-    "pointercancel",
-    function() {
+    /* VIGNETTE */
 
-      dragging = false;
+    if(
+      preset.effects &&
+      preset.effects.vignette
+    ) {
 
-    }
-  );
-
-
-  /* =========================
-     DOWNLOAD
-  ========================= */
-
-  downloadButton.addEventListener(
-    "click",
-    function() {
-
-      if (!originalImage) {
-        return;
-      }
+      const pixel =
+        i/4;
 
 
-      const link =
-        document.createElement(
-          "a"
+      const width =
+        imageData.width;
+
+
+      const height =
+        imageData.height;
+
+
+      const x =
+        pixel % width;
+
+
+      const y =
+        Math.floor(
+          pixel / width
         );
 
 
-      link.href =
-        afterImage.src;
+      const nx =
+        (x/width-.5)*2;
 
 
-      link.download =
-        "photo-lab.jpg";
+      const ny =
+        (y/height-.5)*2;
 
 
-      link.click();
+      const edge =
+        Math.min(
+          1,
+          (nx*nx + ny*ny)/2
+        );
+
+
+      const vignette =
+        preset.effects.vignette
+        /100
+        * amount;
+
+
+      const factor =
+        1 +
+        vignette *
+        edge *
+        .45;
+
+
+      r *= factor;
+      g *= factor;
+      b *= factor;
+
+    }
+
+
+    /* FINAL PIXELS */
+
+    data[i] =
+      clamp(r);
+
+
+    data[i+1] =
+      clamp(g);
+
+
+    data[i+2] =
+      clamp(b);
+
+  }
+
+
+  return imageData;
+
+}
+
+
+/* ==========================================
+   RENDER
+========================================== */
+
+
+function loadImage(src) {
+
+  return new Promise(
+    (resolve,reject) => {
+
+      const img =
+        new Image();
+
+
+      img.onload =
+        () => resolve(img);
+
+
+      img.onerror =
+        reject;
+
+
+      img.src =
+        src;
 
     }
   );
 
+}
+
+
+async function renderPreset() {
+
+  if(
+    !originalImage ||
+    !selectedPreset
+  ) {
+
+    return;
+
+  }
+
+
+  status.textContent =
+    "Обрабатываем фотографию…";
+
+
+  const img =
+    await loadImage(
+      originalImage
+    );
+
+
+  const maxSize = 1800;
+
+
+  const scale =
+    Math.min(
+      1,
+      maxSize /
+      Math.max(
+        img.naturalWidth,
+        img.naturalHeight
+      )
+    );
+
+
+  const canvas =
+    document.createElement(
+      "canvas"
+    );
+
+
+  canvas.width =
+    Math.round(
+      img.naturalWidth *
+      scale
+    );
+
+
+  canvas.height =
+    Math.round(
+      img.naturalHeight *
+      scale
+    );
+
+
+  const ctx =
+    canvas.getContext(
+      "2d",
+      {
+        willReadFrequently:true
+      }
+    );
+
+
+  ctx.drawImage(
+    img,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  const imageData =
+    ctx.getImageData(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+
+  const amount =
+    Number(
+      intensity.value
+    ) / 100;
+
+
+  processImage(
+    imageData,
+    PRESETS[selectedPreset],
+    amount
+  );
+
+
+  ctx.putImageData(
+    imageData,
+    0,
+    0
+  );
+
+
+  filteredDataURL =
+    canvas.toDataURL(
+      "image/jpeg",
+      .92
+    );
+
+
+  afterImage.src =
+    filteredDataURL;
+
+
+  beforeImage.src =
+    originalImage;
+
+
+  comparison.style.display =
+    "block";
+
+
+  downloadButton.style.display =
+    "block";
+
+
+  status.textContent =
+    "Готово ✦";
+
+
+  setComparison(
+    50
+  );
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+
+presetsOption.onclick =
+  () => {
+
+    homeScreen.style.display =
+      "none";
+
+    workspace.style.display =
+      "block";
+
+    presetsWorkspace.style.display =
+      "block";
+
+    enhanceWorkspace.style.display =
+      "none";
+
+    matchWorkspace.style.display =
+      "none";
+
+  };
+
+
+enhanceOption.onclick =
+  () => {
+
+    homeScreen.style.display =
+      "none";
+
+    workspace.style.display =
+      "block";
+
+    presetsWorkspace.style.display =
+      "none";
+
+    enhanceWorkspace.style.display =
+      "block";
+
+    matchWorkspace.style.display =
+      "none";
+
+  };
+
+
+matchOption.onclick =
+  () => {
+
+    homeScreen.style.display =
+      "none";
+
+    workspace.style.display =
+      "block";
+
+    presetsWorkspace.style.display =
+      "none";
+
+    enhanceWorkspace.style.display =
+      "none";
+
+    matchWorkspace.style.display =
+      "block";
+
+  };
+
+
+backButton.onclick =
+  () => {
+
+    workspace.style.display =
+      "none";
+
+    homeScreen.style.display =
+      "block";
+
+    status.textContent =
+      "";
+
+  };
+
+
+/* ==========================================
+   PHOTO UPLOAD
+========================================== */
+
+
+photoInput.onchange =
+  event => {
+
+    const file =
+      event.target.files[0];
+
+
+    if(!file) {
+
+      return;
+
+    }
+
+
+    if(
+      file.size >
+      20 * 1024 * 1024
+    ) {
+
+      status.textContent =
+        "Файл слишком большой";
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      event => {
+
+        originalImage =
+          event.target.result;
+
+
+        filteredDataURL =
+          null;
+
+
+        photoPreview.src =
+          originalImage;
+
+
+        beforeImage.src =
+          originalImage;
+
+
+        afterImage.src =
+          originalImage;
+
+
+        photoPreview.style.display =
+          "block";
+
+
+        uploadContent.style.display =
+          "none";
+
+
+        changePhoto.style.display =
+          "block";
+
+
+        presetSection.style.display =
+          "block";
+
+
+        controls.style.display =
+          "none";
+
+
+        comparison.style.display =
+          "none";
+
+
+        downloadButton.style.display =
+          "none";
+
+
+        status.textContent =
+          "Фотография загружена";
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
+
+  };
+
+
+/* ==========================================
+   PRESET SELECT
+========================================== */
+
+
+document
+.querySelectorAll(".preset")
+.forEach(
+  element => {
+
+    element.onclick =
+      () => {
+
+        document
+        .querySelectorAll(".preset")
+        .forEach(
+          item =>
+            item.classList.remove(
+              "active"
+            )
+        );
+
+
+        element.classList.add(
+          "active"
+        );
+
+
+        selectedPreset =
+          element.dataset.preset;
+
+
+        controlName.textContent =
+          element.dataset.name;
+
+
+        controls.style.display =
+          "block";
+
+
+        status.textContent =
+          "Выбран стиль: " +
+          element.dataset.name;
+
+      };
+
+  }
+);
+
+
+/* ==========================================
+   INTENSITY
+========================================== */
+
+
+intensity.oninput =
+  () => {
+
+    controlNumber.textContent =
+      intensity.value + "%";
+
+
+    if(
+      filteredDataURL
+    ) {
+
+      renderPreset();
+
+    }
+
+  };
+
+
+/* ==========================================
+   APPLY
+========================================== */
+
+
+applyButton.onclick =
+  renderPreset;
+
+
+/* ==========================================
+   ORIGINAL
+========================================== */
+
+
+originalButton.onclick =
+  () => {
+
+    if(!originalImage) {
+
+      return;
+
+    }
+
+
+    afterImage.src =
+      originalImage;
+
+
+    comparison.style.display =
+      "none";
+
+
+    downloadButton.style.display =
+      "none";
+
+
+    status.textContent =
+      "Показан оригинал";
+
+  };
+
+
+/* ==========================================
+   DOWNLOAD
+========================================== */
+
+
+downloadButton.onclick =
+  () => {
+
+    if(!filteredDataURL) {
+
+      return;
+
+    }
+
+
+    const link =
+      document.createElement(
+        "a"
+      );
+
+
+    link.href =
+      filteredDataURL;
+
+
+    link.download =
+      "photo-lab-" +
+      selectedPreset +
+      ".jpg";
+
+
+    link.click();
+
+  };
+
+
+/* ==========================================
+   COMPARISON SLIDER
+========================================== */
+
+
+function setComparison(percent) {
+
+  percent =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        percent
+      )
+    );
+
+
+  afterImageContainer.style.width =
+    percent + "%";
+
+
+  comparisonLine.style.left =
+    percent + "%";
+
+
+  comparisonHandle.style.left =
+    percent + "%";
+
+}
+
+
+function moveSlider(x) {
+
+  const rect =
+    comparisonBox.getBoundingClientRect();
+
+
+  const percent =
+    (
+      (x - rect.left)
+      /
+      rect.width
+    ) * 100;
+
+
+  setComparison(
+    percent
+  );
+
+}
+
+
+comparisonBox.onpointerdown =
+  event => {
+
+    dragging = true;
+
+    comparisonBox.setPointerCapture(
+      event.pointerId
+    );
+
+    moveSlider(
+      event.clientX
+    );
+
+  };
+
+
+comparisonBox.onpointermove =
+  event => {
+
+    if(
+      dragging
+    ) {
+
+      moveSlider(
+        event.clientX
+      );
+
+    }
+
+  };
+
+
+comparisonBox.onpointerup =
+  () => {
+
+    dragging = false;
+
+  };
+
+
+comparisonBox.onpointercancel =
+  () => {
+
+    dragging = false;
+
+  };
 
 </script>
 
