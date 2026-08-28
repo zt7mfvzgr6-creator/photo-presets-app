@@ -7,6 +7,7 @@
   <title>PHOTO LAB</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -225,6 +226,106 @@
       letter-spacing: .4px;
     }
 
+    /* BEFORE / AFTER */
+
+    #comparison {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .comparison-title {
+      font-size: 10px;
+      color: #777;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .comparison {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #222;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .comparison img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .after-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .after-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .comparison-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      transform: translateX(-50%);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .comparison-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f4f1eb;
+      color: #111;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      font-weight: bold;
+      z-index: 11;
+      pointer-events: none;
+    }
+
+    .comparison-label {
+      position: absolute;
+      top: 14px;
+      padding: 7px 10px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.55);
+      font-size: 9px;
+      letter-spacing: 1px;
+      z-index: 12;
+    }
+
+    .label-before {
+      left: 14px;
+    }
+
+    .label-after {
+      right: 14px;
+    }
+
     /* CONTROLS */
 
     #controls {
@@ -359,7 +460,7 @@
   </section>
 
 
-  <!-- ЗАГРУЗКА ФОТО -->
+  <!-- ЗАГРУЗКА -->
 
   <label
     class="upload"
@@ -587,6 +688,82 @@
   </div>
 
 
+  <!-- BEFORE / AFTER -->
+
+  <section id="comparison">
+
+    <div class="comparison-title">
+      ДО / ПОСЛЕ
+    </div>
+
+
+    <div
+      class="comparison"
+      id="comparisonBox"
+    >
+
+      <!-- ОРИГИНАЛ -->
+
+      <img
+        id="beforeImage"
+        alt="Оригинал"
+      >
+
+
+      <!-- ПОСЛЕ -->
+
+      <div
+        class="after-image"
+        id="afterImageContainer"
+      >
+
+        <img
+          id="afterImage"
+          alt="После обработки"
+        >
+
+      </div>
+
+
+      <!-- ЛИНИЯ -->
+
+      <div
+        class="comparison-line"
+        id="comparisonLine"
+      >
+      </div>
+
+
+      <!-- КРУГ -->
+
+      <div
+        class="comparison-handle"
+        id="comparisonHandle"
+      >
+        ↔
+      </div>
+
+
+      <!-- НАДПИСИ -->
+
+      <div
+        class="comparison-label label-before"
+      >
+        ДО
+      </div>
+
+
+      <div
+        class="comparison-label label-after"
+      >
+        ПОСЛЕ
+      </div>
+
+    </div>
+
+  </section>
+
+
   <!-- УПРАВЛЕНИЕ -->
 
   <section id="controls">
@@ -671,7 +848,7 @@
 
 <script>
 
-  /* Получаем элементы */
+  /* ЭЛЕМЕНТЫ */
 
   const photoInput =
     document.getElementById("photoInput");
@@ -688,6 +865,27 @@
   const controls =
     document.getElementById("controls");
 
+  const comparison =
+    document.getElementById("comparison");
+
+  const comparisonBox =
+    document.getElementById("comparisonBox");
+
+  const beforeImage =
+    document.getElementById("beforeImage");
+
+  const afterImage =
+    document.getElementById("afterImage");
+
+  const afterImageContainer =
+    document.getElementById("afterImageContainer");
+
+  const comparisonLine =
+    document.getElementById("comparisonLine");
+
+  const comparisonHandle =
+    document.getElementById("comparisonHandle");
+
   const intensity =
     document.getElementById("intensity");
 
@@ -700,16 +898,23 @@
   const status =
     document.getElementById("status");
 
+  const downloadButton =
+    document.getElementById("downloadButton");
+
   const presets =
     document.querySelectorAll(".preset");
 
 
-  let selectedPreset = null;
+  /* ДАННЫЕ */
 
-  let originalImage = null;
+  let originalImage =
+    null;
+
+  let selectedPreset =
+    null;
 
 
-  /* Загрузка фотографии */
+  /* ЗАГРУЗКА ФОТО */
 
   photoInput.addEventListener(
     "change",
@@ -730,29 +935,48 @@
       reader.onload =
         function(e) {
 
-          photoPreview.src =
+          originalImage =
             e.target.result;
+
+
+          photoPreview.src =
+            originalImage;
+
+
+          beforeImage.src =
+            originalImage;
+
+
+          afterImage.src =
+            originalImage;
+
 
           photoPreview.style.display =
             "block";
 
+
           uploadContent.style.display =
             "none";
+
 
           changePhoto.style.display =
             "block";
 
 
-          originalImage =
-            e.target.result;
+          controls.style.display =
+            "block";
+
+
+          comparison.style.display =
+            "none";
+
+
+          downloadButton.style.display =
+            "none";
 
 
           status.textContent =
             "Фотография загружена";
-
-
-          controls.style.display =
-            "block";
 
         };
 
@@ -763,7 +987,7 @@
   );
 
 
-  /* Выбор пресета */
+  /* ВЫБОР ПРЕСЕТА */
 
   presets.forEach(
     function(preset) {
@@ -774,12 +998,18 @@
 
           presets.forEach(
             function(item) {
-              item.classList.remove("active");
+
+              item.classList.remove(
+                "active"
+              );
+
             }
           );
 
 
-          this.classList.add("active");
+          this.classList.add(
+            "active"
+          );
 
 
           selectedPreset =
@@ -805,7 +1035,7 @@
   );
 
 
-  /* Ползунок */
+  /* ПОЛЗУНОК ИНТЕНСИВНОСТИ */
 
   intensity.addEventListener(
     "input",
@@ -818,29 +1048,7 @@
   );
 
 
-  /* Оригинал */
-
-  document
-    .getElementById("originalButton")
-    .addEventListener(
-      "click",
-      function() {
-
-        if (!originalImage) {
-          return;
-        }
-
-        photoPreview.src =
-          originalImage;
-
-        status.textContent =
-          "Показан оригинал";
-
-      }
-    );
-
-
-  /* Применить */
+  /* ПРИМЕНИТЬ */
 
   document
     .getElementById("applyButton")
@@ -868,68 +1076,218 @@
         }
 
 
-        /*
-          Пока делаем только
-          визуальный тест.
-
-          Настоящую цветокоррекцию
-          подключим следующим этапом.
-        */
-
         status.textContent =
-          "Применяем " +
-          selectedPreset +
-          "...";
+          "Обрабатываем фотографию...";
 
 
         setTimeout(
           function() {
 
+            /*
+              Сейчас BEFORE и AFTER
+              одинаковые.
+
+              Следующим этапом сюда
+              подключим настоящую
+              цветокоррекцию.
+            */
+
+
+            beforeImage.src =
+              originalImage;
+
+
+            afterImage.src =
+              originalImage;
+
+
+            comparison.style.display =
+              "block";
+
+
+            downloadButton.style.display =
+              "block";
+
+
             status.textContent =
               "Готово ✦";
 
-            document
-              .getElementById("downloadButton")
-              .style.display =
-              "block";
-
           },
-          700
+          500
         );
 
       }
     );
 
 
-  /* Сохранение */
+  /* ОРИГИНАЛ */
 
   document
-    .getElementById("downloadButton")
+    .getElementById("originalButton")
     .addEventListener(
       "click",
       function() {
 
-        if (!photoPreview.src) {
+        if (!originalImage) {
           return;
         }
 
 
-        const link =
-          document.createElement("a");
+        photoPreview.src =
+          originalImage;
 
 
-        link.href =
-          photoPreview.src;
+        afterImage.src =
+          originalImage;
 
 
-        link.download =
-          "photo-lab.jpg";
+        beforeImage.src =
+          originalImage;
 
 
-        link.click();
+        comparison.style.display =
+          "none";
+
+
+        downloadButton.style.display =
+          "none";
+
+
+        status.textContent =
+          "Показан оригинал";
 
       }
     );
+
+
+  /* СЛАЙДЕР BEFORE / AFTER */
+
+  let dragging =
+    false;
+
+
+  function moveSlider(clientX) {
+
+    const rect =
+      comparisonBox.getBoundingClientRect();
+
+
+    let position =
+      ((clientX - rect.left) /
+      rect.width) * 100;
+
+
+    position =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          position
+        )
+      );
+
+
+    afterImageContainer.style.width =
+      position + "%";
+
+
+    comparisonLine.style.left =
+      position + "%";
+
+
+    comparisonHandle.style.left =
+      position + "%";
+
+  }
+
+
+  comparisonBox.addEventListener(
+    "pointerdown",
+    function(event) {
+
+      dragging =
+        true;
+
+
+      comparisonBox.setPointerCapture(
+        event.pointerId
+      );
+
+
+      moveSlider(
+        event.clientX
+      );
+
+    }
+  );
+
+
+  comparisonBox.addEventListener(
+    "pointermove",
+    function(event) {
+
+      if (!dragging) {
+        return;
+      }
+
+
+      moveSlider(
+        event.clientX
+      );
+
+    }
+  );
+
+
+  comparisonBox.addEventListener(
+    "pointerup",
+    function() {
+
+      dragging =
+        false;
+
+    }
+  );
+
+
+  comparisonBox.addEventListener(
+    "pointercancel",
+    function() {
+
+      dragging =
+        false;
+
+    }
+  );
+
+
+  /* СОХРАНЕНИЕ */
+
+  downloadButton.addEventListener(
+    "click",
+    function() {
+
+      if (!originalImage) {
+        return;
+      }
+
+
+      const link =
+        document.createElement("a");
+
+
+      link.href =
+        afterImage.src;
+
+
+      link.download =
+        "photo-lab.jpg";
+
+
+      link.click();
+
+    }
+  );
 
 </script>
 
