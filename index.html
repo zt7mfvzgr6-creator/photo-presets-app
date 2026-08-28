@@ -7,6 +7,7 @@
   <title>PHOTO LAB</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -30,7 +31,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 48px;
+      margin-bottom: 42px;
     }
 
     .logo {
@@ -49,39 +50,37 @@
     }
 
     .hero {
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .hero h1 {
       font-family: Georgia, serif;
-      font-size: 46px;
+      font-size: 44px;
       line-height: 0.98;
       font-weight: 400;
       letter-spacing: -2px;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
     }
 
     .hero p {
       color: #9d9a94;
       font-size: 14px;
       line-height: 1.5;
-      max-width: 300px;
+      max-width: 310px;
     }
 
     .upload {
       position: relative;
       border: 1px dashed #555;
       border-radius: 18px;
-      min-height: 180px;
+      min-height: 230px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       cursor: pointer;
-      transition: 0.2s;
       overflow: hidden;
-      margin-bottom: 38px;
+      margin-bottom: 35px;
     }
 
     .upload:hover {
@@ -89,7 +88,7 @@
     }
 
     .upload-icon {
-      font-size: 28px;
+      font-size: 30px;
       margin-bottom: 12px;
     }
 
@@ -109,28 +108,30 @@
 
     .preview {
       display: none;
-      width: 100%;
-      height: 100%;
       position: absolute;
       inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
-    .preview img {
+    #resultCanvas {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
     .change-photo {
       position: absolute;
       bottom: 12px;
       right: 12px;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.72);
       border: 1px solid #777;
       color: white;
       padding: 8px 12px;
       border-radius: 20px;
       font-size: 11px;
+      z-index: 5;
     }
 
     .section-title {
@@ -166,7 +167,7 @@
     }
 
     .preset-image {
-      height: 145px;
+      height: 130px;
       background-size: cover;
       background-position: center;
       position: relative;
@@ -198,83 +199,152 @@
 
     .preset-description {
       color: #777;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.5px;
     }
 
-    .apply {
+    .controls {
+      display: none;
+      margin-top: 28px;
+      padding: 20px;
+      background: #191919;
+      border-radius: 16px;
+    }
+
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .control-title {
+      font-family: Georgia, serif;
+      font-size: 18px;
+    }
+
+    .control-value {
+      color: #999;
+      font-size: 12px;
+    }
+
+    input[type="range"] {
       width: 100%;
-      margin-top: 30px;
+      accent-color: #f4f1eb;
+      cursor: pointer;
+    }
+
+    .control-labels {
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 9px;
+      margin-top: 8px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .apply {
+      flex: 1;
       padding: 17px;
       border: none;
       border-radius: 14px;
       background: #f4f1eb;
       color: #111;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 1px;
-      cursor: pointer;
-      transition: 0.2s;
     }
 
-    .apply:hover {
-      opacity: 0.88;
+    .reset {
+      padding: 17px 18px;
+      border: 1px solid #444;
+      border-radius: 14px;
+      background: transparent;
+      color: #f4f1eb;
+      font-size: 12px;
     }
 
-    .apply:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
+    .download {
+      display: none;
+      width: 100%;
+      margin-top: 12px;
+      padding: 16px;
+      border: 1px solid #444;
+      border-radius: 14px;
+      background: transparent;
+      color: #f4f1eb;
+      font-size: 12px;
+      letter-spacing: 1px;
     }
 
     .status {
       text-align: center;
       color: #777;
       font-size: 12px;
-      margin-top: 15px;
+      margin-top: 14px;
       min-height: 18px;
     }
 
     .footer {
       text-align: center;
-      margin-top: 55px;
+      margin-top: 50px;
       color: #444;
       font-size: 10px;
       letter-spacing: 1px;
     }
 
-    @media (max-width: 360px) {
-      .hero h1 {
-        font-size: 38px;
-      }
-
-      .preset-image {
-        height: 125px;
-      }
-    }
   </style>
 </head>
+
 
 <body>
 
   <main class="app">
 
     <header class="header">
-      <div class="logo">PHOTO LAB</div>
-      <div class="pro">PRO</div>
+
+      <div class="logo">
+        PHOTO LAB
+      </div>
+
+      <div class="pro">
+        PRO
+      </div>
+
     </header>
 
+
     <section class="hero">
-      <h1>Твои фотографии.<br>Твоё настроение.</h1>
+
+      <h1>
+        Твои фотографии.<br>
+        Твоё настроение.
+      </h1>
 
       <p>
-        Авторские пресеты для красивой и атмосферной обработки фотографий.
+        Авторские пресеты для красивой
+        и атмосферной обработки фотографий.
       </p>
+
     </section>
+
 
     <label class="upload" for="photoInput">
 
-      <div class="upload-content">
-        <div class="upload-icon">＋</div>
+      <div class="upload-content" id="uploadContent">
+
+        <div class="upload-icon">
+          ＋
+        </div>
 
         <div class="upload-title">
           Добавить фотографию
@@ -283,17 +353,22 @@
         <div class="upload-subtitle">
           JPG, PNG до 20 МБ
         </div>
+
       </div>
 
+
       <div class="preview" id="preview">
-        <img id="previewImage" src="" alt="Ваша фотография">
+
+        <canvas id="resultCanvas"></canvas>
 
         <div class="change-photo">
           Изменить фото
         </div>
+
       </div>
 
     </label>
+
 
     <input
       type="file"
@@ -301,21 +376,28 @@
       accept="image/jpeg,image/png,image/webp"
     >
 
+
     <div class="section-title">
       Выбери стиль
     </div>
 
+
     <section class="presets">
 
-      <!-- OLD MONEY -->
 
-      <div class="preset" data-preset="old-money">
+      <div
+        class="preset"
+        data-preset="old-money"
+      >
 
         <div
           class="preset-image"
-          style="background: linear-gradient(135deg, #b9a58c, #4c4035);">
+          style="background: linear-gradient(135deg, #b9a58c, #4c4035);"
+        >
 
-          <div class="preset-number">01</div>
+          <div class="preset-number">
+            01
+          </div>
 
         </div>
 
@@ -334,15 +416,19 @@
       </div>
 
 
-      <!-- CANON -->
-
-      <div class="preset" data-preset="canon">
+      <div
+        class="preset"
+        data-preset="canon"
+      >
 
         <div
           class="preset-image"
-          style="background: linear-gradient(135deg, #8fa6b2, #d8b69a);">
+          style="background: linear-gradient(135deg, #8fa6b2, #d8b69a);"
+        >
 
-          <div class="preset-number">02</div>
+          <div class="preset-number">
+            02
+          </div>
 
         </div>
 
@@ -361,15 +447,19 @@
       </div>
 
 
-      <!-- FILM -->
-
-      <div class="preset" data-preset="film">
+      <div
+        class="preset"
+        data-preset="film"
+      >
 
         <div
           class="preset-image"
-          style="background: linear-gradient(135deg, #8d7d65, #3e4540);">
+          style="background: linear-gradient(135deg, #8d7d65, #3e4540);"
+        >
 
-          <div class="preset-number">03</div>
+          <div class="preset-number">
+            03
+          </div>
 
         </div>
 
@@ -388,15 +478,19 @@
       </div>
 
 
-      <!-- CAFE -->
-
-      <div class="preset" data-preset="cafe">
+      <div
+        class="preset"
+        data-preset="cafe"
+      >
 
         <div
           class="preset-image"
-          style="background: linear-gradient(135deg, #9c6044, #30231d);">
+          style="background: linear-gradient(135deg, #9c6044, #30231d);"
+        >
 
-          <div class="preset-number">04</div>
+          <div class="preset-number">
+            04
+          </div>
 
         </div>
 
@@ -415,15 +509,19 @@
       </div>
 
 
-      <!-- MEDITERRANEAN -->
-
-      <div class="preset" data-preset="mediterranean">
+      <div
+        class="preset"
+        data-preset="mediterranean"
+      >
 
         <div
           class="preset-image"
-          style="background: linear-gradient(135deg, #277e91, #d6a875);">
+          style="background: linear-gradient(135deg, #277e91, #d6a875);"
+        >
 
-          <div class="preset-number">05</div>
+          <div class="preset-number">
+            05
+          </div>
 
         </div>
 
@@ -442,15 +540,19 @@
       </div>
 
 
-      <!-- EDITORIAL -->
-
-      <div class="preset" data-preset="editorial">
+      <div
+        class="preset"
+        data-preset="editorial"
+      >
 
         <div
           class="preset-image"
-          style="background: linear-gradient(135deg, #6c6b68, #191919);">
+          style="background: linear-gradient(135deg, #6c6b68, #191919);"
+        >
 
-          <div class="preset-number">06</div>
+          <div class="preset-number">
+            06
+          </div>
 
         </div>
 
@@ -468,14 +570,85 @@
 
       </div>
 
+
     </section>
 
 
-    <button class="apply" id="applyButton" disabled>
-      ПРИМЕНИТЬ ПРЕСЕТ
-    </button>
+    <section
+      class="controls"
+      id="controls"
+    >
 
-    <div class="status" id="status"></div>
+      <div class="control-header">
+
+        <div
+          class="control-title"
+          id="selectedPresetName"
+        >
+          Old Money
+        </div>
+
+        <div
+          class="control-value"
+          id="intensityValue"
+        >
+          70%
+        </div>
+
+      </div>
+
+
+      <input
+        type="range"
+        id="intensity"
+        min="0"
+        max="100"
+        value="70"
+      >
+
+
+      <div class="control-labels">
+
+        <span>МЯГКО</span>
+
+        <span>ИНТЕНСИВНО</span>
+
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          class="apply"
+          id="applyButton"
+        >
+          ПРИМЕНИТЬ
+        </button>
+
+        <button
+          class="reset"
+          id="resetButton"
+        >
+          ОРИГИНАЛ
+        </button>
+
+      </div>
+
+
+      <button
+        class="download"
+        id="downloadButton"
+      >
+        СОХРАНИТЬ ФОТО
+      </button>
+
+    </section>
+
+
+    <div
+      class="status"
+      id="status"
+    ></div>
 
 
     <footer class="footer">
@@ -485,151 +658,521 @@
   </main>
 
 
-  <script>
+<script>
 
-    const photoInput =
-      document.getElementById("photoInput");
+  const photoInput =
+    document.getElementById("photoInput");
 
-    const preview =
-      document.getElementById("preview");
+  const preview =
+    document.getElementById("preview");
 
-    const previewImage =
-      document.getElementById("previewImage");
+  const uploadContent =
+    document.getElementById("uploadContent");
 
-    const applyButton =
-      document.getElementById("applyButton");
+  const canvas =
+    document.getElementById("resultCanvas");
 
-    const status =
-      document.getElementById("status");
+  const ctx =
+    canvas.getContext("2d");
+
+  const controls =
+    document.getElementById("controls");
+
+  const intensity =
+    document.getElementById("intensity");
+
+  const intensityValue =
+    document.getElementById("intensityValue");
+
+  const applyButton =
+    document.getElementById("applyButton");
+
+  const resetButton =
+    document.getElementById("resetButton");
+
+  const downloadButton =
+    document.getElementById("downloadButton");
+
+  const status =
+    document.getElementById("status");
+
+  const selectedPresetName =
+    document.getElementById("selectedPresetName");
 
 
-    let selectedPreset = null;
+  let originalImage = null;
 
-    let selectedFile = null;
+  let selectedPreset = null;
 
 
-    /*
-      Загрузка фотографии
-    */
+  /*
+    Загрузка фотографии
+  */
 
-    photoInput.addEventListener(
-      "change",
-      function(event) {
+  photoInput.addEventListener(
+    "change",
+    function(event) {
 
-        const file =
-          event.target.files[0];
+      const file =
+        event.target.files[0];
 
-        if (!file) return;
+      if (!file) return;
 
-        selectedFile = file;
 
-        const imageURL =
-          URL.createObjectURL(file);
+      const image =
+        new Image();
 
-        previewImage.src =
-          imageURL;
 
-        preview.style.display =
-          "block";
+      image.onload =
+        function() {
 
-        applyButton.disabled =
-          selectedPreset === null;
+          originalImage = image;
+
+
+          canvas.width =
+            image.naturalWidth;
+
+          canvas.height =
+            image.naturalHeight;
+
+
+          ctx.drawImage(
+            image,
+            0,
+            0
+          );
+
+
+          uploadContent.style.display =
+            "none";
+
+          preview.style.display =
+            "block";
+
+
+          controls.style.display =
+            "block";
+
+
+          downloadButton.style.display =
+            "none";
+
+
+          status.textContent =
+            "Фотография загружена";
+
+        };
+
+
+      image.src =
+        URL.createObjectURL(file);
+
+    }
+  );
+
+
+  /*
+    Выбор пресета
+  */
+
+  const presets =
+    document.querySelectorAll(".preset");
+
+
+  presets.forEach(
+    preset => {
+
+      preset.addEventListener(
+        "click",
+        function() {
+
+          presets.forEach(
+            item => {
+              item.classList.remove("active");
+            }
+          );
+
+
+          this.classList.add("active");
+
+
+          selectedPreset =
+            this.dataset.preset;
+
+
+          selectedPresetName.textContent =
+            this.querySelector(
+              ".preset-name"
+            ).textContent;
+
+
+          controls.style.display =
+            "block";
+
+
+          status.textContent =
+            "Выбран стиль: " +
+            selectedPresetName.textContent;
+
+        }
+      );
+
+    }
+  );
+
+
+  /*
+    Интенсивность
+  */
+
+  intensity.addEventListener(
+    "input",
+    function() {
+
+      intensityValue.textContent =
+        this.value + "%";
+
+    }
+  );
+
+
+  /*
+    OLD MONEY
+  */
+
+  function applyOldMoney(
+    imageData,
+    strength
+  ) {
+
+    const data =
+      imageData.data;
+
+
+    const amount =
+      strength / 100;
+
+
+    for (
+      let i = 0;
+      i < data.length;
+      i += 4
+    ) {
+
+      let r = data[i];
+
+      let g = data[i + 1];
+
+      let b = data[i + 2];
+
+
+      /*
+        Немного уменьшаем насыщенность
+      */
+
+      const gray =
+        0.299 * r +
+        0.587 * g +
+        0.114 * b;
+
+
+      r =
+        r +
+        (gray - r) *
+        (0.10 * amount);
+
+
+      g =
+        g +
+        (gray - g) *
+        (0.10 * amount);
+
+
+      b =
+        b +
+        (gray - b) *
+        (0.10 * amount);
+
+
+      /*
+        Тёплый оттенок
+      */
+
+      r +=
+        8 * amount;
+
+      g +=
+        3 * amount;
+
+      b -=
+        5 * amount;
+
+
+      /*
+        Мягче свет
+      */
+
+      r =
+        r * (1 - 0.06 * amount)
+        + 8 * amount;
+
+      g =
+        g * (1 - 0.06 * amount)
+        + 5 * amount;
+
+      b =
+        b * (1 - 0.06 * amount);
+
+
+      /*
+        Лёгкое углубление теней
+      */
+
+      const darkness =
+        Math.max(
+          0,
+          100 -
+          ((r + g + b) / 3)
+        ) / 100;
+
+
+      r -=
+        5 *
+        darkness *
+        amount;
+
+      g -=
+        5 *
+        darkness *
+        amount;
+
+      b -=
+        3 *
+        darkness *
+        amount;
+
+
+      data[i] =
+        Math.max(
+          0,
+          Math.min(
+            255,
+            r
+          )
+        );
+
+
+      data[i + 1] =
+        Math.max(
+          0,
+          Math.min(
+            255,
+            g
+          )
+        );
+
+
+      data[i + 2] =
+        Math.max(
+          0,
+          Math.min(
+            255,
+            b
+          )
+        );
+
+    }
+
+
+    return imageData;
+
+  }
+
+
+  /*
+    Применить
+  */
+
+  applyButton.addEventListener(
+    "click",
+    function() {
+
+      if (!originalImage) {
 
         status.textContent =
-          "Фотография загружена";
+          "Сначала добавьте фотографию";
+
+        return;
 
       }
-    );
 
 
-    /*
-      Выбор пресета
-    */
+      if (!selectedPreset) {
 
-    const presets =
-      document.querySelectorAll(".preset");
+        status.textContent =
+          "Сначала выберите пресет";
+
+        return;
+
+      }
 
 
-    presets.forEach(
-      preset => {
+      status.textContent =
+        "Обрабатываем фотографию...";
 
-        preset.addEventListener(
-          "click",
-          function() {
 
-            presets.forEach(
-              item => {
+      setTimeout(
+        function() {
 
-                item.classList.remove(
-                  "active"
-                );
+          /*
+            Возвращаем оригинал
+          */
 
-              }
+          ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+
+
+          ctx.drawImage(
+            originalImage,
+            0,
+            0
+          );
+
+
+          /*
+            Получаем пиксели
+          */
+
+          let imageData =
+            ctx.getImageData(
+              0,
+              0,
+              canvas.width,
+              canvas.height
             );
 
 
-            this.classList.add(
-              "active"
+          const strength =
+            Number(
+              intensity.value
             );
 
 
-            selectedPreset =
-              this.dataset.preset;
+          /*
+            Пока настоящий только OLD MONEY
+          */
 
+          if (
+            selectedPreset ===
+            "old-money"
+          ) {
 
-            applyButton.disabled =
-              selectedFile === null;
-
-
-            const presetName =
-              this.querySelector(
-                ".preset-name"
-              ).textContent;
-
-
-            status.textContent =
-              "Выбран пресет: " +
-              presetName;
+            imageData =
+              applyOldMoney(
+                imageData,
+                strength
+              );
 
           }
+
+
+          /*
+            CANON / FILM / CAFE
+            пока оставляем без обработки
+          */
+
+          ctx.putImageData(
+            imageData,
+            0,
+            0
+          );
+
+
+          downloadButton.style.display =
+            "block";
+
+
+          status.textContent =
+            "Готово ✦";
+
+        },
+        300
+      );
+
+    }
+  );
+
+
+  /*
+    Оригинал
+  */
+
+  resetButton.addEventListener(
+    "click",
+    function() {
+
+      if (!originalImage) return;
+
+
+      ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      ctx.drawImage(
+        originalImage,
+        0,
+        0
+      );
+
+
+      downloadButton.style.display =
+        "none";
+
+
+      status.textContent =
+        "Показан оригинал";
+
+    }
+  );
+
+
+  /*
+    Сохранение
+  */
+
+  downloadButton.addEventListener(
+    "click",
+    function() {
+
+      const link =
+        document.createElement("a");
+
+
+      link.download =
+        "photo-lab-edited.jpg";
+
+
+      link.href =
+        canvas.toDataURL(
+          "image/jpeg",
+          0.95
         );
 
-      }
-    );
 
+      link.click();
 
-    /*
-      Применение пресета
-    */
+    }
+  );
 
-    applyButton.addEventListener(
-      "click",
-      function() {
-
-        if (
-          !selectedFile ||
-          !selectedPreset
-        ) return;
-
-
-        status.textContent =
-          "Готовим фотографию...";
-
-
-        setTimeout(
-          () => {
-
-            status.textContent =
-              "Пресет выбран. Скоро здесь появится обработанная фотография.";
-
-          },
-          1200
-        );
-
-      }
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
