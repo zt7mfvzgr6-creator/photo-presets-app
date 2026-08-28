@@ -65,7 +65,7 @@
       color: #9d9a94;
       font-size: 14px;
       line-height: 1.5;
-      max-width: 280px;
+      max-width: 300px;
     }
 
     .upload {
@@ -264,9 +264,10 @@
     </header>
 
     <section class="hero">
-      <h1>Your photos.<br>Your mood.</h1>
+      <h1>Твои фотографии.<br>Твоё настроение.</h1>
+
       <p>
-        Curated photo presets designed to give your everyday photos a distinctive visual style.
+        Авторские пресеты для красивой и атмосферной обработки фотографий.
       </p>
     </section>
 
@@ -274,13 +275,22 @@
 
       <div class="upload-content">
         <div class="upload-icon">＋</div>
-        <div class="upload-title">Add your photo</div>
-        <div class="upload-subtitle">JPG, PNG up to 20 MB</div>
+
+        <div class="upload-title">
+          Добавить фотографию
+        </div>
+
+        <div class="upload-subtitle">
+          JPG, PNG до 20 МБ
+        </div>
       </div>
 
       <div class="preview" id="preview">
-        <img id="previewImage" src="" alt="Your photo">
-        <div class="change-photo">Change photo</div>
+        <img id="previewImage" src="" alt="Ваша фотография">
+
+        <div class="change-photo">
+          Изменить фото
+        </div>
       </div>
 
     </label>
@@ -292,116 +302,184 @@
     >
 
     <div class="section-title">
-      Choose your mood
+      Выбери стиль
     </div>
 
     <section class="presets">
 
+      <!-- OLD MONEY -->
+
       <div class="preset" data-preset="old-money">
+
         <div
           class="preset-image"
           style="background: linear-gradient(135deg, #b9a58c, #4c4035);">
+
           <div class="preset-number">01</div>
+
         </div>
 
         <div class="preset-info">
-          <div class="preset-name">Old Money</div>
-          <div class="preset-description">
-            QUIET · ELEGANT · TIMELESS
+
+          <div class="preset-name">
+            Old Money
           </div>
+
+          <div class="preset-description">
+            СПОКОЙНЫЙ · ЭЛЕГАНТНЫЙ · ВНЕВРЕМЕННОЙ
+          </div>
+
         </div>
+
       </div>
 
 
+      <!-- CANON -->
+
       <div class="preset" data-preset="canon">
+
         <div
           class="preset-image"
           style="background: linear-gradient(135deg, #8fa6b2, #d8b69a);">
+
           <div class="preset-number">02</div>
+
         </div>
 
         <div class="preset-info">
-          <div class="preset-name">Canon</div>
-          <div class="preset-description">
-            NATURAL · CLEAN · CAMERA
+
+          <div class="preset-name">
+            Canon
           </div>
+
+          <div class="preset-description">
+            ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ · КАМЕРНЫЙ
+          </div>
+
         </div>
+
       </div>
 
 
+      <!-- FILM -->
+
       <div class="preset" data-preset="film">
+
         <div
           class="preset-image"
           style="background: linear-gradient(135deg, #8d7d65, #3e4540);">
+
           <div class="preset-number">03</div>
+
         </div>
 
         <div class="preset-info">
-          <div class="preset-name">Film</div>
-          <div class="preset-description">
-            GRAIN · SOFT · ANALOG
+
+          <div class="preset-name">
+            Film
           </div>
+
+          <div class="preset-description">
+            ПЛЁНКА · МЯГКОСТЬ · ЗЕРНО
+          </div>
+
         </div>
+
       </div>
 
 
+      <!-- CAFE -->
+
       <div class="preset" data-preset="cafe">
+
         <div
           class="preset-image"
           style="background: linear-gradient(135deg, #9c6044, #30231d);">
+
           <div class="preset-number">04</div>
+
         </div>
 
         <div class="preset-info">
-          <div class="preset-name">Cafe</div>
-          <div class="preset-description">
-            WARM · MOODY · EVENING
+
+          <div class="preset-name">
+            Cafe
           </div>
+
+          <div class="preset-description">
+            ТЁПЛЫЙ · АТМОСФЕРНЫЙ · ВЕЧЕРНИЙ
+          </div>
+
         </div>
+
       </div>
 
 
+      <!-- MEDITERRANEAN -->
+
       <div class="preset" data-preset="mediterranean">
+
         <div
           class="preset-image"
           style="background: linear-gradient(135deg, #277e91, #d6a875);">
+
           <div class="preset-number">05</div>
+
         </div>
 
         <div class="preset-info">
-          <div class="preset-name">Mediterranean</div>
-          <div class="preset-description">
-            SUN · SEA · SUMMER
+
+          <div class="preset-name">
+            Mediterranean
           </div>
+
+          <div class="preset-description">
+            СОЛНЦЕ · МОРЕ · ЛЕТО
+          </div>
+
         </div>
+
       </div>
 
 
+      <!-- EDITORIAL -->
+
       <div class="preset" data-preset="editorial">
+
         <div
           class="preset-image"
           style="background: linear-gradient(135deg, #6c6b68, #191919);">
+
           <div class="preset-number">06</div>
+
         </div>
 
         <div class="preset-info">
-          <div class="preset-name">Editorial</div>
-          <div class="preset-description">
-            CONTRAST · FASHION · DRAMA
+
+          <div class="preset-name">
+            Editorial
           </div>
+
+          <div class="preset-description">
+            КОНТРАСТ · МОДА · ХАРАКТЕР
+          </div>
+
         </div>
+
       </div>
 
     </section>
 
+
     <button class="apply" id="applyButton" disabled>
-      APPLY PRESET
+      ПРИМЕНИТЬ ПРЕСЕТ
     </button>
 
     <div class="status" id="status"></div>
 
+
     <footer class="footer">
-      PHOTO LAB · CURATED BY KRISTINA
+      PHOTO LAB · СОЗДАНО КРИСТИНОЙ
     </footer>
 
   </main>
@@ -409,75 +487,147 @@
 
   <script>
 
-    const photoInput = document.getElementById("photoInput");
-    const preview = document.getElementById("preview");
-    const previewImage = document.getElementById("previewImage");
-    const applyButton = document.getElementById("applyButton");
-    const status = document.getElementById("status");
+    const photoInput =
+      document.getElementById("photoInput");
+
+    const preview =
+      document.getElementById("preview");
+
+    const previewImage =
+      document.getElementById("previewImage");
+
+    const applyButton =
+      document.getElementById("applyButton");
+
+    const status =
+      document.getElementById("status");
+
 
     let selectedPreset = null;
+
     let selectedFile = null;
 
 
-    photoInput.addEventListener("change", function(event) {
+    /*
+      Загрузка фотографии
+    */
 
-      const file = event.target.files[0];
+    photoInput.addEventListener(
+      "change",
+      function(event) {
 
-      if (!file) return;
+        const file =
+          event.target.files[0];
 
-      selectedFile = file;
+        if (!file) return;
 
-      const imageURL = URL.createObjectURL(file);
+        selectedFile = file;
 
-      previewImage.src = imageURL;
-      preview.style.display = "block";
+        const imageURL =
+          URL.createObjectURL(file);
 
-      applyButton.disabled = selectedPreset === null;
+        previewImage.src =
+          imageURL;
 
-      status.textContent = "Photo added.";
+        preview.style.display =
+          "block";
 
-    });
-
-
-    const presets = document.querySelectorAll(".preset");
-
-    presets.forEach(preset => {
-
-      preset.addEventListener("click", function() {
-
-        presets.forEach(item => {
-          item.classList.remove("active");
-        });
-
-        this.classList.add("active");
-
-        selectedPreset = this.dataset.preset;
-
-        applyButton.disabled = selectedFile === null;
+        applyButton.disabled =
+          selectedPreset === null;
 
         status.textContent =
-          "Selected: " +
-          this.querySelector(".preset-name").textContent;
+          "Фотография загружена";
 
-      });
-
-    });
+      }
+    );
 
 
-    applyButton.addEventListener("click", function() {
+    /*
+      Выбор пресета
+    */
 
-      if (!selectedFile || !selectedPreset) return;
+    const presets =
+      document.querySelectorAll(".preset");
 
-      status.textContent = "Preparing your photo...";
 
-      setTimeout(() => {
+    presets.forEach(
+      preset => {
+
+        preset.addEventListener(
+          "click",
+          function() {
+
+            presets.forEach(
+              item => {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+            this.classList.add(
+              "active"
+            );
+
+
+            selectedPreset =
+              this.dataset.preset;
+
+
+            applyButton.disabled =
+              selectedFile === null;
+
+
+            const presetName =
+              this.querySelector(
+                ".preset-name"
+              ).textContent;
+
+
+            status.textContent =
+              "Выбран пресет: " +
+              presetName;
+
+          }
+        );
+
+      }
+    );
+
+
+    /*
+      Применение пресета
+    */
+
+    applyButton.addEventListener(
+      "click",
+      function() {
+
+        if (
+          !selectedFile ||
+          !selectedPreset
+        ) return;
+
 
         status.textContent =
-          "Preset selected. AI processing will be connected next.";
+          "Готовим фотографию...";
 
-      }, 1200);
 
-    });
+        setTimeout(
+          () => {
+
+            status.textContent =
+              "Пресет выбран. Скоро здесь появится обработанная фотография.";
+
+          },
+          1200
+        );
+
+      }
+    );
 
   </script>
 
