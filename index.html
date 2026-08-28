@@ -7,7 +7,6 @@
   <title>PHOTO LAB</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -15,68 +14,76 @@
     }
 
     body {
-      background: #111111;
+      background: #111;
       color: #f4f1eb;
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
     }
 
     .app {
+      width: 100%;
       max-width: 480px;
       margin: 0 auto;
-      padding: 28px 20px 40px;
+      padding: 28px 20px 50px;
     }
+
+    /* HEADER */
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 42px;
+      margin-bottom: 45px;
     }
 
     .logo {
       font-size: 18px;
-      font-weight: 700;
+      font-weight: bold;
       letter-spacing: 2px;
     }
 
     .pro {
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 1.5px;
       border: 1px solid #555;
-      padding: 7px 11px;
-      border-radius: 20px;
-      color: #d8d3ca;
+      border-radius: 30px;
+      padding: 7px 12px;
+      color: #ccc;
     }
 
+    /* HERO */
+
     .hero {
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .hero h1 {
       font-family: Georgia, serif;
-      font-size: 44px;
+      font-size: 43px;
       line-height: 0.98;
-      font-weight: 400;
+      font-weight: normal;
       letter-spacing: -2px;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .hero p {
-      color: #9d9a94;
+      color: #999;
       font-size: 14px;
       line-height: 1.5;
-      max-width: 310px;
+      max-width: 320px;
     }
+
+    /* UPLOAD */
 
     .upload {
       position: relative;
+      width: 100%;
+      height: 260px;
       border: 1px dashed #555;
       border-radius: 18px;
-      min-height: 230px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
       cursor: pointer;
       overflow: hidden;
@@ -88,13 +95,13 @@
     }
 
     .upload-icon {
-      font-size: 30px;
+      font-size: 32px;
       margin-bottom: 12px;
     }
 
     .upload-title {
       font-size: 15px;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .upload-subtitle {
@@ -106,40 +113,33 @@
       display: none;
     }
 
-    .preview {
+    #photoPreview {
       display: none;
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    #resultCanvas {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     .change-photo {
+      display: none;
       position: absolute;
       bottom: 12px;
       right: 12px;
-      background: rgba(0,0,0,0.72);
-      border: 1px solid #777;
-      color: white;
-      padding: 8px 12px;
+      background: rgba(0,0,0,.75);
+      border: 1px solid #666;
       border-radius: 20px;
+      padding: 8px 12px;
       font-size: 11px;
       z-index: 5;
     }
 
+    /* PRESETS */
+
     .section-title {
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
       color: #777;
-      margin-bottom: 18px;
-      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
     }
 
     .presets {
@@ -154,12 +154,12 @@
       border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
-      transition: 0.25s;
+      transition: .2s;
     }
 
     .preset:hover {
-      transform: translateY(-2px);
       border-color: #666;
+      transform: translateY(-2px);
     }
 
     .preset.active {
@@ -168,9 +168,31 @@
 
     .preset-image {
       height: 130px;
-      background-size: cover;
-      background-position: center;
       position: relative;
+    }
+
+    .old-money {
+      background: linear-gradient(135deg, #b9a58c, #4c4035);
+    }
+
+    .canon {
+      background: linear-gradient(135deg, #8fa6b2, #d8b69a);
+    }
+
+    .film {
+      background: linear-gradient(135deg, #8d7d65, #3e4540);
+    }
+
+    .cafe {
+      background: linear-gradient(135deg, #9c6044, #30231d);
+    }
+
+    .mediterranean {
+      background: linear-gradient(135deg, #277e91, #d6a875);
+    }
+
+    .editorial {
+      background: linear-gradient(135deg, #777, #191919);
     }
 
     .preset-number {
@@ -180,10 +202,10 @@
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,.5);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       font-size: 10px;
     }
 
@@ -194,52 +216,58 @@
     .preset-name {
       font-family: Georgia, serif;
       font-size: 18px;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
     .preset-description {
       color: #777;
       font-size: 9px;
-      letter-spacing: 0.5px;
+      letter-spacing: .4px;
     }
 
-    .controls {
+    /* CONTROLS */
+
+    #controls {
       display: none;
       margin-top: 28px;
       padding: 20px;
       background: #191919;
-      border-radius: 16px;
+      border-radius: 17px;
     }
 
-    .control-header {
+    .control-top {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 14px;
+      align-items: center;
+      margin-bottom: 15px;
     }
 
-    .control-title {
+    .control-name {
       font-family: Georgia, serif;
-      font-size: 18px;
+      font-size: 19px;
     }
 
-    .control-value {
-      color: #999;
+    .control-number {
       font-size: 12px;
+      color: #888;
     }
 
-    input[type="range"] {
+    .range {
       width: 100%;
       accent-color: #f4f1eb;
       cursor: pointer;
     }
 
-    .control-labels {
+    .range-labels {
       display: flex;
       justify-content: space-between;
       color: #555;
       font-size: 9px;
       margin-top: 8px;
+      letter-spacing: 1px;
     }
+
+    /* BUTTONS */
 
     .buttons {
       display: flex;
@@ -247,59 +275,51 @@
       margin-top: 20px;
     }
 
-    button {
+    .button {
+      border-radius: 13px;
+      padding: 16px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
       cursor: pointer;
-      font-family: inherit;
     }
 
-    .apply {
+    #applyButton {
       flex: 1;
-      padding: 17px;
-      border: none;
-      border-radius: 14px;
       background: #f4f1eb;
       color: #111;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      border: none;
     }
 
-    .reset {
-      padding: 17px 18px;
-      border: 1px solid #444;
-      border-radius: 14px;
+    #originalButton {
       background: transparent;
       color: #f4f1eb;
-      font-size: 12px;
+      border: 1px solid #444;
     }
 
-    .download {
+    #downloadButton {
       display: none;
       width: 100%;
       margin-top: 12px;
-      padding: 16px;
-      border: 1px solid #444;
-      border-radius: 14px;
       background: transparent;
       color: #f4f1eb;
-      font-size: 12px;
-      letter-spacing: 1px;
+      border: 1px solid #444;
     }
 
-    .status {
+    #status {
+      min-height: 20px;
       text-align: center;
       color: #777;
       font-size: 12px;
-      margin-top: 14px;
-      min-height: 18px;
+      margin-top: 15px;
     }
 
     .footer {
       text-align: center;
-      margin-top: 50px;
       color: #444;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 1px;
+      margin-top: 50px;
     }
 
   </style>
@@ -308,372 +328,362 @@
 
 <body>
 
-  <main class="app">
+<div class="app">
 
-    <header class="header">
 
-      <div class="logo">
-        PHOTO LAB
+  <header class="header">
+
+    <div class="logo">
+      PHOTO LAB
+    </div>
+
+    <div class="pro">
+      PRO
+    </div>
+
+  </header>
+
+
+  <section class="hero">
+
+    <h1>
+      Твои фотографии.<br>
+      Твоё настроение.
+    </h1>
+
+    <p>
+      Авторские пресеты для красивой
+      и атмосферной обработки фотографий.
+    </p>
+
+  </section>
+
+
+  <!-- ЗАГРУЗКА ФОТО -->
+
+  <label
+    class="upload"
+    for="photoInput"
+  >
+
+    <div id="uploadContent">
+
+      <div class="upload-icon">
+        ＋
       </div>
 
-      <div class="pro">
-        PRO
+      <div class="upload-title">
+        Добавить фотографию
       </div>
 
-    </header>
-
-
-    <section class="hero">
-
-      <h1>
-        Твои фотографии.<br>
-        Твоё настроение.
-      </h1>
-
-      <p>
-        Авторские пресеты для красивой
-        и атмосферной обработки фотографий.
-      </p>
-
-    </section>
-
-
-    <label class="upload" for="photoInput">
-
-      <div class="upload-content" id="uploadContent">
-
-        <div class="upload-icon">
-          ＋
-        </div>
-
-        <div class="upload-title">
-          Добавить фотографию
-        </div>
-
-        <div class="upload-subtitle">
-          JPG, PNG до 20 МБ
-        </div>
-
+      <div class="upload-subtitle">
+        JPG, PNG до 20 МБ
       </div>
 
-
-      <div class="preview" id="preview">
-
-        <canvas id="resultCanvas"></canvas>
-
-        <div class="change-photo">
-          Изменить фото
-        </div>
-
-      </div>
-
-    </label>
-
-
-    <input
-      type="file"
-      id="photoInput"
-      accept="image/jpeg,image/png,image/webp"
-    >
-
-
-    <div class="section-title">
-      Выбери стиль
     </div>
 
 
-    <section class="presets">
-
-
-      <div
-        class="preset"
-        data-preset="old-money"
-      >
-
-        <div
-          class="preset-image"
-          style="background: linear-gradient(135deg, #b9a58c, #4c4035);"
-        >
-
-          <div class="preset-number">
-            01
-          </div>
-
-        </div>
-
-        <div class="preset-info">
-
-          <div class="preset-name">
-            Old Money
-          </div>
-
-          <div class="preset-description">
-            СПОКОЙНЫЙ · ЭЛЕГАНТНЫЙ · ВНЕВРЕМЕННОЙ
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="preset"
-        data-preset="canon"
-      >
-
-        <div
-          class="preset-image"
-          style="background: linear-gradient(135deg, #8fa6b2, #d8b69a);"
-        >
-
-          <div class="preset-number">
-            02
-          </div>
-
-        </div>
-
-        <div class="preset-info">
-
-          <div class="preset-name">
-            Canon
-          </div>
-
-          <div class="preset-description">
-            ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ · КАМЕРНЫЙ
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="preset"
-        data-preset="film"
-      >
-
-        <div
-          class="preset-image"
-          style="background: linear-gradient(135deg, #8d7d65, #3e4540);"
-        >
-
-          <div class="preset-number">
-            03
-          </div>
-
-        </div>
-
-        <div class="preset-info">
-
-          <div class="preset-name">
-            Film
-          </div>
-
-          <div class="preset-description">
-            ПЛЁНКА · МЯГКОСТЬ · ЗЕРНО
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="preset"
-        data-preset="cafe"
-      >
-
-        <div
-          class="preset-image"
-          style="background: linear-gradient(135deg, #9c6044, #30231d);"
-        >
-
-          <div class="preset-number">
-            04
-          </div>
-
-        </div>
-
-        <div class="preset-info">
-
-          <div class="preset-name">
-            Cafe
-          </div>
-
-          <div class="preset-description">
-            ТЁПЛЫЙ · АТМОСФЕРНЫЙ · ВЕЧЕРНИЙ
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="preset"
-        data-preset="mediterranean"
-      >
-
-        <div
-          class="preset-image"
-          style="background: linear-gradient(135deg, #277e91, #d6a875);"
-        >
-
-          <div class="preset-number">
-            05
-          </div>
-
-        </div>
-
-        <div class="preset-info">
-
-          <div class="preset-name">
-            Mediterranean
-          </div>
-
-          <div class="preset-description">
-            СОЛНЦЕ · МОРЕ · ЛЕТО
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="preset"
-        data-preset="editorial"
-      >
-
-        <div
-          class="preset-image"
-          style="background: linear-gradient(135deg, #6c6b68, #191919);"
-        >
-
-          <div class="preset-number">
-            06
-          </div>
-
-        </div>
-
-        <div class="preset-info">
-
-          <div class="preset-name">
-            Editorial
-          </div>
-
-          <div class="preset-description">
-            КОНТРАСТ · МОДА · ХАРАКТЕР
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </section>
-
-
-    <section
-      class="controls"
-      id="controls"
+    <img
+      id="photoPreview"
+      alt="Предпросмотр фотографии"
     >
-
-      <div class="control-header">
-
-        <div
-          class="control-title"
-          id="selectedPresetName"
-        >
-          Old Money
-        </div>
-
-        <div
-          class="control-value"
-          id="intensityValue"
-        >
-          70%
-        </div>
-
-      </div>
-
-
-      <input
-        type="range"
-        id="intensity"
-        min="0"
-        max="100"
-        value="70"
-      >
-
-
-      <div class="control-labels">
-
-        <span>МЯГКО</span>
-
-        <span>ИНТЕНСИВНО</span>
-
-      </div>
-
-
-      <div class="buttons">
-
-        <button
-          class="apply"
-          id="applyButton"
-        >
-          ПРИМЕНИТЬ
-        </button>
-
-        <button
-          class="reset"
-          id="resetButton"
-        >
-          ОРИГИНАЛ
-        </button>
-
-      </div>
-
-
-      <button
-        class="download"
-        id="downloadButton"
-      >
-        СОХРАНИТЬ ФОТО
-      </button>
-
-    </section>
 
 
     <div
-      class="status"
-      id="status"
-    ></div>
+      class="change-photo"
+      id="changePhoto"
+    >
+      Изменить фото
+    </div>
+
+  </label>
 
 
-    <footer class="footer">
-      PHOTO LAB · СОЗДАНО КРИСТИНОЙ
-    </footer>
+  <input
+    id="photoInput"
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+  >
 
-  </main>
+
+  <!-- ПРЕСЕТЫ -->
+
+  <div class="section-title">
+    ВЫБЕРИ СТИЛЬ
+  </div>
+
+
+  <div class="presets">
+
+
+    <div
+      class="preset"
+      data-name="Old Money"
+    >
+
+      <div class="preset-image old-money">
+
+        <div class="preset-number">
+          01
+        </div>
+
+      </div>
+
+      <div class="preset-info">
+
+        <div class="preset-name">
+          Old Money
+        </div>
+
+        <div class="preset-description">
+          ЭЛЕГАНТНЫЙ · ВНЕВРЕМЕННОЙ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="preset"
+      data-name="Canon"
+    >
+
+      <div class="preset-image canon">
+
+        <div class="preset-number">
+          02
+        </div>
+
+      </div>
+
+      <div class="preset-info">
+
+        <div class="preset-name">
+          Canon
+        </div>
+
+        <div class="preset-description">
+          ЕСТЕСТВЕННЫЙ · ЧИСТЫЙ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="preset"
+      data-name="Film"
+    >
+
+      <div class="preset-image film">
+
+        <div class="preset-number">
+          03
+        </div>
+
+      </div>
+
+      <div class="preset-info">
+
+        <div class="preset-name">
+          Film
+        </div>
+
+        <div class="preset-description">
+          ПЛЁНКА · МЯГКОСТЬ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="preset"
+      data-name="Cafe"
+    >
+
+      <div class="preset-image cafe">
+
+        <div class="preset-number">
+          04
+        </div>
+
+      </div>
+
+      <div class="preset-info">
+
+        <div class="preset-name">
+          Cafe
+        </div>
+
+        <div class="preset-description">
+          ТЁПЛЫЙ · АТМОСФЕРНЫЙ
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="preset"
+      data-name="Mediterranean"
+    >
+
+      <div class="preset-image mediterranean">
+
+        <div class="preset-number">
+          05
+        </div>
+
+      </div>
+
+      <div class="preset-info">
+
+        <div class="preset-name">
+          Mediterranean
+        </div>
+
+        <div class="preset-description">
+          СОЛНЦЕ · МОРЕ · ЛЕТО
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="preset"
+      data-name="Editorial"
+    >
+
+      <div class="preset-image editorial">
+
+        <div class="preset-number">
+          06
+        </div>
+
+      </div>
+
+      <div class="preset-info">
+
+        <div class="preset-name">
+          Editorial
+        </div>
+
+        <div class="preset-description">
+          МОДА · КОНТРАСТ · ДРАМА
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- УПРАВЛЕНИЕ -->
+
+  <section id="controls">
+
+    <div class="control-top">
+
+      <div
+        class="control-name"
+        id="controlName"
+      >
+        Old Money
+      </div>
+
+      <div
+        class="control-number"
+        id="controlNumber"
+      >
+        70%
+      </div>
+
+    </div>
+
+
+    <input
+      class="range"
+      id="intensity"
+      type="range"
+      min="0"
+      max="100"
+      value="70"
+    >
+
+
+    <div class="range-labels">
+
+      <span>МЯГКО</span>
+
+      <span>ИНТЕНСИВНО</span>
+
+    </div>
+
+
+    <div class="buttons">
+
+      <button
+        class="button"
+        id="applyButton"
+      >
+        ПРИМЕНИТЬ
+      </button>
+
+      <button
+        class="button"
+        id="originalButton"
+      >
+        ОРИГИНАЛ
+      </button>
+
+    </div>
+
+
+    <button
+      class="button"
+      id="downloadButton"
+    >
+      СОХРАНИТЬ ФОТО
+    </button>
+
+  </section>
+
+
+  <div id="status"></div>
+
+
+  <footer class="footer">
+    PHOTO LAB · СОЗДАНО КРИСТИНОЙ
+  </footer>
+
+
+</div>
 
 
 <script>
 
+  /* Получаем элементы */
+
   const photoInput =
     document.getElementById("photoInput");
 
-  const preview =
-    document.getElementById("preview");
+  const photoPreview =
+    document.getElementById("photoPreview");
 
   const uploadContent =
     document.getElementById("uploadContent");
 
-  const canvas =
-    document.getElementById("resultCanvas");
-
-  const ctx =
-    canvas.getContext("2d");
+  const changePhoto =
+    document.getElementById("changePhoto");
 
   const controls =
     document.getElementById("controls");
@@ -681,33 +691,25 @@
   const intensity =
     document.getElementById("intensity");
 
-  const intensityValue =
-    document.getElementById("intensityValue");
+  const intensityNumber =
+    document.getElementById("controlNumber");
 
-  const applyButton =
-    document.getElementById("applyButton");
-
-  const resetButton =
-    document.getElementById("resetButton");
-
-  const downloadButton =
-    document.getElementById("downloadButton");
+  const controlName =
+    document.getElementById("controlName");
 
   const status =
     document.getElementById("status");
 
-  const selectedPresetName =
-    document.getElementById("selectedPresetName");
+  const presets =
+    document.querySelectorAll(".preset");
 
-
-  let originalImage = null;
 
   let selectedPreset = null;
 
+  let originalImage = null;
 
-  /*
-    Загрузка фотографии
-  */
+
+  /* Загрузка фотографии */
 
   photoInput.addEventListener(
     "change",
@@ -716,78 +718,62 @@
       const file =
         event.target.files[0];
 
-      if (!file) return;
+      if (!file) {
+        return;
+      }
 
 
-      const image =
-        new Image();
+      const reader =
+        new FileReader();
 
 
-      image.onload =
-        function() {
+      reader.onload =
+        function(e) {
 
-          originalImage = image;
+          photoPreview.src =
+            e.target.result;
 
-
-          canvas.width =
-            image.naturalWidth;
-
-          canvas.height =
-            image.naturalHeight;
-
-
-          ctx.drawImage(
-            image,
-            0,
-            0
-          );
-
+          photoPreview.style.display =
+            "block";
 
           uploadContent.style.display =
             "none";
 
-          preview.style.display =
+          changePhoto.style.display =
             "block";
 
 
-          controls.style.display =
-            "block";
-
-
-          downloadButton.style.display =
-            "none";
+          originalImage =
+            e.target.result;
 
 
           status.textContent =
             "Фотография загружена";
 
+
+          controls.style.display =
+            "block";
+
         };
 
 
-      image.src =
-        URL.createObjectURL(file);
+      reader.readAsDataURL(file);
 
     }
   );
 
 
-  /*
-    Выбор пресета
-  */
-
-  const presets =
-    document.querySelectorAll(".preset");
-
+  /* Выбор пресета */
 
   presets.forEach(
-    preset => {
+    function(preset) {
 
       preset.addEventListener(
         "click",
         function() {
 
           presets.forEach(
-            item => {
+            function(item) {
               item.classList.remove("active");
             }
           );
@@ -797,13 +783,11 @@
 
 
           selectedPreset =
-            this.dataset.preset;
+            this.dataset.name;
 
 
-          selectedPresetName.textContent =
-            this.querySelector(
-              ".preset-name"
-            ).textContent;
+          controlName.textContent =
+            selectedPreset;
 
 
           controls.style.display =
@@ -812,7 +796,7 @@
 
           status.textContent =
             "Выбран стиль: " +
-            selectedPresetName.textContent;
+            selectedPreset;
 
         }
       );
@@ -821,356 +805,131 @@
   );
 
 
-  /*
-    Интенсивность
-  */
+  /* Ползунок */
 
   intensity.addEventListener(
     "input",
     function() {
 
-      intensityValue.textContent =
+      intensityNumber.textContent =
         this.value + "%";
 
     }
   );
 
 
-  /*
-    OLD MONEY
-  */
+  /* Оригинал */
 
-  function applyOldMoney(
-    imageData,
-    strength
-  ) {
+  document
+    .getElementById("originalButton")
+    .addEventListener(
+      "click",
+      function() {
 
-    const data =
-      imageData.data;
+        if (!originalImage) {
+          return;
+        }
 
-
-    const amount =
-      strength / 100;
-
-
-    for (
-      let i = 0;
-      i < data.length;
-      i += 4
-    ) {
-
-      let r = data[i];
-
-      let g = data[i + 1];
-
-      let b = data[i + 2];
-
-
-      /*
-        Немного уменьшаем насыщенность
-      */
-
-      const gray =
-        0.299 * r +
-        0.587 * g +
-        0.114 * b;
-
-
-      r =
-        r +
-        (gray - r) *
-        (0.10 * amount);
-
-
-      g =
-        g +
-        (gray - g) *
-        (0.10 * amount);
-
-
-      b =
-        b +
-        (gray - b) *
-        (0.10 * amount);
-
-
-      /*
-        Тёплый оттенок
-      */
-
-      r +=
-        8 * amount;
-
-      g +=
-        3 * amount;
-
-      b -=
-        5 * amount;
-
-
-      /*
-        Мягче свет
-      */
-
-      r =
-        r * (1 - 0.06 * amount)
-        + 8 * amount;
-
-      g =
-        g * (1 - 0.06 * amount)
-        + 5 * amount;
-
-      b =
-        b * (1 - 0.06 * amount);
-
-
-      /*
-        Лёгкое углубление теней
-      */
-
-      const darkness =
-        Math.max(
-          0,
-          100 -
-          ((r + g + b) / 3)
-        ) / 100;
-
-
-      r -=
-        5 *
-        darkness *
-        amount;
-
-      g -=
-        5 *
-        darkness *
-        amount;
-
-      b -=
-        3 *
-        darkness *
-        amount;
-
-
-      data[i] =
-        Math.max(
-          0,
-          Math.min(
-            255,
-            r
-          )
-        );
-
-
-      data[i + 1] =
-        Math.max(
-          0,
-          Math.min(
-            255,
-            g
-          )
-        );
-
-
-      data[i + 2] =
-        Math.max(
-          0,
-          Math.min(
-            255,
-            b
-          )
-        );
-
-    }
-
-
-    return imageData;
-
-  }
-
-
-  /*
-    Применить
-  */
-
-  applyButton.addEventListener(
-    "click",
-    function() {
-
-      if (!originalImage) {
+        photoPreview.src =
+          originalImage;
 
         status.textContent =
-          "Сначала добавьте фотографию";
-
-        return;
+          "Показан оригинал";
 
       }
+    );
 
 
-      if (!selectedPreset) {
+  /* Применить */
 
-        status.textContent =
-          "Сначала выберите пресет";
+  document
+    .getElementById("applyButton")
+    .addEventListener(
+      "click",
+      function() {
 
-        return;
-
-      }
-
-
-      status.textContent =
-        "Обрабатываем фотографию...";
-
-
-      setTimeout(
-        function() {
-
-          /*
-            Возвращаем оригинал
-          */
-
-          ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-          );
-
-
-          ctx.drawImage(
-            originalImage,
-            0,
-            0
-          );
-
-
-          /*
-            Получаем пиксели
-          */
-
-          let imageData =
-            ctx.getImageData(
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
-
-
-          const strength =
-            Number(
-              intensity.value
-            );
-
-
-          /*
-            Пока настоящий только OLD MONEY
-          */
-
-          if (
-            selectedPreset ===
-            "old-money"
-          ) {
-
-            imageData =
-              applyOldMoney(
-                imageData,
-                strength
-              );
-
-          }
-
-
-          /*
-            CANON / FILM / CAFE
-            пока оставляем без обработки
-          */
-
-          ctx.putImageData(
-            imageData,
-            0,
-            0
-          );
-
-
-          downloadButton.style.display =
-            "block";
-
+        if (!originalImage) {
 
           status.textContent =
-            "Готово ✦";
+            "Сначала добавьте фотографию";
 
-        },
-        300
-      );
+          return;
 
-    }
-  );
+        }
 
 
-  /*
-    Оригинал
-  */
+        if (!selectedPreset) {
 
-  resetButton.addEventListener(
-    "click",
-    function() {
+          status.textContent =
+            "Сначала выберите пресет";
 
-      if (!originalImage) return;
+          return;
 
-
-      ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
+        }
 
 
-      ctx.drawImage(
-        originalImage,
-        0,
-        0
-      );
+        /*
+          Пока делаем только
+          визуальный тест.
+
+          Настоящую цветокоррекцию
+          подключим следующим этапом.
+        */
+
+        status.textContent =
+          "Применяем " +
+          selectedPreset +
+          "...";
 
 
-      downloadButton.style.display =
-        "none";
+        setTimeout(
+          function() {
 
+            status.textContent =
+              "Готово ✦";
 
-      status.textContent =
-        "Показан оригинал";
+            document
+              .getElementById("downloadButton")
+              .style.display =
+              "block";
 
-    }
-  );
-
-
-  /*
-    Сохранение
-  */
-
-  downloadButton.addEventListener(
-    "click",
-    function() {
-
-      const link =
-        document.createElement("a");
-
-
-      link.download =
-        "photo-lab-edited.jpg";
-
-
-      link.href =
-        canvas.toDataURL(
-          "image/jpeg",
-          0.95
+          },
+          700
         );
 
+      }
+    );
 
-      link.click();
 
-    }
-  );
+  /* Сохранение */
+
+  document
+    .getElementById("downloadButton")
+    .addEventListener(
+      "click",
+      function() {
+
+        if (!photoPreview.src) {
+          return;
+        }
+
+
+        const link =
+          document.createElement("a");
+
+
+        link.href =
+          photoPreview.src;
+
+
+        link.download =
+          "photo-lab.jpg";
+
+
+        link.click();
+
+      }
+    );
 
 </script>
 
